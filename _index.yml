@@ -4,7 +4,7 @@ indexpage:
   summary: AI Data Engine 文件涵蓋如何部署、連接資料來源以及如何使用 AI Data Engine 進行儲存設備優化、中繼資料調查和資料管制。
   keywords: ai data engine, aide, storage optimization, investigation, policies, data
     governance, NetApp Console
-  lead: AI Data Engine 提供您儲存於 NetApp 系統上非結構化資料的可見度。使用它來識別儲存設備最佳化機會、調查您的資料，並強制執行生命週期原則。
+  lead: AI Data Engine 是一項中繼資料智慧服務，透過 NetApp Console 代管，可掃描您連接的系統，建立中繼資料目錄，並提供可見度與工具，以大規模最佳化儲存設備與治理資料。
   tiles:
   - title: 開始使用
     links:

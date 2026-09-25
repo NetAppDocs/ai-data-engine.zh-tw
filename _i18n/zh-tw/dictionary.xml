@@ -871,7 +871,6 @@
   <block id="7dbe065509bb17277c7b17f3766f97be" category="list-text">從儀表板中確定哪些資料所有者持有最高濃度的冷資料、過時資料或複製資料，然後在調查檢視中按所有者或群組進行篩選，以根據您的原則審查和管理結果。</block>
   <block id="482723983a4f2af954e36ff41e567451" category="inline-link-macro">已知限制</block>
   <block id="34e34c0debc388181c3934f84b977ddd" category="list-text"><block ref="34e34c0debc388181c3934f84b977ddd" category="inline-link-macro-rx"></block></block>
-  <block id="e72c60c273700856ad0eeb853a353e52" category="sidebar">AI Data Engine 提供您儲存於 NetApp 系統上非結構化資料的可見度。使用它來識別儲存設備最佳化機會、調查您的資料，並強制執行生命週期原則。</block>
   <block id="ed67b8aec97dcec019f1b2972d70f5af" category="sidebar">AI Data Engine 文件</block>
   <block id="0416d02572f9d563fa4967178dc5c5fb" category="sidebar">AI Data Engine 文件涵蓋如何部署、連接資料來源以及如何使用 AI Data Engine 進行儲存設備優化、中繼資料調查和資料管制。</block>
   <block id="be11c74c1dd7f307bb80183a90dc2067" category="sidebar">開始使用</block>
@@ -892,4 +891,5 @@
   <block id="6b2443d2529b7b19a67154f7a04c9877" category="sidebar">使用 AIDE 儀表板評估儲存設備健全狀況</block>
   <block id="4bd61438e659088dded1d69964caccb1" category="sidebar">管理原則和行動</block>
   <block id="7d0ee6fed10d3d4e5c9ee496729ab519" category="sidebar">版本資訊</block>
+  <block id="ac219e2fd9f167e916107df50eb88fad" category="sidebar">AI Data Engine 是一項中繼資料智慧服務，透過 NetApp Console 代管，可掃描您連接的系統，建立中繼資料目錄，並提供可見度與工具，以大規模最佳化儲存設備與治理資料。</block>
 </blocks>
