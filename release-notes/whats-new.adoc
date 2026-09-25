@@ -1,0 +1,40 @@
+---
+sidebar: sidebar 
+permalink: release-notes/whats-new.html 
+keywords: 'what"s new, release notes, AI Data Engine, storage optimization' 
+summary: 了解 AI Data Engine 的新功能。 
+---
+= AI Data Engine 的新功能
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+了解 AI Data Engine 的新功能。
+
+
+
+[[ai-data-engine-1-1-0]]
+== AI Data Engine 1.1.0
+
+AI Data Engine 是一項中繼資料智慧服務，透過 NetApp Console 代管，可掃描您連接的系統，建立中繼資料目錄，並提供可見度與工具，以大規模最佳化儲存設備與治理資料。您可以將 AI Data Engine 部署為 link:../deploy/deployment-overview.html["AIDE Lite"]，如果您的環境需要以 Kubernetes 為基礎的大規模高可用度，則可部署為 AIDE Enterprise。
+
+新增功能：
+
+link:../investigate/understand-dashboard.html["恢復儲存容量"]:: 根據您設定的閾值，識別已連線系統中的冷資料、陳舊資料和複製資料，並查看哪些系統和資料擁有者擁有最高濃度的此類資料。
+link:../investigate/investigate-data.html["降低成本和風險"]:: 按存取時間、修改日期、建立日期、檔案大小、複製狀態和其他條件篩選所有已連接系統中的檔案，以尋找符合組織資料管理員目標的檔案。可以直接根據結果採取行動，也可以將篩選條件儲存為原則。
+link:../policies/create-policy.html["持續治理資料"]:: 將篩選條件儲存為命名原則，以便追蹤一段時間內重複出現的資料情況（例如冷檔案或超大檔案），並在受影響的檔案數量變更時接收通知。
+link:../investigate/take-actions.html["降低儲存設備成本"]:: 透過將檔案複製和歸檔到 NFS 或 SMB/CIFS 目標位置、標記項目以進行追蹤，或根據您的保留要求永久刪除檔案，來強制執行您組織的資料生命週期原則。
+link:../administer/manage-users-roles.html["指派管理員與檢視者角色"]:: 透過將 AI Data Engine 系統管理員或檢視者角色指派給組織中的使用者，來控制誰可以調查資料並採取行動。
+link:../investigate/use-filters.html["消除複製資料"]:: 尋找在您連接的系統中具有複製副本的檔案。依據複製屬性或檔案雜湊值進行篩選，以直接審查並處理複製群組。
+link:../investigate/understand-dashboard.html["追究資料所有者的責任"]:: 從儀表板中確定哪些資料所有者持有最高濃度的冷資料、過時資料或複製資料，然後在調查檢視中按所有者或群組進行篩選，以根據您的原則審查和管理結果。
+
+
+
+
+[[related-information]]
+== 相關資訊
+
+* link:known-limitations.html["已知限制"]
+

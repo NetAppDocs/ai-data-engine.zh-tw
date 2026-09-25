@@ -1,0 +1,108 @@
+---
+sidebar: sidebar 
+permalink: administer/manage-users-roles.html 
+keywords: roles, users, permissions, AI data engine administrator, AI data engine viewer 
+summary: 透過為每個使用者指派系統管理員或查看者角色來控制存取。了解這兩種角色及其權限。 
+---
+= 管理 AI Data Engine 中的使用者和角色
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+透過指派系統管理員或檢視者角色，控制每個使用者在 AI Data Engine 中的檢視和操作權限。在您的團隊開始使用 AI Data Engine 之前，請為每個使用者指派與其所需存取層級相符的角色。
+
+您可以透過 NetApp Console 組織設定指派角色。AI Data Engine 支援兩種角色。
+
+
+
+[[available-roles]]
+== 可用角色
+
+
+
+[[ai-data-engine-administrator]]
+=== AI Data Engine 系統管理員
+
+AI Data Engine 系統管理員角色提供對 AI Data Engine 所有功能的完全存取。NetApp 建議每個部署中最多只將此角色指派給兩到三個使用者。
+
+
+
+[[ai-data-engine-viewer]]
+=== AI Data Engine 檢視器
+
+AI Data Engine 檢視者角色提供對 AI Data Engine 的有限存取。檢視者可以檢視資訊、匯出報告、標記檔案和建立僅監控原則，但無法修改設定或執行檔案行動，例如歸檔、複本或刪除。
+
+
+
+[[permissions-by-role]]
+== 依角色的權限
+
+[cols="3,1,1"]
+|===
+| 功能 | AI Data Engine 系統管理員 | AI Data Engine 檢視器 
+
+
+| 管理使用者和角色 | 是的 | - 
+
+
+| 管理資料資源 | 是的 | - 
+
+
+| 系統組態 | 是的 | - 
+
+
+| 檢視儀表板 | 是的 | 是的 
+
+
+| 搜尋中繼資料（調查） | 是的 | 是的 
+
+
+| 匯出報告 | 是的 | 是的 
+
+
+| 建立僅監控原則 | 是的 | 是的 
+
+
+| 建立包含行動的原則 | 是的 | - 
+
+
+| 行動：標籤 | 是的 | 是的 
+
+
+| 行動：歸檔、複本、刪除 | 是的 | - 
+
+
+| 管理企業標籤 | 是的 | 是的 
+|===
+
+
+[[assign-a-role-to-a-user]]
+== 指派角色給使用者
+
+角色指派是在 NetApp Console 中進行，而不是在 AI Data Engine 本身中進行。
+
+.步驟
+. 從 NetApp Console，前往 *成員*。
+. 執行下列其中一項作業：
++
+** 若要新增使用者，請選擇 *新增使用者*，然後輸入使用者的電子郵件地址。
+** 若要更新現有使用者，請從清單中選取該使用者。
+
+
+. 選擇組織、資料夾或專案，然後選擇 *Data Service* 類別。
+. 指派 *AI Data Engine 系統管理員* 或 *AI Data Engine 檢視者* 角色。
+. 儲存變更。
+
+
+使用者收到電子郵件邀請後，接受邀請即可存取 AI Data Engine。
+
+
+
+[[related-information]]
+== 相關資訊
+
+* link:../investigate/take-actions.html["對您的資料採取行動"]
+* link:../policies/create-policy.html["建立原則"]
+

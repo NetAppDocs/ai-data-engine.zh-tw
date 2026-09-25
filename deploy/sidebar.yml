@@ -1,0 +1,12 @@
+---
+section: deploy
+title: 部署
+entries:
+- title: 了解 AIDE 部署
+  url: "/deploy/deployment-overview.html"
+- title: AIDE 要求
+  url: "/deploy/aide-requirements.html"
+- title: 部署 AIDE Lite
+  url: "/deploy/deploy-aide-lite.html"
+- title: 部署 AIDE 企業版
+  url: "/deploy/deploy-enterprise.html"

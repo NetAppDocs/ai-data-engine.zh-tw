@@ -1,0 +1,12 @@
+---
+section: get-started
+title: 開始使用
+entries:
+- title: 了解 AIDE
+  url: "/get-started/learn-about.html"
+- title: AIDE 架構
+  url: "/get-started/architecture.html"
+- title: 快速入門
+  url: "/get-started/quick-start.html"
+- title: 探索儲存設備最佳化工作流程
+  url: "/get-started/storage-optimization-workflows.html"

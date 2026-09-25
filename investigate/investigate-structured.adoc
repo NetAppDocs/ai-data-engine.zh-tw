@@ -1,0 +1,86 @@
+---
+sidebar: sidebar 
+permalink: investigate/investigate-structured.html 
+keywords: investigate, structured, database, tables, schema, oversized, unused, DB server, table size, discovered time 
+summary: 尋找已連接資料庫伺服器中過大或未使用的資料庫表，然後將發現結果儲存為可重複使用的治理原則。 
+---
+= 在 AI Data Engine 中調查結構化資料
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+當資料庫儲存設備意外增長時，可以透過表中繼資料進行篩選，找出哪些表過大或自首次探索以來一直沒有活動。例如，儲存管理員可以識別出自早期掃描以來未發生任何變更的大型資料表，然後與資料庫擁有者協調，評估這些資料表是否仍然必要。
+
+.開始之前
+* 至少必須連接並掃描一個資料庫資料來源。請參閱 link:../data-sources/connect-data-source.html["連接資料來源"]。
+
+
+
+
+[[review-the-database-table-listing]]
+== 審查資料庫表格列表
+
+.步驟
+. 在 AI Data Engine 使用者介面中，選擇 *調查*。
+. 選擇 *結構化* 標籤。
++
+表格顯示資料庫表格名稱、架構、DB 伺服器、探索時間、表格維度（欄 × 列）和表格大小。
+
+
+
+
+
+[[identify-oversized-or-unused-tables]]
+== 找出過大或未使用的資料表
+
+使用篩選器將清單範圍縮小至最有可能提供回收商機的表格。
+
+.步驟
+. 選擇 *新增篩選條件*，然後選擇 *探索時間*。
+. 將範圍設定為顯示在多個掃描週期中都存在的資料表，例如一年多前首次探索到的資料表。
+. 若要進一步縮小範圍，請再次選取 *新增篩選器*，然後依資料庫伺服器或架構進行篩選，以專注於特定系統。
++
+已套用的篩選條件會以標籤的形式顯示在篩選欄下方。結果會隨著您新增每個篩選條件而更新。
+
+
+
+如需可用篩選條件的完整清單，請參閱link:use-filters.html["使用過濾器"]。
+
+
+
+[[review-table-details]]
+== 審查表格詳情
+
+選取表格列以開啟詳細資訊面板，並評估該表格是否為回收候選項目。
+
+詳細資訊面板顯示資料庫伺服器、架構、表格維度、表格大小和探索時間。使用此資訊來判斷表格自探索以來是否已增長或保持不變。
+
+
+NOTE: 在對資料庫表進行任何操作之前，請與資料庫擁有者協調，確認該表已不再需要。
+
+
+
+[[save-findings-as-a-policy]]
+== 將發現儲存為原則
+
+套用篩選器辨識感興趣的表格後，儲存篩選條件以便後續監控。
+
+.步驟
+. 在篩選工具列中選擇「建立原則」。
+. 填寫原則表格。請參閱link:../policies/create-policy.html["建立原則"]。
+
+
+若要從「結構化」標籤下載篩選後的結果，請選擇image:icon_download_file.png["下載"]。
+
+
+
+[[related-information]]
+== 相關資訊
+
+* link:use-filters.html["使用過濾器"]
+* link:../policies/create-policy.html["建立原則"]
+* link:../data-sources/connect-data-source.html["連接資料來源"]
+* link:understand-dashboard.html["從儀表板評估儲存使用率"]
+

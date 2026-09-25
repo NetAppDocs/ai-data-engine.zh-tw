@@ -1,0 +1,74 @@
+---
+sidebar: sidebar 
+permalink: administer/configure-settings.html 
+keywords: cold threshold, stale threshold, configuration, settings, data classification, cold data, stale data 
+summary: 設定 AI Data Engine 用於將環境中的資料分類為冷資料或過期資料的時間臨界值。 
+---
+= 在 AI Data Engine 中設定冷資料和過時資料臨界值
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+AI Data Engine 會根據您定義的時間臨界值將檔案分類為冷資料或過期資料。這些臨界值會影響儀表板摘要中顯示的資料、在「調查」中套用冷資料或過期資料篩選器時顯示的檔案，以及原則的目標檔案。設定與您組織的資料分類和保留實務相符的臨界值，並協助您識別認為重要而需要監控的資料。
+
+
+
+[[what-is-cold-and-stale-data]]
+== 什麼是冷資料和過時資料？
+
+冷資料:: 在設定的冷資料臨界值內未被存取的檔案。冷資料是您的組織可以用來識別可根據您的保留和業務原則進行最佳化之儲存設備的關鍵指標。
+過時的資料:: 在設定的過期資料臨界值內未被存取或修改的檔案。過期資料包括偶爾被存取但近期未修改的檔案，您的組織可以根據您的原則對其進行監控或管理。
+
+
+
+NOTE: 預設臨界值是作為起點提供的產品預設值。它們並不代表法律、法規遵循或業界標準的保留期間。請設定反映貴組織特定原則與需求的臨界值。
+
+任一臨界值的變更都會在下一個掃描週期完成後生效。
+
+
+
+[[configure-the-cold-data-threshold]]
+== 設定冷資料臨界值
+
+.開始之前
+* 您必須擁有 _AI Data Engine 系統管理員_ 角色。
+
+
+.步驟
+. 在 AI Data Engine 使用者介面中，選擇 *組態*。
+. 選擇 *設定*。
+. 針對 *冷資料定義* 選擇 *編輯*。
+. 將檔案屬性設定為 *上次存取時間* 或 *上次修改時間*。
+. 設定時間臨界值。預設值為一年。
+. 選擇 *Save*。
+
+
+
+
+[[configure-the-stale-data-threshold]]
+== 設定過時資料臨界值
+
+.開始之前
+* 您必須擁有 _AI Data Engine 系統管理員_ 角色。
+
+
+.步驟
+. 在 AI Data Engine 使用者介面中，選擇 *組態*。
+. 選擇 *設定*。
+. 針對 *過時資料定義* 選擇 *編輯*。
+. 將檔案屬性設定為 *上次存取時間* 或 *上次修改時間*。
+. 設定時間臨界值。預設值為三年。
+. 選擇 *Save*。
+
+
+
+
+[[related-information]]
+== 相關資訊
+
+* link:../investigate/understand-dashboard.html["了解 AI Data Engine 儀表板"]
+* link:../get-started/storage-optimization-workflows.html["探索儲存設備最佳化工作流程"]
+* link:manage-users-roles.html["管理使用者和角色"]
+

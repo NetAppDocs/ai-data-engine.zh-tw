@@ -1,0 +1,88 @@
+---
+sidebar: sidebar 
+permalink: data-sources/connect-data-source.html 
+keywords: connect, data source, storage system, scanned systems, configuration, scan, NFS, CIFS, StorageGRID, database, file shares, console agent, scope, content intelligence, activate 
+summary: 透過完成資料來源上線精靈，將儲存設備系統連接到 AI Data Engine，然後啟動掃描以開始中繼資料收集。 
+---
+= 將資料來源連接到 AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+AI Data Engine 會掃描您的儲存設備系統，以收集和分析中繼資料。若要新增資料來源，請完成上線精靈。此精靈會收集連線詳細資訊、掃描範圍以及來源類型的設定。新增系統後，啟動掃描即可開始收集中繼資料。
+
+.開始之前
+* 您必須擁有 _AI Data Engine 系統管理員_ 權限才能連接和設定 AI Data Engine 中的資料來源。
+* 在將它們新增至 AI Data Engine 之前，請先使用 Console Agent 在 NetApp Console 中探索儲存設備系統。這適用於所有支援的儲存設備類型，包括內部部署 ONTAP 叢集、Cloud Volumes ONTAP、Amazon FSx for NetApp ONTAP、Google Cloud NetApp Volumes 和 Azure NetApp Files。對於內部部署 ONTAP 叢集，請參閱 NetApp Console 文件中的 link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html["探索內部部署 ONTAP 叢集"]。直接探索無法啟用 AI Data Engine 等資料服務。
+* 請確認 AI Data Engine 存取資料來源所需的網路連線已開啟。請參閱 link:../deploy/aide-requirements.html["AI Data Engine 需求"]。
+
+
+
+
+[[add-a-data-source]]
+== 新增資料來源
+
+.步驟
+. 在 AI Data Engine 使用者介面中，選擇 *組態*。
+. 在 *已掃描系統* 標籤上，選擇 *新增系統*。
+. 選擇來源類型：
++
+[cols="1,2"]
+|===
+| 來源類型 | 說明 
+
+
+| *檔案共享群組* | 將雲端或本地端的 NFS 或 SMB/CIFS 檔案共享新增為命名群組。 
+
+
+| *資料庫* | 新增資料庫伺服器以掃描選定的模式。 
+
+
+| *StorageGRID* | 使用 S3 協定從 NetApp StorageGRID 掃描資料。 
+|===
+. 輸入來源類型的連線詳細資訊：
++
+[cols="1,3"]
+|===
+| 來源類型 | 所需資訊 
+
+
+| *檔案共享群組* | 共享群組的名稱，然後是共享主機和路徑詳細資訊。 
+
+
+| *資料庫* | 資料庫類型、主機、連接埠和身分驗證認證資料。 
+
+
+| *StorageGRID* | 系統名稱、S3 端點 URL，以及 S3 存取金鑰和秘密金鑰。 
+|===
+. 審查您的選擇，然後選擇 *確認* 以新增資料來源。
+
+
+
+
+[[activate-scanning]]
+== 啟動掃描
+
+設定資料來源後，掃描不會自動開始。您必須為每個系統啟動掃描。
+
+.步驟
+. 在 AI Data Engine 使用者介面中，選擇 *組態*。
+. 在 *已掃描系統* 標籤上，找到您要掃描的系統。
+. 選擇 *啟動掃描*。
+
+
+.結果
+系統狀態會在「已掃描的系統」索引標籤中更新，以顯示掃描正在執行。若要監控掃描進度並驗證 AI Data Engine 是否正在索引資料資源，請參閱 link:manage-data-sources.html["管理資料來源"] 和 link:monitor-scanning-health.html["監控掃描健全狀況"]。
+
+
+
+[[related-information]]
+== 相關資訊
+
+* link:manage-data-sources.html["管理資料來源"]
+* link:../deploy/aide-requirements.html["AI Data Engine 需求"]
+* link:../investigate/understand-dashboard.html["從儀表板評估儲存使用率"]
+* link:monitor-scanning-health.html["監控掃描健全狀況"]
+

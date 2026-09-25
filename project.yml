@@ -1,0 +1,25 @@
+---
+settings:
+  name: AI Data Engine
+  rss_page: release-notes/whats-new.html
+  internal:
+    pdf_enabled: true
+  prod:
+    pdf_enabled: true
+    harmony_enabled: false
+  langs: zh-tw,us-en,de-de,es-es,fr-fr,it-it,pt-br,ja-jp,ko-kr,zh-cn
+sidebar:
+  entries:
+  - title: AI Data Engine 文件
+    url: "/index.html"
+  - section: release-notes
+  - section: get-started
+  - section: deploy
+  - section: data-sources
+  - title: 使用 AIDE
+    entries:
+    - section: investigate
+    - section: policies
+    - section: administer
+  - title: 法律聲明
+    url: "/legal-notices.html"

@@ -1,0 +1,312 @@
+---
+sidebar: sidebar 
+permalink: deploy/aide-requirements.html 
+keywords: requirements, prerequisites, networking, ports, vm, kubernetes, sizing, flexible sizing, scaling, capacity planning 
+summary: 在部署 AI Data Engine 之前，請先審查基礎架構和連網需求。 
+---
+= AI Data Engine 需求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在部署 AI Data Engine 之前，請審查您環境的連網、虛擬機器規模和作業系統需求。
+
+
+
+[[networking-requirements]]
+== 網路需求
+
+必須開啟以下網路連線：
+
+[cols="2,1,1,1,2"]
+|===
+| 連線 | 連接埠 | 傳輸協定 | 方向 | 目的 
+
+
+| 控制台代理到 NetApp Console | 443 | TCP | 傳出 | HTTPS：與 NetApp Console 的連線 
+
+
+| 控制台代理到 ONTAP | 443 | TCP | 傳出 | HTTPS：ONTAP 叢集探索 
+
+
+| Console Agent 到 AI Data Engine | 80、443、8080、9000 | TCP | 雙向 | Console Agent 與 AI Data Engine 之間的通訊 
+
+
+| AI Data Engine 到 ONTAP（NFS） | 111 、 2049 | TCP/UDP | 至儲存設備 | NFS 資料來源存取 
+
+
+| AI Data Engine 到 ONTAP （SMB/CIFS） | 139 、 445 | TCP/UDP | 至儲存設備 | SMB/CIFS 資料來源存取 
+
+
+| AI Data Engine 到 Active Directory | 389、636、3268、3269 | TCP/UDP | 傳出 | LDAP （389）、LDAPS （636） 和全域目錄 （3268、3269） 用於使用者身分驗證和 SMB/CIFS 掃描。連接埠 389 同時使用 TCP 和 UDP；所有其他連接埠僅使用 TCP。 
+
+
+| AI Data Engine 到 NetApp 服務 / Container 註冊表 | 443 | TCP | 傳出 | HTTPS：工件下載和 Container 映像拉取（AWS S3 和 ECR） 
+|===
+
+
+[[outbound-internet-access]]
+=== 傳出網際網路存取
+
+對於線上安裝，AI Data Engine 主機必須能夠存取下列端點：
+
+[cols="2,2,1"]
+|===
+| 端點 | 目的 | 範圍 
+
+
+| `\https://api.console.netapp.com` | NetApp Console 通訊 | 兩者 
+
+
+| `\https://netapp-cloud-account.auth0.com` | 集中式使用者身分驗證 | 兩者 
+
+
+| `\https://auth0.com` | 驗證服務 | 兩者 
+
+
+| `\https://582244788873.dkr.ecr.us-west-2.amazonaws.com` | NetApp Container 登錄（AIDE Container 映像） | 兩者 
+
+
+| `\https://582244788873.dkr-ecr.us-west-2.on.aws` | NetApp Container 註冊表（雙堆疊/虛擬私有雲（VPC）端點存取） | 兩者 
+
+
+| `\https://api.ecr.us-west-2.amazonaws.com` | AWS ECR API（驗證與映像清單擷取） | 兩者 
+
+
+| `\https://prod-us-west-2-starport-layer-bucket.s3.us-west-2.amazonaws.com` | AWS S3（ECR Container 映像階層儲存設備） | 兩者 
+
+
+| `\https://prod-us-west-2-starport-layer-bucket.s3.amazonaws.com` | AWS S3（ECR Container 映像階層儲存設備） | 兩者 
+
+
+| `\https://s3.us-west-2.amazonaws.com` | AWS S3（安裝程式包裝指令碼、Helm 圖表和元件版本目錄） | 兩者 
+
+
+| `\https://s3.amazonaws.com` | AWS S3（安裝程式包裝指令碼、Helm 圖表和元件版本目錄） | 兩者 
+
+
+| `\https://sts.us-west-2.amazonaws.com` | AWS STS（登錄與 S3 存取的臨時認證資料交換） | 兩者 
+
+
+| `\https://support.compliance.api.bluexp.netapp.com` | 軟體映像、清單和範本；日誌和計量串流 | 兩者 
+
+
+| `\https://dseasb33srnrn.cloudfront.net` | 用於軟體經銷的 CloudFront CDN | 兩者 
+
+
+| `\http://packages.ubuntu.com` | Ubuntu 必備套件 | 限精簡版（Ubuntu） 
+
+
+| `\http://archive.ubuntu.com` | Ubuntu 套件歸檔 | 限精簡版（Ubuntu） 
+
+
+| `\http://security.ubuntu.com` | Ubuntu 安全性套件歸檔 | 限精簡版（Ubuntu） 
+
+
+| `\https://get.k3s.io` | k3s 執行階段下載（安裝程式啟動） | 僅限精簡版 
+
+
+| `\https://get.helm.sh` | Helm 下載（安裝程式啟動） | 僅限精簡版 
+|===
+AI Data Engine 也依賴 NetApp Console 進行集中式驗證和主控台服務。請參閱 link:https://docs.netapp.com/us-en/console-setup-admin/reference-networking-saas-console.html["NetApp Console 的網路存取要求"^] 以了解 Console 和 Console 代理程式連線所需的端點。
+
+在開始部署之前，請先從 AI Data Engine 主機驗證這些端點的 DNS 解析是否正常運作。
+
+
+
+[[aide-lite-requirements]]
+== AIDE Lite 需求
+
+
+
+[[vm-sizing]]
+[[lite-vm-sizes]]
+=== VM 規模
+
+這些大小是建議的基準組態，針對三到四天的初始掃描時間範圍最佳化的，並非硬性限制。請參閱 <<flexible-sizing-lite,靈活的規模指南>> 以了解這些數字的依據以及如何進一步擴充。
+
+[cols="1,1,1,1,1,1,1,1"]
+|===
+| 大小 | vCPU | RAM | 磁碟 | 儲存 IOPS | 儲存處理量 | 網路 | 近似檔案 
+
+
+| 小型 | 16 | 64 GB | 500 GB | 8,000 | 1,000 MB/s | 1 GbE | 2億 
+
+
+| 中 | 32 | 128 GB | 2 TB | 12,000 | 1,500 MB/s | 1 GbE | 10 億 
+
+
+| 大型 | 96 | 192 GB | 6 TB | 16,000 | 2,000 MB/s | 10 GbE | 30 億 
+|===
+
+NOTE: 對於所有部署規模，建議使用 NVMe SSD 或其他固態儲存設備。此表中的磁碟容量值僅反映 AIDE 資料 Volume 的儲存設備。如果作業系統、k3s 執行時間和 AIDE 資料都共享單一磁碟，則在所選規模的磁碟容量值上增加約 65 GB。例如，單一磁碟上的小型部署總共需要約 565 GB 的空間。
+
+
+
+[[flexible-sizing-guidelines]]
+[[flexible-sizing-lite]]
+=== 靈活的規模指南
+
+<<lite-vm-sizes,小型、中型和大型組態>>這些是建議的三到四天初始掃描視窗的基準值，而不是軟體強制執行的硬性限制。
+
+規模建議的依據是什麼::
++
+--
+* *檔案和目錄總數*：要建立目錄的物件總數是運算和儲存設備需求的主要驅動因素。物件數量越多，所需的記憶體容量、CPU 和儲存設備就相對越多。
+* *目錄結構*：資源使用會隨著目錄嵌套深度以及檔案在共享和磁碟區中的分佈而改變。深度嵌套或高度分散的結構可能比扁平層級結構中相同數量的檔案需要更多資源。
+* *所需掃描處理量*：初始目錄完成速度直接取決於 CPU 和記憶體容量分配。配置低於建議大小會降低處理量並延長初始掃描視窗。
+* *儲存效能*：強烈建議使用高效能儲存設備。中繼資料索引和事件處理需要與部署規模成正比的持續 IOPS 和處理量。
+
+
+--
+如果規模過小會發生什麼事::
++
+--
+資源配置低於建議值不會阻止安裝或導致服務故障。系統仍可正常運作，掃描也會繼續進行，但您可能會遇到以下情況：
+
+* *初始目錄時間延長*：運算減少會降低每日掃描的物件數。例如，目標為 30 億個物件但配置規模較小的部署，所需時間可能遠超過三到四天的目標。
+* *後續擷取處理量降低*：在持續負載下，新檔案事件和遞增掃描更新的處理速度會變慢。
+* *儲存容量風險*：相對於物件總數而言，儲存設備不足可能會導致中繼資料索引接近容量閾值。通常可以透過擴充儲存容量來解決此問題，而無需完全重新部署。
+
+
+--
+當您需要更多容量時進行擴充::
++
+--
+AIDE Lite 執行於單一 VM 上，因此擴充是垂直的：
+
+* 增加主機 VM 的 vCPU、記憶體容量或儲存設備。
+* 無需對叢集進行重新組態或重新安裝。
++
+
+NOTE: AIDE Lite 不支援高可用度或橫向擴充。如果您的環境持續超過 30 億個檔案，或者您需要高可用度和容錯能力，請改為部署 link:deploy-enterprise.html["AIDE Enterprise"]。
+
+
+
+--
+
+
+
+
+[[operating-system]]
+=== 作業系統
+
+[cols="1,2"]
+|===
+| 作業系統 | 支援的版本 
+
+
+| Ubuntu | 22.04 LTS，24.04 LTS（建議使用 24.04 LTS） 
+
+
+| Red Hat Enterprise Linux（RHEL） | 8.x、9.x 
+|===
+
+
+[[additional-prerequisites]]
+=== 其他先決條件
+
+* 您擁有目標虛擬機器的根目錄或 sudo 存取才能執行安裝程式。
+* 最低 1 GbE 網路連線（大型部署需 10 GbE）。
+* 目標主機必須具備 bash 4.0 或更新版本、curl 和 tar。
+* 安裝程式會自動下載並引導安裝 `k3s`、 `helm`、 `kubectl`和 `jq`。無需預先在目標 VM 上安裝這些工具。
+* 安裝程式啟動前，主機上的 6443 （TCP）、10250 （TCP） 和 8472 （UDP） 連接埠必須保持可用。如果主機防火牆 (`firewalld` 在 RHEL 上或  `ufw` 在 Ubuntu 上）處於作用中，請在執行安裝程式之前允許這些連接埠以及 k3s pod CIDR (`10.44.0.0/16`）和服務 CIDR (`10.45.0.0/16`）。請參閱您的作業系統防火牆文件，以取得所需的命令。
+* 在執行強制模式 SELinux 的 RHEL 系統上，安裝程式會自動設定所需的 SELinux 原則套件。無需手冊 SELinux 組態。
+
+
+
+
+[[aide-enterprise-requirements]]
+== AIDE 企業需求
+
+* 您在執行安裝程式的機器上擁有具備 cluster-admin 權限的 kubectl 存取。
+* 您在執行安裝命令的機器上擁有 Sudo（或根目錄）權限。
+* 目標叢集上已安裝 RKE2 v1.34 或更高版本（建議 v1.36.x）。
+* 安裝程式主機將透過  `--tools-dir` 自動下載並啟動  `helm`、 `kubectl` 和  `jq`。不需要在管理機器上預先安裝這些工具。
+* 已設定的 StorageClass（預設名稱 `aide-sc`）可在叢集上使用，並用於 AIDE 的有狀態後端服務。
+* 至少有一個匯出路徑的 NFS 伺服器可用，用於 AIDE 組態資料 Volume 和共享的索引快照。
+* 叢集上已存在目標 Kubernetes 命名空間（預設 `aide`）；安裝程式不會建立它。
+
+
+
+NOTE: 對於所有企業節點部署，建議使用 NVMe 或高效能 SSD 儲存設備。
+
+
+
+[[node-sizing]]
+[[enterprise-vm-sizes]]
+=== 節點規模
+
+這些規模是建議的基準叢集組態，針對大約三天的初始掃描期間最佳化的，並非硬性容量限制。AIDE Enterprise 透過橫向擴充支援超過 60 億個檔案的環境。請參閱 <<flexible-sizing-enterprise,靈活的規模指南>> 以取得詳細資料。
+
+[cols="1,1,1,1,1,1,1,1,1"]
+|===
+| 大小 | 節點 | 每個節點的 vCPU | 每個節點的 RAM | 每個節點的磁碟 | 每個節點的儲存設備 IOPS | 每個節點的儲存處理量 | 每個節點的網路 | 近似檔案 
+
+
+| 小型 | 3 | 32 | 128 GB | 約 1.3TB | 8,000 | 1,000 MB/s | 1 GbE | 10 億 
+
+
+| 中 | 6 | 48 | 192 GB | 約 2TB | 12,000 | 1,500 MB/s | 10 GbE | 30 億 
+
+
+| 大型 | 9 | 64 | 256 GB | 約 2.7TB | 16,000 | 2,000 MB/s | 10 GbE | 60 億 
+|===
+
+
+[[flexible-sizing-guidelines]]
+[[flexible-sizing-enterprise]]
+=== 靈活的規模指南
+
+<<enterprise-vm-sizes,小型、中型和大型組態>> 這些是針對大約三天初始掃描時段建議的基準叢集組態，並非軟體強制執行的硬性容量上限。AIDE Enterprise 透過跨叢集節點的橫向擴充，支援超過 30 億個檔案的環境。
+
+規模建議的依據是什麼::
++
+--
+* *檔案和目錄總數*：物件總數是儲存設備和運算需求的主要驅動因素。規模較大的環境需要額外的叢集節點來分散處理負載並維持效能。
+* *高可用度複寫*：企業級部署預設啟用跨節點資料複寫以提供容錯能力。與同等的單一節點部署相比，複寫會增加總儲存設備和記憶體容量需求。
+* *節點數量與工作負載經銷*：處理處理量和總目錄容量隨叢集中節點數量的增加而擴展。增加節點可以將索引工作負載和儲存容量分配到整個叢集。
+* *所需掃描處理量*：叢集範圍內的 CPU 和記憶體容量分配決定了每日掃描速率以及初始目錄的完成速度。
+* *每個節點的儲存效能*：強烈建議在每個節點上使用高效能儲存設備，叢集總容量與節點數量成正比擴充。
+
+
+--
+如果規模過小會發生什麼事::
++
+--
+資源配置低於建議值不會阻止安裝或導致嚴重故障。實際影響包括：
+
+* *初始目錄持續時間延長*：節點較少或每個節點的資源減少會降低處理量，進而按比例延長初始目錄的時間範圍。
+* *峰值負載下處理延遲增加*：叢集記憶體容量不足會導致高容量擷取期間處理延遲升高。後續操作不會中斷，但持續處理量會降低。
+* *儲存容量風險*：叢集儲存設備不足以滿足目標物件數量，可能會導致中繼資料索引接近容量閾值。您可以透過擴充現有節點上的儲存設備（非中斷式）或新增專用儲存節點來解決此問題。
+
+
+--
+當您需要更多容量時進行擴充::
++
+--
+AIDE Enterprise 支援無需重新部署的橫向擴充：
+
+* 新增工作節點以增加可用於掃描處理和事件擷取的 CPU 和記憶體容量。
+* 新增專用儲存節點以增加總目錄容量。這是將環境擴充至超出預先定義的最大部署規模的主要方法。
+* 藉由新增更多節點至叢集，擴充至超過 60 億個檔案。如需自訂規模的節點規模指導，請聯絡您的 NetApp 代表。
++
+
+NOTE: 在現有 Enterprise 叢集中新增節點不會中斷後續的掃描操作，但請在活動較少的時段協調變更。
+
+
+
+--
+
+
+
+
+[[related-information]]
+== 相關資訊
+
+* link:deployment-overview.html["AIDE 部署總覽"]
+* link:deploy-aide-lite.html["部署 AI Data Engine — 精簡版"]
+* link:deploy-enterprise.html["部署 AI Data Engine — 企業版"]
+

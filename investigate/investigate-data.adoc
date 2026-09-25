@@ -1,0 +1,50 @@
+---
+sidebar: sidebar 
+permalink: investigate/investigate-data.html 
+keywords: investigate, metadata, unstructured, structured, directories, cold data, stale data, permissions, reclaimable storage 
+summary: 使用「調查」檢視可以探索已連線系統中的檔案儲存設備、資料庫表格和目錄結構。選擇與您要尋找的內容相符的索引標籤。 
+---
+= 在 AI Data Engine 中調查您的資料
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+當您需要了解哪些內容正在佔用儲存設備、確定哪些資料庫表格正在不受控制地成長，或尋找存取過於寬鬆的目錄時，請使用中繼資料篩選器來調查所有連接系統中的資料。
+
+
+
+[[choose-a-starting-point]]
+== 選擇起點
+
+在左側導覽中選擇 *調查* 以開啟檢視。您也可以從儀表板開啟調查檢視，方法是在 _依可回收儲存設備排序的熱門資料資源_ 表格中選擇 *調查*，這會自動套用該資源的篩選條件。
+
+「調查」功能分為三個標籤頁。請選擇與您正在調查的資料類型相符的標籤頁。
+
+[cols="1,2,1"]
+|===
+| 標籤頁 | 當您想要時使用 | 更多資訊 
+
+
+| *非結構化* | 尋找 NFS 和 SMB/CIFS 磁碟區中冷、過時或複製的檔案資料 | link:investigate-unstructured.html["調查非結構化資料"] 
+
+
+| *結構化* | 識別佔用儲存設備的過大或未使用的資料庫資料表 | link:investigate-structured.html["調查結構化資料"] 
+
+
+| *目錄* | 審核目錄層級權限並尋找可廣泛存取的路徑 | link:investigate-directories.html["調查目錄"] 
+|===
+頁面頂部的總結計數和總大小會更新以反映作用中標籤（例如，「非結構化 (400M) | 5.7 PiB」）。
+
+
+
+[[related-information]]
+== 相關資訊
+
+* link:investigate-unstructured.html["調查非結構化資料"]
+* link:investigate-structured.html["調查結構化資料"]
+* link:investigate-directories.html["調查目錄"]
+* link:use-filters.html["使用過濾器"]
+* link:take-actions.html["對您的資料採取行動"]
+

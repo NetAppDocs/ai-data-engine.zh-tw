@@ -1,0 +1,8 @@
+---
+section: policies
+title: 管理原則和行動
+entries:
+- title: 建立原則
+  url: "/policies/create-policy.html"
+- title: 管理原則
+  url: "/policies/manage-policies.html"

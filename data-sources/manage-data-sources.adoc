@@ -1,0 +1,157 @@
+---
+sidebar: sidebar 
+permalink: data-sources/manage-data-sources.html 
+keywords: manage, data source, storage system, scanned systems, pause scanning, resume scanning, scan all, retry scans, CIFS credentials, DP volumes, deactivate, scan status, scan errors, scanning toggle 
+summary: 監控掃描狀態並管理已連線的資料來源，包括暫停掃描、編輯憑證、啟用 DP Volume 存取和停用系統。 
+---
+= 在 AI Data Engine 中管理資料來源
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+連接資料來源後，您可以從 *已掃描系統* 標籤監控其掃描狀態並進行管理。使用這些程序來暫停或繼續掃描、更新憑證、調整資料存取設定，以及停用不再需要掃描的系統。
+
+
+
+[[view-scan-status-and-details]]
+== 檢視掃描狀態和詳細資訊
+
+.步驟
+. 在 AI Data Engine 使用者介面中，選擇 *組態*。
+. 在 *已掃描系統* 標籤上，找到要審查的系統。
+. 選擇系統列以開啟詳細檢視。
++
+詳細檢視顯示：
+
++
+** 包含目前掃描進度的狀態總覽
+** 資料資源掃描狀態細分：運作中、已完成、已暫停和錯誤
+** 掃描權限模式（例如，「無寫入權限掃描」）
++
+如果出現掃描錯誤，擴充錯誤詳情，查看哪些 Volume 或共享受到影響以及故障原因。
+
+
+
+
+
+
+
+[[pause-scanning]]
+== 暫停掃描
+
+.步驟
+. 在 AI Data Engine 使用者介面中，選擇 *組態*。
+. 在 *已掃描系統* 標籤上，找到您要暫停的系統。
+. 選擇系統列以開啟詳細檢視。
+. 選擇 *Pause* 。
+
+
+
+
+[[resume-scanning]]
+== 繼續掃描
+
+.步驟
+. 在 AI Data Engine 使用者介面中，選擇 *組態*。
+. 在 *已掃描系統* 標籤上，找到已暫停的系統。
+. 選擇系統列以開啟詳細檢視。
+. 選擇 *恢復*。
+
+
+
+
+[[scan-all-data-resources]]
+== 掃描所有資料資源
+
+觸發系統上所有資料資源的立即掃描。發生重大資料變更後，可使用此功能重新整理中繼資料。
+
+.步驟
+. 在 AI Data Engine 使用者介面中，選擇 *組態*。
+. 在 *已掃描系統* 標籤上，找到您要掃描的系統。
+. 選擇系統旁邊的操作選單。
+. 選擇 *掃描所有 Volume* （動作選單中針對共享和儲存桶也有同等的選項）。
+
+
+
+
+[[retry-failed-scans]]
+== 重試失敗的掃描
+
+將處於失敗或錯誤狀態的資料資源重新排隊。在重試之前，請先解決根本原因，例如認證資料問題、網路錯誤或權限問題。
+
+.步驟
+. 在 AI Data Engine 使用者介面中，選擇 *組態*。
+. 在 *已掃描系統* 標籤上，找到掃描失敗的系統。
+. 選擇系統旁邊的操作選單。
+. 選擇 *重試所有掃描*。
+
+
+
+
+[[edit-cifs-credentials]]
+== 編輯 CIFS 認證資料
+
+更新 AI Data Engine 用於對 SMB/CIFS 共享進行驗證的認證資料。
+
+.步驟
+. 在 AI Data Engine 使用者介面中，選擇 *組態*。
+. 在 *已掃描系統* 標籤上，找到 SMB/CIFS 系統。
+. 選擇系統列以開啟詳細檢視。
+. 選擇 *編輯 CIFS 認證資料*。
+. 輸入更新後的使用者名稱和密碼，然後選擇 *儲存*。
+
+
+
+
+[[enable-or-disable-access-to-dp-volumes]]
+== 啟用或停用對 DP Volume 的存取
+
+資料保護（DP）Volume 是 NetApp SnapMirror 目的地 Volume。預設情況下，AI Data Engine 不會掃描 DP Volume。您可以針對每個系統啟用或停用 DP Volume 存取。
+
+.步驟
+. 在 AI Data Engine 使用者介面中，選擇 *組態*。
+. 在 *已掃描系統* 標籤上，找到該系統。
+. 選擇系統列以開啟詳細檢視。
+. 選擇 *啟用對 DP Volume 的存取* 或 *停用對 DP Volume 的存取*。
+
+
+
+
+[[enable-or-disable-scanning-of-specific-shares-buckets-or-volumes]]
+== 啟用或停用對特定共享、儲存桶或 Volume 的掃描
+
+連接並掃描資料來源後，您可以啟用或停用個別 Volume 或共享的掃描，而無需重新設定整個系統。使用此功能可在初始設定後調整掃描範圍。例如，您可能想要排除包含不需要分析之資料的 Volume，或是新增在初始掃描期間未選取或無法使用的 Volume。
+
+.步驟
+. 在 AI Data Engine 使用者介面中，選擇 *組態*。
+. 在 *已掃描系統* 標籤上，找到要更新的系統。
+. 在系統列中選取 *檢視詳細資料*。
+. 在資料資源清單中，找到要變更的 Volume、儲存桶或共享。
+. 使用「掃描」開關啟用或停用該資源的掃描功能。
+
+
+
+
+[[deactivate-ai-data-engine-for-a-system]]
+== 停用系統的 AI Data Engine
+
+停用系統會停止所有掃描，並將其從作用中掃描覆蓋範圍內移除。系統組態會保留，您可以隨時在系統列上選取 *啟動掃描* 來重新啟動系統。
+
+.步驟
+. 在 AI Data Engine 使用者介面中，選擇 *組態*。
+. 在 *已掃描系統* 標籤上，找到要停用的系統。
+. 選擇系統旁邊的操作選單。
+. 選擇 *停用 AI Data Engine*。
+
+
+
+
+[[related-information]]
+== 相關資訊
+
+* link:connect-data-source.html["連接資料來源"]
+* link:monitor-scanning-health.html["監控掃描健全狀況"]
+* link:../investigate/understand-dashboard.html["從儀表板評估儲存使用率"]
+

@@ -1,0 +1,49 @@
+---
+sidebar: sidebar 
+permalink: data-sources/monitor-scanning-health.html 
+keywords: scan health, scanning, health monitor, coverage, migration 
+summary: 確認掃描功能正常，且您的調查發現反映目前的資料。 
+---
+= 在 AI Data Engine 中監控掃描健全狀況
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在根據儀表板或調查發現採取行動之前，請確認基礎資料是最新的。驗證掃描是否正常運作，並確保您的發現反映最新的資料。
+
+
+
+[[verify-scan-status-and-coverage]]
+== 驗證掃描狀態與覆蓋範圍
+
+確認所有儲存系統均已連線並正在掃描。
+
+.步驟
+. 在 AI Data Engine 使用者介面中，選擇 *組態*。
+. 在 *已掃描系統* 標籤上，確認您期望看到的每個儲存系統都已列出並啟用掃描。
+. 從系統列中選擇 *View details* 以審查掃描進度和任何錯誤。詳情請參閱 link:../data-sources/manage-data-sources.html["管理資料來源"]。
+
+
+
+
+[[validate-that-investigation-findings-reflect-current-data]]
+== 驗證調查發現是否反映目前的資料
+
+如果儀表板顯示大量冷資料或過時的資料，請在根據這些數據做出決策之前，確認這些數據是否為最新。
+
+* 檢查每個參與發現的儲存系統的最後掃描時間。最近未進行掃描的系統可能會低估或高估冷資料和過期資料。
+* 確認該系統的掃描涵蓋範圍已完成。部分掃描（已暫停、正在進行或出現錯誤）表示某些資料尚未評估。
+* 如果掃描範圍看起來不完整，請等待下一次掃描週期或解決根本錯誤。
+
+
+
+
+[[related-information]]
+== 相關資訊
+
+* link:../data-sources/connect-data-source.html["連接資料來源"]
+* link:../investigate/understand-dashboard.html["從儀表板評估儲存使用率"]
+* link:../investigate/investigate-data.html["調查您的資料"]
+

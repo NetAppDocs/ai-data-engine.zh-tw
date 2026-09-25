@@ -1,0 +1,106 @@
+---
+sidebar: sidebar 
+permalink: get-started/storage-optimization-workflows.html 
+keywords: storage optimization, cold data, stale data, retention, workflow, dashboard, investigate, policy 
+summary: 使用端對端流程，將儀表板發現進行調查、行動及後續原則監控。 
+---
+= 探索 AI Data Engine 中的儲存設備優化工作流程
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+這些 AI Data Engine 工作流程引導您從在儀表板識別儲存設備問題，到進行調查和行動，最終制定後續監控原則。每個工作流程都遵循相同的路徑：儀表板、調查、採取行動，然後儲存為原則。
+
+
+
+[[identify-and-act-on-cold-data]]
+== 辨識並對冷資料採取行動
+
+.情境
+您在儀表板上注意到，某個儲存設備資源有大量資料被標記為冷資料。冷檔案在設定的冷資料臨界值內未被存取過，該臨界值預設為一年，且可在 *組態* > *設定* 中進行設定。
+
+.步驟
+. 從 link:../investigate/understand-dashboard.html["儀表板"] 中，找出冷資料濃度最高的資源，然後選擇 *Investigate*。
+. 在 link:../investigate/investigate-unstructured.html["調查"] 中，使用設定為符合您設定的冷資料臨界值（預設值：*1+ 年*）的 *上次存取* 篩選器來確認資源。
+. 審查結果以決定link:../investigate/take-actions.html["是否新增標籤、歸檔或刪除"]相符的檔案。
+. 如果這些資源值得後續監控，link:../policies/create-policy.html["將篩選器集儲存為原則"] 那麼當有新檔案失效時，您會收到通知。
+
+
+
+
+[[identify-and-act-on-stale-data]]
+== 識別並處理過時資料
+
+.情境
+仍然偶爾被存取但多年未修改的檔案，當它們超出組織的過期臨界值（預設值：自上次存取或修改以來三年）時，會被歸類為過期。
+
+
+NOTE: 此臨界值可在 *組態* > *設定* 中進行設定。
+
+.步驟
+. 從 link:../investigate/understand-dashboard.html["儀表板"] 中，找出包含大量過時資料的資源。
+. 在 link:../investigate/investigate-unstructured.html["調查"] 中，將 *上次修改時間* 過濾器設定為您的陳舊臨界值（預設為 *3 年以上*）。
+. 審查結果以決定link:../investigate/take-actions.html["是否新增標籤、歸檔或刪除"]相符的檔案。
+. link:../policies/create-policy.html["將篩選器集儲存為原則"]在後續掃描中追蹤這些資源。
+
+
+
+
+[[manage-data-retention-compliance]]
+== 管理資料保留法規遵循
+
+.情境
+您的組織要求對超過一定期限的檔案進行保留審查。AI Data Engine 中的預設保留臨界值為檔案建立後七年或更長時間。您可以調整此臨界值，以符合您組織的法規遵循與保留原則。
+
+
+NOTE: 此臨界值可在 *組態* > *設定* 中進行設定。
+
+.步驟
+. 在 link:../investigate/investigate-unstructured.html["調查"] 中，套用設定為您保留臨界值的 *上次建立* 篩選器（預設為 *7 年以上*）。
+. 在採取行動前，請與相關利益方審查結果。標記為保留的檔案通常會受到監控，而不是自動刪除。
+. link:../policies/create-policy.html["建立原則"] 搭配僅監控或電子郵件通知行動，以便在新檔案達到保留臨界值時收到提醒，而不是對這些資源進行一次性操作。
+
+
+
+
+[[find-and-eliminate-duplicate-files]]
+== 尋找並刪除複製檔案
+
+.情境
+相同檔案的多個相同複本存在於磁碟區或共用區中，這是在具有備份作業、資料移轉或共享的專案資料夾的環境中常見的問題。
+
+.步驟
+. 在 link:../investigate/investigate-unstructured.html["調查"] 中，選擇 *新增篩選器*，然後選擇 *複製*。
+. 請審查結果。所列檔案在目錄中其他地方有一個或多個相同的複本。
+. 選擇要操作的檔案並選擇 link:../investigate/take-actions.html["一個行動"]。歸檔或刪除在其他位置有原始複本的已確認重複檔案。
+. link:../policies/create-policy.html["將篩選器儲存為原則"]追蹤複製隨時間累積的情況，並在計數增加時接收通知。
+
+
+
+
+[[target-cleanup-by-data-owner]]
+== 資料擁有者的目標清理
+
+.情境
+符合組織冷與舊臨界值的資料分散在多個擁有者手中。確定哪些資料擁有者持有這些類別中最多的檔案，有助於您確定清理工作的優先順序。
+
+.步驟
+. 從 link:../investigate/understand-dashboard.html["儀表板"] 中，尋找 _依可回收儲存設備區分的最高資料擁有者_ 表格。
+. 選擇擁有者列以開啟link:../investigate/investigate-unstructured.html["調查"]篩選至該擁有者的檔案。
+. 審查結果並決定link:../investigate/take-actions.html["是否新增標籤、歸檔或刪除"]檔案。
+. link:../policies/create-policy.html["將篩選器集儲存為原則"] 監控該擁有者的潛在可回收資料隨時間的變化。
+
+
+
+
+[[related-information]]
+== 相關資訊
+
+* link:../investigate/understand-dashboard.html["從儀表板評估儲存使用率"]
+* link:../investigate/investigate-data.html["調查您的資料"]
+* link:../investigate/investigate-unstructured.html["調查非結構化資料"]
+* link:../investigate/take-actions.html["對您的資料採取行動"]
+* link:../policies/create-policy.html["建立原則"]
+

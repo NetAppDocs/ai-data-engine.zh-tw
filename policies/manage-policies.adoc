@@ -1,0 +1,71 @@
+---
+sidebar: sidebar 
+permalink: policies/manage-policies.html 
+keywords: manage policies, edit policy, enable policy, disable policy, delete policy 
+summary: 審查您儲存的原則，以了解哪些檔案目前符合每組條件，並移除您不再需要的原則。 
+---
+= 在 AI Data Engine 中管理原則
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+當您想要審查哪些已儲存的原則與資料相符、比較受影響的檔案數量以排定行動的優先順序，或移除不再需要的原則時，請使用「原則」頁面。例如，擁有多個冷資料原則的儲存管理員可以比較受影響的檔案數量，以決定哪些資料分組需要優先注意。
+
+每個原則清單都會顯示目前符合其條件的檔案和物件數量。使用此計數來識別哪些原則正在積極擷取值得審查的資料。
+
+
+
+[[check-which-files-match-a-policy]]
+== 檢查哪些檔案符合原則
+
+在編輯或刪除原則之前，請審查其目前符合的檔案，以確認標準仍然能夠擷取正確的資料。
+
+.步驟
+. 在 AI Data Engine 使用者介面中，選擇 *原則*。
+. 開啟原則旁邊的行動選單，然後選擇 *調查結果*。
+
+
+
+
+[[edit-a-policy]]
+== 編輯原則
+
+.開始之前
+* 您必須擁有 _AI Data Engine 系統管理員_ 角色。
+
+
+.步驟
+. 在 AI Data Engine 使用者介面中，選擇 *原則*。
+. 開啟您要編輯之原則的行動選單，然後選取 *編輯原則*。
+. 根據需要更新原則名稱、執行摘要或行動。
+. 選擇 *Save*。
+
+
+
+
+[[delete-a-policy]]
+== 刪除原則
+
+.開始之前
+* 您必須擁有 _AI Data Engine 系統管理員_ 角色。
+
+
+
+CAUTION: 刪除操作是永久性的，無法撤銷。
+
+.步驟
+. 在 AI Data Engine 使用者介面中，選擇 *原則*。
+. 開啟要刪除的原則的行動選單，然後選擇 *刪除原則*。
+. 在預覽對話方塊中確認刪除操作。
+
+
+
+
+[[related-information]]
+== 相關資訊
+
+* link:create-policy.html["建立原則"]
+* link:../investigate/take-actions.html["對您的資料採取行動"]
+

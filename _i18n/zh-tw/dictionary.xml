@@ -1,0 +1,895 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blocks>
+  <block id="f8c4fea7e7cf7f7ef0388b1a5482f73c" category="summary">設定 AI Data Engine 用於將環境中的資料分類為冷資料或過期資料的時間臨界值。</block>
+  <block id="307f340773d2ec521a24b7d47748d7a9" category="doc">在 AI Data Engine 中設定冷資料和過時資料臨界值</block>
+  <block id="685b95cce8c6b31584d6cbc499744d76" category="paragraph">AI Data Engine 會根據您定義的時間臨界值將檔案分類為冷資料或過期資料。這些臨界值會影響儀表板摘要中顯示的資料、在「調查」中套用冷資料或過期資料篩選器時顯示的檔案，以及原則的目標檔案。設定與您組織的資料分類和保留實務相符的臨界值，並協助您識別認為重要而需要監控的資料。</block>
+  <block id="61fe78e998733806cbb9289d9a334133" category="section-title">什麼是冷資料和過時資料？</block>
+  <block id="b5e9abb7d0603dc93a1c7f770d525201" category="list-text">冷資料</block>
+  <block id="ffd32e72e017c9e3f551aaa0f1f073c0" category="list-text">在設定的冷資料臨界值內未被存取的檔案。冷資料是您的組織可以用來識別可根據您的保留和業務原則進行最佳化之儲存設備的關鍵指標。</block>
+  <block id="58f9985309ad441d05540492b96a7afd" category="list-text">過時的資料</block>
+  <block id="02ab08a8615eca8247a792a9e857afa8" category="list-text">在設定的過期資料臨界值內未被存取或修改的檔案。過期資料包括偶爾被存取但近期未修改的檔案，您的組織可以根據您的原則對其進行監控或管理。</block>
+  <block id="82df3679be1205e2d375ad745e4b1726" category="admonition">預設臨界值是作為起點提供的產品預設值。它們並不代表法律、法規遵循或業界標準的保留期間。請設定反映貴組織特定原則與需求的臨界值。</block>
+  <block id="10cde949b73468c8fce425af672f3b72" category="paragraph">任一臨界值的變更都會在下一個掃描週期完成後生效。</block>
+  <block id="895804863a97a03a3e03470d02478133" category="section-title">設定冷資料臨界值</block>
+  <block id="135b308ed83c53f1516b7c754566d1c4" category="list-title">開始之前</block>
+  <block id="44afa8c12ba5016087097eac7b7ece41" category="list-text">您必須擁有 _AI Data Engine 系統管理員_ 角色。</block>
+  <block id="f3a29486bed19a90f2da6d007818b427" category="list-title">步驟</block>
+  <block id="d724be4a2aa2baccee94826f1af0c6ac" category="list-text">在 AI Data Engine 使用者介面中，選擇 *組態*。</block>
+  <block id="376ec8b3e51e6597fb939c31a3fe0e59" category="list-text">選擇 *設定*。</block>
+  <block id="14f363037c6a0b83c2c86a312d5db12a" category="list-text">針對 *冷資料定義* 選擇 *編輯*。</block>
+  <block id="39f725773719f7e03fa6969dd0b4d925" category="list-text">將檔案屬性設定為 *上次存取時間* 或 *上次修改時間*。</block>
+  <block id="7eead87b8cc9c7fcfb53634c53faf69d" category="list-text">設定時間臨界值。預設值為一年。</block>
+  <block id="10492389e94efdebbb66f7b0cd8a1324" category="list-text">選擇 *Save*。</block>
+  <block id="0803d30fefe8c23b3667222268afa94b" category="section-title">設定過時資料臨界值</block>
+  <block id="af4ec082fbd0c524e89b1c1edfde19a4" category="list-text">針對 *過時資料定義* 選擇 *編輯*。</block>
+  <block id="e927212088bb79337374c3f698de2179" category="list-text">設定時間臨界值。預設值為三年。</block>
+  <block id="30f60d67f457bb040dffde52197a54da" category="section-title">相關資訊</block>
+  <block id="da04d3e23ca53cd49a0abe6e25b1632b" category="inline-link-macro">了解 AI Data Engine 儀表板</block>
+  <block id="72a44204a778b5f38d69fa2db6cd3e9d" category="list-text"><block ref="72a44204a778b5f38d69fa2db6cd3e9d" category="inline-link-macro-rx"></block></block>
+  <block id="f47313cb11c7179c014c38c757ea3524" category="inline-link-macro">探索儲存設備最佳化工作流程</block>
+  <block id="12e1c9d43b7fa4b8afa0d962af8d6f6a" category="list-text"><block ref="12e1c9d43b7fa4b8afa0d962af8d6f6a" category="inline-link-macro-rx"></block></block>
+  <block id="015653ee347fd187160fa2a4e0cc0018" category="inline-link-macro">管理使用者和角色</block>
+  <block id="e4a085ef6af4b1e82ee2f0d60ce0893a" category="list-text"><block ref="e4a085ef6af4b1e82ee2f0d60ce0893a" category="inline-link-macro-rx"></block></block>
+  <block id="d3ee3c86b87e2394d5115800bd00579c" category="summary">透過為每個使用者指派系統管理員或查看者角色來控制存取。了解這兩種角色及其權限。</block>
+  <block id="9f4346dd22f2a2d61f9ceb9a382e7def" category="doc">管理 AI Data Engine 中的使用者和角色</block>
+  <block id="6e922598602274a9fa1bfc4867a30553" category="paragraph">透過指派系統管理員或檢視者角色，控制每個使用者在 AI Data Engine 中的檢視和操作權限。在您的團隊開始使用 AI Data Engine 之前，請為每個使用者指派與其所需存取層級相符的角色。</block>
+  <block id="e2a36e2d6394d346a30e4bc9ed6037a5" category="paragraph">您可以透過 NetApp Console 組織設定指派角色。AI Data Engine 支援兩種角色。</block>
+  <block id="5f30ddc6ba978a38568dd0166ca854f8" category="section-title">可用角色</block>
+  <block id="2626c6ebd52cec6b4931c3a9ef69c567" category="section-title">AI Data Engine 系統管理員</block>
+  <block id="938afc897dbf7f9f917594f75c742375" category="paragraph">AI Data Engine 系統管理員角色提供對 AI Data Engine 所有功能的完全存取。NetApp 建議每個部署中最多只將此角色指派給兩到三個使用者。</block>
+  <block id="71e4642cc01f7e5c4bf1d9b2e6eb6c1a" category="section-title">AI Data Engine 檢視器</block>
+  <block id="e96d3cd421b701e01b78e94b49c5bad2" category="paragraph">AI Data Engine 檢視者角色提供對 AI Data Engine 的有限存取。檢視者可以檢視資訊、匯出報告、標記檔案和建立僅監控原則，但無法修改設定或執行檔案行動，例如歸檔、複本或刪除。</block>
+  <block id="f015140812f0bc60ae7d3bffbfe93e84" category="section-title">依角色的權限</block>
+  <block id="fa97f6975c9b94a252d204cd22159ff4" category="cell">功能</block>
+  <block id="93cba07454f06a4a960172bbd6e2a435" category="cell">是的</block>
+  <block id="336d5ebc5436534e61d16e63ddfca327" category="cell">-</block>
+  <block id="a88a417ad9c2be56b616cd48d8e21f83" category="cell">管理資料資源</block>
+  <block id="3c4e32d95f12c00d16a76057a7af18f6" category="cell">系統組態</block>
+  <block id="3967d8036668c2f89130ca845de9d4a4" category="cell">檢視儀表板</block>
+  <block id="f5c67558060302f363b758762a776d1b" category="cell">搜尋中繼資料（調查）</block>
+  <block id="0993273353cc9f49309ecd350c0dd2bb" category="cell">匯出報告</block>
+  <block id="a7cf128c8cf9d2177ce397028ee0f199" category="cell">建立僅監控原則</block>
+  <block id="6faf562d55c6575c8fee54b7ee423082" category="cell">建立包含行動的原則</block>
+  <block id="a292a883937f7bfd9a8ed960542159e0" category="cell">行動：標籤</block>
+  <block id="0b29f28b6f97e633b987fa1519ec84f5" category="cell">行動：歸檔、複本、刪除</block>
+  <block id="31d10a37fb8885408a38171daea61807" category="cell">管理企業標籤</block>
+  <block id="8b53b00f5352fcc616e0371c614127ff" category="section-title">指派角色給使用者</block>
+  <block id="2e4a4d8d918b5db6fd6dccf54e4310b9" category="paragraph">角色指派是在 NetApp Console 中進行，而不是在 AI Data Engine 本身中進行。</block>
+  <block id="0d87fb6d34ff9ec127d1fb7fe40d2873" category="list-text">從 NetApp Console，前往 *成員*。</block>
+  <block id="365d382b2d9ecca9b0d40171c69b38ff" category="list-text">執行下列其中一項作業：</block>
+  <block id="4013279dd0be7a6765daac734d254b85" category="list-text">若要新增使用者，請選擇 *新增使用者*，然後輸入使用者的電子郵件地址。</block>
+  <block id="d3bd0996721400f8f6c60a50c1e195fb" category="list-text">若要更新現有使用者，請從清單中選取該使用者。</block>
+  <block id="2a206a44a0a994c82b461831f93b69c4" category="list-text">選擇組織、資料夾或專案，然後選擇 *Data Service* 類別。</block>
+  <block id="8e4308c1d564d9b777d03434bab61b0a" category="list-text">指派 *AI Data Engine 系統管理員* 或 *AI Data Engine 檢視者* 角色。</block>
+  <block id="345e93a96b6e66cb9274dbad975c0db2" category="list-text">儲存變更。</block>
+  <block id="8edc5b73c3c2a64166547be39158f048" category="paragraph">使用者收到電子郵件邀請後，接受邀請即可存取 AI Data Engine。</block>
+  <block id="4fce3801c71d07e76b130137410b84e6" category="inline-link-macro">對您的資料採取行動</block>
+  <block id="83f4e51e2352c106bc442855cebb5115" category="list-text"><block ref="83f4e51e2352c106bc442855cebb5115" category="inline-link-macro-rx"></block></block>
+  <block id="437f900a689b3effaba13525bf426e50" category="inline-link-macro">建立原則</block>
+  <block id="a6ba65d5603bedd3e970c59f52c864db" category="list-text"><block ref="a6ba65d5603bedd3e970c59f52c864db" category="inline-link-macro-rx"></block></block>
+  <block id="9fcf5c684f11b7bbbd6635da90d62ee7" category="summary">透過完成資料來源上線精靈，將儲存設備系統連接到 AI Data Engine，然後啟動掃描以開始中繼資料收集。</block>
+  <block id="c7b2e3a558f93c05a2ce9d80b8c8c8e0" category="doc">將資料來源連接到 AI Data Engine</block>
+  <block id="1bd7981e3d7c792404f8fdfaa6c1c50c" category="paragraph">AI Data Engine 會掃描您的儲存設備系統，以收集和分析中繼資料。若要新增資料來源，請完成上線精靈。此精靈會收集連線詳細資訊、掃描範圍以及來源類型的設定。新增系統後，啟動掃描即可開始收集中繼資料。</block>
+  <block id="81ce10edb3d458fc62131464f0c20994" category="list-text">您必須擁有 _AI Data Engine 系統管理員_ 權限才能連接和設定 AI Data Engine 中的資料來源。</block>
+  <block id="c5fbee6586294d81141f8dd158707985" category="inline-link-macro">探索內部部署 ONTAP 叢集</block>
+  <block id="2e3c75f22a9ebeae23565b189a21c411" category="list-text">在將它們新增至 AI Data Engine 之前，請先使用 Console Agent 在 NetApp Console 中探索儲存設備系統。這適用於所有支援的儲存設備類型，包括內部部署 ONTAP 叢集、Cloud Volumes ONTAP、Amazon FSx for NetApp ONTAP、Google Cloud NetApp Volumes 和 Azure NetApp Files。對於內部部署 ONTAP 叢集，請參閱 NetApp Console 文件中的 <block ref="e85b78baa8f4e35e46a2387467739692" category="inline-link-macro-rx"></block>。直接探索無法啟用 AI Data Engine 等資料服務。</block>
+  <block id="9f91522d43e1c5f4a996c9a8384dc391" category="inline-link-macro">AI Data Engine 需求</block>
+  <block id="1742041af0b9f3a717b5cf211479fdf3" category="list-text">請確認 AI Data Engine 存取資料來源所需的網路連線已開啟。請參閱 <block ref="54a8e181914f652a26e1c9bb92d0a23f" category="inline-link-macro-rx"></block>。</block>
+  <block id="f721e2f5905762b503bdc11996948f52" category="section-title">新增資料來源</block>
+  <block id="1036f7c00460b9a45a9e5412bd73af32" category="list-text">在 *已掃描系統* 標籤上，選擇 *新增系統*。</block>
+  <block id="6802dbdc8935d97c254889cc48e9da6f" category="list-text">選擇來源類型：</block>
+  <block id="f99f3d1bb0801fc90897db0098fc2b36" category="cell">來源類型</block>
+  <block id="b5a7adde1af5c87d7fd797b6245c2a39" category="cell">說明</block>
+  <block id="7906bd4892f76d110c19711b10d6974f" category="cell">*檔案共享群組*</block>
+  <block id="7df6468497d58e41a37e6f7f67ce8061" category="cell">將雲端或本地端的 NFS 或 SMB/CIFS 檔案共享新增為命名群組。</block>
+  <block id="7a8d3dc7f0e719542e9e706dbca4f3ec" category="cell">*資料庫*</block>
+  <block id="96c6bed08ddd7b750ad14c5944284278" category="cell">新增資料庫伺服器以掃描選定的模式。</block>
+  <block id="cc8eee99371af0beb4dcd80f722b6a62" category="cell">*StorageGRID*</block>
+  <block id="aa9f5a1aee11febeadd1b489d3f65550" category="cell">使用 S3 協定從 NetApp StorageGRID 掃描資料。</block>
+  <block id="163998c3867b69d394de852cc2153a1c" category="list-text">輸入來源類型的連線詳細資訊：</block>
+  <block id="6f06467ad05e46080f77c6d42084a566" category="cell">所需資訊</block>
+  <block id="e073a5abe29c11bef13a47c04d7cae9c" category="cell">共享群組的名稱，然後是共享主機和路徑詳細資訊。</block>
+  <block id="136c6f0aa925fb0bfd7463700ddf1674" category="cell">資料庫類型、主機、連接埠和身分驗證認證資料。</block>
+  <block id="c2551511c0e16fab930f47dceceb01a4" category="cell">系統名稱、S3 端點 URL，以及 S3 存取金鑰和秘密金鑰。</block>
+  <block id="9fc6176ce15bcce9331a1e20d5b5f6c8" category="list-text">審查您的選擇，然後選擇 *確認* 以新增資料來源。</block>
+  <block id="bafd4c151b05d8865cbb162dbec61687" category="section-title">啟動掃描</block>
+  <block id="397e7ff470834102f1db8c0e1d7f00c6" category="paragraph">設定資料來源後，掃描不會自動開始。您必須為每個系統啟動掃描。</block>
+  <block id="5c36c141c7bd019c9ed19a66aa3d7d5f" category="list-text">在 *已掃描系統* 標籤上，找到您要掃描的系統。</block>
+  <block id="75f33db49e0e6285bb693013ad8eff4f" category="list-text">選擇 *啟動掃描*。</block>
+  <block id="8eea62084ca7e541d918e823422bd82e" category="paragraph-title">結果</block>
+  <block id="a184e20ed5e6a5b8da09e0b40c163e0c" category="inline-link-macro">管理資料來源</block>
+  <block id="e2a06367a28bf2533a5c602b27e1216b" category="inline-link-macro">監控掃描健全狀況</block>
+  <block id="af9bbf23b5e3a1331dfcb40555ee9bd1" category="paragraph">系統狀態會在「已掃描的系統」索引標籤中更新，以顯示掃描正在執行。若要監控掃描進度並驗證 AI Data Engine 是否正在索引資料資源，請參閱 <block ref="9bb912d6e599634eb2e0e0bb63292cd7" category="inline-link-macro-rx"></block> 和 <block ref="8e1e532fb417ff9d34e2ce12ba4bb87b" category="inline-link-macro-rx"></block>。</block>
+  <block id="9bb912d6e599634eb2e0e0bb63292cd7" category="list-text"><block ref="9bb912d6e599634eb2e0e0bb63292cd7" category="inline-link-macro-rx"></block></block>
+  <block id="54a8e181914f652a26e1c9bb92d0a23f" category="list-text"><block ref="54a8e181914f652a26e1c9bb92d0a23f" category="inline-link-macro-rx"></block></block>
+  <block id="0a85e5de3bf2e7da2454dd1ebb06df4c" category="inline-link-macro">從儀表板評估儲存使用率</block>
+  <block id="e4e3dec594fae827f2c546b2c4243be2" category="list-text"><block ref="e4e3dec594fae827f2c546b2c4243be2" category="inline-link-macro-rx"></block></block>
+  <block id="8e1e532fb417ff9d34e2ce12ba4bb87b" category="list-text"><block ref="8e1e532fb417ff9d34e2ce12ba4bb87b" category="inline-link-macro-rx"></block></block>
+  <block id="71bed252a0d725056daf3e51c5fbeb5b" category="summary">監控掃描狀態並管理已連線的資料來源，包括暫停掃描、編輯憑證、啟用 DP Volume 存取和停用系統。</block>
+  <block id="3d934a56ae9bd1e2d3693013e9b1ade0" category="doc">在 AI Data Engine 中管理資料來源</block>
+  <block id="54c980376574e881b2271b2d860072c8" category="paragraph">連接資料來源後，您可以從 *已掃描系統* 標籤監控其掃描狀態並進行管理。使用這些程序來暫停或繼續掃描、更新憑證、調整資料存取設定，以及停用不再需要掃描的系統。</block>
+  <block id="8caae32095ed52cd3c05e55becafb858" category="section-title">檢視掃描狀態和詳細資訊</block>
+  <block id="f9bad9406ac312c31d212aa25120ecf2" category="list-text">在 *已掃描系統* 標籤上，找到要審查的系統。</block>
+  <block id="3676bd988230e578436a0e1c5ea94daf" category="list-text">選擇系統列以開啟詳細檢視。</block>
+  <block id="6545e1699002538b5f0ee518b09298e4" category="paragraph">詳細檢視顯示：</block>
+  <block id="fa84b834db75064714082c0dd20223d0" category="list-text">包含目前掃描進度的狀態總覽</block>
+  <block id="5751b8d5629d88c078d6299f86965140" category="list-text">資料資源掃描狀態細分：運作中、已完成、已暫停和錯誤</block>
+  <block id="ab61d82ed3b9442ae09a2640f7f66122" category="list-text">掃描權限模式（例如，「無寫入權限掃描」）</block>
+  <block id="942284f04c1abc207bb6a052c78839bb" category="paragraph">如果出現掃描錯誤，擴充錯誤詳情，查看哪些 Volume 或共享受到影響以及故障原因。</block>
+  <block id="b1652f66588933fdd998c84f1fc371b5" category="section-title">暫停掃描</block>
+  <block id="5d6211b0ed7d27d92b93a574d2c87b14" category="list-text">在 *已掃描系統* 標籤上，找到您要暫停的系統。</block>
+  <block id="549087ff6c78cd133e60eae091dcb474" category="list-text">選擇 *Pause* 。</block>
+  <block id="bf2a5339c0e847663ee371977a8739e6" category="section-title">繼續掃描</block>
+  <block id="f39b13071aeb5402471aa32f93666962" category="list-text">在 *已掃描系統* 標籤上，找到已暫停的系統。</block>
+  <block id="f9d637e15d973238afdaad997d440a45" category="list-text">選擇 *恢復*。</block>
+  <block id="03a27bda0a3fbf35292e887abf9530c0" category="section-title">掃描所有資料資源</block>
+  <block id="174876884410e05a752f3369d44a1be4" category="paragraph">觸發系統上所有資料資源的立即掃描。發生重大資料變更後，可使用此功能重新整理中繼資料。</block>
+  <block id="d526d76ea93c408bf96f0d8f6492d4a2" category="list-text">選擇系統旁邊的操作選單。</block>
+  <block id="eb6687d5f8c164fc44228bdf2efa6e92" category="list-text">選擇 *掃描所有 Volume* （動作選單中針對共享和儲存桶也有同等的選項）。</block>
+  <block id="de18a9c7b461766a9e15f645a9277626" category="section-title">重試失敗的掃描</block>
+  <block id="62f3db64bafc9a9f3332553e7caf974e" category="paragraph">將處於失敗或錯誤狀態的資料資源重新排隊。在重試之前，請先解決根本原因，例如認證資料問題、網路錯誤或權限問題。</block>
+  <block id="163c73c5c480913ef1fd9beaede8aa79" category="list-text">在 *已掃描系統* 標籤上，找到掃描失敗的系統。</block>
+  <block id="3773ecec1d9bf175c40c3e00905fa3a8" category="list-text">選擇 *重試所有掃描*。</block>
+  <block id="9e95c1bf1f55b0dd3fa35ac05987ff47" category="section-title">編輯 CIFS 認證資料</block>
+  <block id="6b4f460b09df7f7d04473cce3f5c2091" category="paragraph">更新 AI Data Engine 用於對 SMB/CIFS 共享進行驗證的認證資料。</block>
+  <block id="20c1653420c6e86abf3dc395a5235f15" category="list-text">在 *已掃描系統* 標籤上，找到 SMB/CIFS 系統。</block>
+  <block id="1c8399981fc0cb7f53cf4e4c1b840982" category="list-text">選擇 *編輯 CIFS 認證資料*。</block>
+  <block id="1f41fef264384b90868d40a821202c24" category="list-text">輸入更新後的使用者名稱和密碼，然後選擇 *儲存*。</block>
+  <block id="414649aab6b69f900857f6d64b790c98" category="section-title">啟用或停用對 DP Volume 的存取</block>
+  <block id="6efc4789000f4a114ada7d2f9cfeb19f" category="paragraph">資料保護（DP）Volume 是 NetApp SnapMirror 目的地 Volume。預設情況下，AI Data Engine 不會掃描 DP Volume。您可以針對每個系統啟用或停用 DP Volume 存取。</block>
+  <block id="f024fd7ca7740cd729663e0e315fb029" category="list-text">在 *已掃描系統* 標籤上，找到該系統。</block>
+  <block id="a7a9e665c4b73f67405d0bcefd63e223" category="list-text">選擇 *啟用對 DP Volume 的存取* 或 *停用對 DP Volume 的存取*。</block>
+  <block id="afed3d052e427b3d85d5eee2e3322141" category="section-title">啟用或停用對特定共享、儲存桶或 Volume 的掃描</block>
+  <block id="ecdf26f68c4c61e174bec07cbdde9a3f" category="paragraph">連接並掃描資料來源後，您可以啟用或停用個別 Volume 或共享的掃描，而無需重新設定整個系統。使用此功能可在初始設定後調整掃描範圍。例如，您可能想要排除包含不需要分析之資料的 Volume，或是新增在初始掃描期間未選取或無法使用的 Volume。</block>
+  <block id="705ef84a0de672a6a79522e15cbd6ef2" category="list-text">在 *已掃描系統* 標籤上，找到要更新的系統。</block>
+  <block id="0d556b4ab9d1db6d4a1b749f3386759a" category="list-text">在系統列中選取 *檢視詳細資料*。</block>
+  <block id="c3af1519c6123af458cb90ec91542a4f" category="list-text">在資料資源清單中，找到要變更的 Volume、儲存桶或共享。</block>
+  <block id="14b27b75a1d120ea9e666d3db0941436" category="list-text">使用「掃描」開關啟用或停用該資源的掃描功能。</block>
+  <block id="41935257476ba80c261ff080a271a7d3" category="section-title">停用系統的 AI Data Engine</block>
+  <block id="a20a23b2ca54961af6236cefa5ef356b" category="paragraph">停用系統會停止所有掃描，並將其從作用中掃描覆蓋範圍內移除。系統組態會保留，您可以隨時在系統列上選取 *啟動掃描* 來重新啟動系統。</block>
+  <block id="b5ed7919704c41d347e419e3f07f7aee" category="list-text">在 *已掃描系統* 標籤上，找到要停用的系統。</block>
+  <block id="41f7ed8100607003b6ffe45c6005c1ff" category="list-text">選擇 *停用 AI Data Engine*。</block>
+  <block id="712644c5607df8e9083327eca1c82101" category="inline-link-macro">連接資料來源</block>
+  <block id="2724dae3d4fe6872691d5034cb03bbd3" category="list-text"><block ref="2724dae3d4fe6872691d5034cb03bbd3" category="inline-link-macro-rx"></block></block>
+  <block id="d744fa90fe44a5904aea919dfca837ea" category="summary">確認掃描功能正常，且您的調查發現反映目前的資料。</block>
+  <block id="11a16707e401e546365bdd295c6a352c" category="doc">在 AI Data Engine 中監控掃描健全狀況</block>
+  <block id="470523a2048e77f6dc9db3dec1e18161" category="paragraph">在根據儀表板或調查發現採取行動之前，請確認基礎資料是最新的。驗證掃描是否正常運作，並確保您的發現反映最新的資料。</block>
+  <block id="2a0b481e4f870b99102f077085800e16" category="section-title">驗證掃描狀態與覆蓋範圍</block>
+  <block id="9d474a5a515fcc0d55b42b0cf37c092d" category="paragraph">確認所有儲存系統均已連線並正在掃描。</block>
+  <block id="9cc9537fabb2431661a21bfb76403c12" category="list-text">在 *已掃描系統* 標籤上，確認您期望看到的每個儲存系統都已列出並啟用掃描。</block>
+  <block id="84a5093fdc653e7495c6bbc2f37f5561" category="list-text">從系統列中選擇 *View details* 以審查掃描進度和任何錯誤。詳情請參閱 <block ref="0b2fcdd8d4d9682bfd2c6d6258375c8a" category="inline-link-macro-rx"></block>。</block>
+  <block id="b5488e9b98687008f2ea983e9dffd258" category="section-title">驗證調查發現是否反映目前的資料</block>
+  <block id="a0a61f82fe136888cc21e0515930a76a" category="paragraph">如果儀表板顯示大量冷資料或過時的資料，請在根據這些數據做出決策之前，確認這些數據是否為最新。</block>
+  <block id="38f706e282df2c74bca3ccf3f3d0fb9b" category="list-text">檢查每個參與發現的儲存系統的最後掃描時間。最近未進行掃描的系統可能會低估或高估冷資料和過期資料。</block>
+  <block id="4212d3ae3d1d779b3e6d2793eb980dd6" category="list-text">確認該系統的掃描涵蓋範圍已完成。部分掃描（已暫停、正在進行或出現錯誤）表示某些資料尚未評估。</block>
+  <block id="adc853eb6e5b5878e13573f1fa83cfcb" category="list-text">如果掃描範圍看起來不完整，請等待下一次掃描週期或解決根本錯誤。</block>
+  <block id="3540fa5efa78b3ae6e9c7d52a1e7d21a" category="list-text"><block ref="3540fa5efa78b3ae6e9c7d52a1e7d21a" category="inline-link-macro-rx"></block></block>
+  <block id="949195768b714c50c6fc8c9385a74cc5" category="inline-link-macro">調查您的資料</block>
+  <block id="a7b69c2f48ed01caa5360edd3b7e1922" category="list-text"><block ref="a7b69c2f48ed01caa5360edd3b7e1922" category="inline-link-macro-rx"></block></block>
+  <block id="3feb21bfc5c576b8b0ba88831f152f9e" category="summary">在部署 AI Data Engine 之前，請先審查基礎架構和連網需求。</block>
+  <block id="f0d98a4bfed3e44ea9936088be5b51be" category="paragraph">在部署 AI Data Engine 之前，請審查您環境的連網、虛擬機器規模和作業系統需求。</block>
+  <block id="9251700e586dc1a410f2e755a8643751" category="section-title">網路需求</block>
+  <block id="6cd7be1b5f82b01b11188317c9ab762d" category="paragraph">必須開啟以下網路連線：</block>
+  <block id="c2cc7082a89c1ad6631a2f66af5f00c0" category="cell">連線</block>
+  <block id="60aaf44d4b562252c04db7f98497e9aa" category="cell">連接埠</block>
+  <block id="888a77f5ac0748b6c8001822417df8b6" category="cell">傳輸協定</block>
+  <block id="02674a4ef33e11c879283629996c8ff8" category="cell">方向</block>
+  <block id="261addf78c7b2c961032b3dd08ba0b1f" category="cell">目的</block>
+  <block id="74ebb19c002aeb0737bde4301280551b" category="cell">控制台代理到 NetApp Console</block>
+  <block id="13f3cf8c531952d72e5847c4183e6910" category="cell">443</block>
+  <block id="b136ef5f6a01d816991fe3cf7a6ac763" category="cell">TCP</block>
+  <block id="4c32be4a0b4f48cdd593aef35fd69e44" category="cell">傳出</block>
+  <block id="79c4d4839679effbb0de35f32d5b0348" category="cell">HTTPS：與 NetApp Console 的連線</block>
+  <block id="ae7fb447812f3f8ffd319804eaaf9c57" category="cell">控制台代理到 ONTAP</block>
+  <block id="48d083b082abdc6a89158d0e6ae2d159" category="cell">HTTPS：ONTAP 叢集探索</block>
+  <block id="3cda5bf04bdb0f0bc3387861b3f93fde" category="cell">Console Agent 到 AI Data Engine</block>
+  <block id="bfd0e75d565a2e7a467f23c7d6ed5272" category="cell">80、443、8080、9000</block>
+  <block id="abd4328c725637aabedbd02d3b7ffd40" category="cell">雙向</block>
+  <block id="6c2a2f48b6d12c7baaa10e3a9ae2f62f" category="cell">Console Agent 與 AI Data Engine 之間的通訊</block>
+  <block id="931d680d6a5460c1d2622564222f587f" category="cell">AI Data Engine 到 ONTAP（NFS）</block>
+  <block id="7a7f881d4d3190005bfe3277c48286d2" category="cell">111 、 2049</block>
+  <block id="8962b8350728e2f6eb9cbbb07ca70d86" category="cell">TCP/UDP</block>
+  <block id="aa488fb4d7657cdf6ee20912242f78c9" category="cell">至儲存設備</block>
+  <block id="c286f6ab35109c987f8d1c719c99357d" category="cell">NFS 資料來源存取</block>
+  <block id="593471079242cfe64460e1a9f77827e9" category="cell">AI Data Engine 到 ONTAP （SMB/CIFS）</block>
+  <block id="bb9d171c99ee8c2dd5ace360b8c91105" category="cell">139 、 445</block>
+  <block id="ef43abd9c133e1911593104b252ec139" category="cell">SMB/CIFS 資料來源存取</block>
+  <block id="8adeec70074c625307a8b338e365abb6" category="cell">AI Data Engine 到 Active Directory</block>
+  <block id="ce4eb690b25a002b5241b04f64c1e5a3" category="cell">389、636、3268、3269</block>
+  <block id="aaf48608e56973323dc5fd5ed96df4e0" category="cell">LDAP （389）、LDAPS （636） 和全域目錄 （3268、3269） 用於使用者身分驗證和 SMB/CIFS 掃描。連接埠 389 同時使用 TCP 和 UDP；所有其他連接埠僅使用 TCP。</block>
+  <block id="2db1dab3ddb9f419528a22df20d91148" category="cell">AI Data Engine 到 NetApp 服務 / Container 註冊表</block>
+  <block id="b7ac7d300206d5941ec66379a70e21c9" category="cell">HTTPS：工件下載和 Container 映像拉取（AWS S3 和 ECR）</block>
+  <block id="c8f224037ea295aeec347c94779d9932" category="section-title">傳出網際網路存取</block>
+  <block id="fe5ca1427b7b25600877465e2b007712" category="paragraph">對於線上安裝，AI Data Engine 主機必須能夠存取下列端點：</block>
+  <block id="2a6ba72e93aa7fa676d07973ed2716bb" category="cell">端點</block>
+  <block id="5d113f2038d289f391614c39043629e8" category="cell">範圍</block>
+  <block id="97a10868af176d2bb0b0e075c08558b7" category="cell"><block ref="8ace43f907c71d8be7768e59cf9e21dc" prefix="" category="inline-code"></block></block>
+  <block id="6061d3eb59dc8de0365754ba1b7fa241" category="cell">NetApp Console 通訊</block>
+  <block id="130c5b3473c57faa76e2a1c54e26f88e" category="cell">兩者</block>
+  <block id="cbb66f5f0c7ca4b7d24f549b094bdc89" category="cell"><block ref="300f031c227ed1b4448a8bb51abec2bb" prefix="" category="inline-code"></block></block>
+  <block id="f819285916732af4c9441637a0f0e6f3" category="cell">集中式使用者身分驗證</block>
+  <block id="43cb0bffdd9d5ded05a3424ff4e965da" category="cell"><block ref="fdb51f8a262ef532926feb44b010cb72" prefix="" category="inline-code"></block></block>
+  <block id="80a6f28c09d348797265c4baa8b846a2" category="cell">驗證服務</block>
+  <block id="d7f881d10d719addec3155de4baf22eb" category="cell"><block ref="51fe8074caa966b7d305454c11b1d09d" prefix="" category="inline-code"></block></block>
+  <block id="4dc4e4dd4f2622ff339cec2e9b258777" category="cell">NetApp Container 登錄（AIDE Container 映像）</block>
+  <block id="b300e728158ca5abf567ee6842739ef7" category="cell"><block ref="8d1a277a7868d38ae6878e8c44088c86" prefix="" category="inline-code"></block></block>
+  <block id="6ff6699f108d036de7d8b3307cbba639" category="cell">NetApp Container 註冊表（雙堆疊/虛擬私有雲（VPC）端點存取）</block>
+  <block id="728781c2f7cdb1f4c5cae712d25a3521" category="cell"><block ref="910449e9fd785da87d5f385fac95cee8" prefix="" category="inline-code"></block></block>
+  <block id="27eab3a38e9c960cd387dd0fcb59b25e" category="cell">AWS ECR API（驗證與映像清單擷取）</block>
+  <block id="b3bd75f12ce9b0acd43d20cbcdc48fcb" category="cell"><block ref="7ca098361cdcac8376224541f6a154c1" prefix="" category="inline-code"></block></block>
+  <block id="465fa38be0e889a6f4f5eea4bfe44907" category="cell">AWS S3（ECR Container 映像階層儲存設備）</block>
+  <block id="42f24633638dc7dcd28fb8f99b7b7345" category="cell"><block ref="d1d564ee4aa9ec56fade21c33a8fa4ed" prefix="" category="inline-code"></block></block>
+  <block id="5f307da0cc037fccf5156a0b4ee1113d" category="cell"><block ref="ff032e02260ff014601b07ec7a62ebb1" prefix="" category="inline-code"></block></block>
+  <block id="5443ee8394dc795513c17308df8c608c" category="cell">AWS S3（安裝程式包裝指令碼、Helm 圖表和元件版本目錄）</block>
+  <block id="7ded7b42d1eca3a189946f71087a85aa" category="cell"><block ref="da2b821a15b81caba3d4b0ea9a59ff1e" prefix="" category="inline-code"></block></block>
+  <block id="aa0b7e03e09f090a4bf285bf5ccb013f" category="cell"><block ref="392fdd4737637bf98a0b2e0d58c55d8b" prefix="" category="inline-code"></block></block>
+  <block id="a8d7819f8fcc49a13bd5e04efc4bb73d" category="cell">AWS STS（登錄與 S3 存取的臨時認證資料交換）</block>
+  <block id="e01bbe0a773568d8b2d943c725bc4a98" category="cell"><block ref="ecaf91bb6d35ab95086ca1e072f979e8" prefix="" category="inline-code"></block></block>
+  <block id="3ed1acda8d7511c7f0e269b4d06365c2" category="cell">軟體映像、清單和範本；日誌和計量串流</block>
+  <block id="113661af05a54ad30f2cf875f2085a8c" category="cell"><block ref="8c4749a6c91d5b5be3fa16d5adfdfcd0" prefix="" category="inline-code"></block></block>
+  <block id="c6c113e5074b85b3ee7783cc7a256ee6" category="cell">用於軟體經銷的 CloudFront CDN</block>
+  <block id="154a7dea0b63eaedaeebe172e4e534dd" category="cell"><block ref="6a2ac7d8f0e16e23be3e2fab90d9833f" prefix="" category="inline-code"></block></block>
+  <block id="dd1e8a369ffb5c425f5295170150f923" category="cell">Ubuntu 必備套件</block>
+  <block id="a41cf9dbadca9500ac38067b535c8cf0" category="cell">限精簡版（Ubuntu）</block>
+  <block id="a507356b394570536b9953261b512550" category="cell"><block ref="8a37b484d48f7ab19209f20f88161503" prefix="" category="inline-code"></block></block>
+  <block id="638435f38da637d50db5ecf629602caa" category="cell">Ubuntu 套件歸檔</block>
+  <block id="0b20abf458365869110b9a53c5f48b0f" category="cell"><block ref="d85007fc604c0187d8c7f0a0905426d5" prefix="" category="inline-code"></block></block>
+  <block id="73e4a059e9e92b2539973611852c265b" category="cell">Ubuntu 安全性套件歸檔</block>
+  <block id="eb1b835842ecab36376189c338d3e249" category="cell"><block ref="9efd15cdc3b59f15ddb128b87d2bc31a" prefix="" category="inline-code"></block></block>
+  <block id="afcd81bacefaa3b77cbbea478e2ee10f" category="cell">k3s 執行階段下載（安裝程式啟動）</block>
+  <block id="6f5c0b49665b73d6c115ce1c02b0a641" category="cell">僅限精簡版</block>
+  <block id="84e4ea8324474b00a6eda8b69e242e21" category="cell"><block ref="a8563316869b25370e1b9ac9741eff2d" prefix="" category="inline-code"></block></block>
+  <block id="13dfeaaa930b5f416523dd975c27cf87" category="cell">Helm 下載（安裝程式啟動）</block>
+  <block id="474410b6ac258b996077d7027389646f" category="inline-link-macro">NetApp Console 的網路存取要求</block>
+  <block id="c7da5317ad58b7d0506fb53736221000" category="paragraph">AI Data Engine 也依賴 NetApp Console 進行集中式驗證和主控台服務。請參閱 <block ref="6f746cd707dc96e510abd18d2b8a9632" category="inline-link-macro-rx"></block> 以了解 Console 和 Console 代理程式連線所需的端點。</block>
+  <block id="2c20fbdcf9b7401db8516a896c4e0033" category="paragraph">在開始部署之前，請先從 AI Data Engine 主機驗證這些端點的 DNS 解析是否正常運作。</block>
+  <block id="a3ac66e285684389dd120cdd1d91a5a6" category="section-title">AIDE Lite 需求</block>
+  <block id="5227f9d83b477a63e6c0e89a04230d28" category="section-title">VM 規模</block>
+  <block id="e40651cfbb74f24098d1e77f279d26fc" category="inline-xref">靈活的規模指南</block>
+  <block id="5239445f5c0400ffad13f96e85ca912d" category="paragraph">這些大小是建議的基準組態，針對三到四天的初始掃描時間範圍最佳化的，並非硬性限制。請參閱 <block ref="fdfdda200a4cf41e7b7263540f25f221" category="inline-xref-macro-rx"></block> 以了解這些數字的依據以及如何進一步擴充。</block>
+  <block id="6f6cb72d544962fa333e2e34ce64f719" category="cell">大小</block>
+  <block id="5d56dbd20d9ee1ab8a722ff12e331953" category="cell">vCPU</block>
+  <block id="e53619c1fe611a51eeeb8d148ba6e532" category="cell">RAM</block>
+  <block id="380dbc8d9d2c8a17f6ebb0b2c62d3e85" category="cell">磁碟</block>
+  <block id="83b43ea2a270ae284e57558dfbd904a4" category="cell">儲存 IOPS</block>
+  <block id="d942498bbf676ede690f93fe6f4eba33" category="cell">儲存處理量</block>
+  <block id="eec89088ee408b80387155272b113256" category="cell">網路</block>
+  <block id="a00581fb76f430c52622665705a127d6" category="cell">近似檔案</block>
+  <block id="2660064e68655415da2628c2ae2f7592" category="cell">小型</block>
+  <block id="c74d97b01eae257e44aa9d5bade97baf" category="cell">16</block>
+  <block id="7fffe4f81cc10365684f8c3ef5dfc752" category="cell">64 GB</block>
+  <block id="47a5e6e39f64ff5d5dfb25da1aa3f3f2" category="cell">500 GB</block>
+  <block id="b7bc1c544eac128f494cbef4dde51844" category="cell">8,000</block>
+  <block id="253904cf11e154c1467da791e2916dff" category="cell">1,000 MB/s</block>
+  <block id="542a51a19678b099661225e50ca14113" category="cell">1 GbE</block>
+  <block id="007104a26459cf001f34b5b588ae4d6b" category="cell">2億</block>
+  <block id="87f8a6ab85c9ced3702b4ea641ad4bb5" category="cell">中</block>
+  <block id="6364d3f0f495b6ab9dcf8d3b5c6e0b01" category="cell">32</block>
+  <block id="da41e52384d87f5c6c3e5e945da60a14" category="cell">128 GB</block>
+  <block id="4399cdb8f35c7f54994fbd6ad16ae51d" category="cell">2 TB</block>
+  <block id="29ca150c07f43a7c676ecb487e3b8100" category="cell">12,000</block>
+  <block id="37b2db17d6593a3788376bf9bb6c1535" category="cell">1,500 MB/s</block>
+  <block id="8452946a913c5da5d0753b575bc8e7b6" category="cell">10 億</block>
+  <block id="3a69b34ce86dacb205936a8094f6c743" category="cell">大型</block>
+  <block id="26657d5ff9020d2abefe558796b99584" category="cell">96</block>
+  <block id="a10c56d6d6012a90b60e77f2248ee70f" category="cell">192 GB</block>
+  <block id="ab4bf7c1be6270d2b6e2a29d2048d9ba" category="cell">6 TB</block>
+  <block id="5fd87da18bd5a2e29a0cc852c332a1ba" category="cell">16,000</block>
+  <block id="97fcefbae965abf290381c16b678b7ec" category="cell">2,000 MB/s</block>
+  <block id="f813d4c41b3987dfffdcc0cea30c64cf" category="cell">10 GbE</block>
+  <block id="68c08a4d5037c95bc8fba88bfb68be34" category="cell">30 億</block>
+  <block id="8d13605af92cc217c85c4ad45d6f7c6e" category="admonition">對於所有部署規模，建議使用 NVMe SSD 或其他固態儲存設備。此表中的磁碟容量值僅反映 AIDE 資料 Volume 的儲存設備。如果作業系統、k3s 執行時間和 AIDE 資料都共享單一磁碟，則在所選規模的磁碟容量值上增加約 65 GB。例如，單一磁碟上的小型部署總共需要約 565 GB 的空間。</block>
+  <block id="f8a25fbf01ad745086d3090cb86949e9" category="inline-xref">小型、中型和大型組態</block>
+  <block id="2c63324398e340bc0cfa20633d950a5d" category="paragraph"><block ref="63c192fbfe28a904fef2370327d0b606" category="inline-xref-macro-rx"></block>這些是建議的三到四天初始掃描視窗的基準值，而不是軟體強制執行的硬性限制。</block>
+  <block id="5616873f83786e41d208235efcb21dfa" category="list-text">規模建議的依據是什麼</block>
+  <block id="b3175af68c1f955a338904f52f52c31b" category="list-text">*檔案和目錄總數*：要建立目錄的物件總數是運算和儲存設備需求的主要驅動因素。物件數量越多，所需的記憶體容量、CPU 和儲存設備就相對越多。</block>
+  <block id="477c48bec7aa8153b71c2fa6775007ea" category="list-text">*目錄結構*：資源使用會隨著目錄嵌套深度以及檔案在共享和磁碟區中的分佈而改變。深度嵌套或高度分散的結構可能比扁平層級結構中相同數量的檔案需要更多資源。</block>
+  <block id="ae5bdffd41c2fa1109349cdb30a487d8" category="list-text">*所需掃描處理量*：初始目錄完成速度直接取決於 CPU 和記憶體容量分配。配置低於建議大小會降低處理量並延長初始掃描視窗。</block>
+  <block id="5255e30ce3becd1a8dad5261847352e9" category="list-text">*儲存效能*：強烈建議使用高效能儲存設備。中繼資料索引和事件處理需要與部署規模成正比的持續 IOPS 和處理量。</block>
+  <block id="21d3030790ee8dd6aedf4b3d3bd85241" category="list-text">如果規模過小會發生什麼事</block>
+  <block id="976dca6e7f73b47bd2e65fc64fda0297" category="paragraph">資源配置低於建議值不會阻止安裝或導致服務故障。系統仍可正常運作，掃描也會繼續進行，但您可能會遇到以下情況：</block>
+  <block id="3392722f1bd8a79d8ce9aa1291375d35" category="list-text">*初始目錄時間延長*：運算減少會降低每日掃描的物件數。例如，目標為 30 億個物件但配置規模較小的部署，所需時間可能遠超過三到四天的目標。</block>
+  <block id="04f33df6364dce086ab124fb023f1189" category="list-text">*後續擷取處理量降低*：在持續負載下，新檔案事件和遞增掃描更新的處理速度會變慢。</block>
+  <block id="0e2dd61bf6532387db4ae20e0fdd6b94" category="list-text">*儲存容量風險*：相對於物件總數而言，儲存設備不足可能會導致中繼資料索引接近容量閾值。通常可以透過擴充儲存容量來解決此問題，而無需完全重新部署。</block>
+  <block id="1a3127d574918312a4ab223c9e789fd8" category="list-text">當您需要更多容量時進行擴充</block>
+  <block id="843313627dc8ca4704eddce4be151a81" category="paragraph">AIDE Lite 執行於單一 VM 上，因此擴充是垂直的：</block>
+  <block id="6c662a2b269371b61f3191b2ada2b39e" category="list-text">增加主機 VM 的 vCPU、記憶體容量或儲存設備。</block>
+  <block id="6a09047df4598fb150581654b18f4fec" category="list-text">無需對叢集進行重新組態或重新安裝。</block>
+  <block id="d23bfd9ad7bd0c9a791c088e9bd2252f" category="inline-link-macro">AIDE Enterprise</block>
+  <block id="0da03b32810b54d59826c030fc38e4e3" category="admonition">AIDE Lite 不支援高可用度或橫向擴充。如果您的環境持續超過 30 億個檔案，或者您需要高可用度和容錯能力，請改為部署 <block ref="d382e1cc179a193668ba420fcde06e3a" category="inline-link-macro-rx"></block>。</block>
+  <block id="696c660ff8d9323e55146a6dbd4e4088" category="section-title">作業系統</block>
+  <block id="17bc10091293fdc562a6db69940ee924" category="cell">作業系統</block>
+  <block id="2e5d14f7919ff3c6138e7845aec4f915" category="cell">支援的版本</block>
+  <block id="3d945423f8e9496c429a5d8c65b4604f" category="cell">Ubuntu</block>
+  <block id="91cf600280a31c34bee92cbbf232fbb4" category="cell">22.04 LTS，24.04 LTS（建議使用 24.04 LTS）</block>
+  <block id="eb13ea1edb52f2f7cdf4b15544892c06" category="cell">Red Hat Enterprise Linux（RHEL）</block>
+  <block id="2faf5144932acddbc582e2735ccfaf81" category="cell">8.x、9.x</block>
+  <block id="4a08abf9b8a46798cdcd3d6fa7855a47" category="section-title">其他先決條件</block>
+  <block id="d9f20d148982fcb9954271f9773f9faa" category="list-text">您擁有目標虛擬機器的根目錄或 sudo 存取才能執行安裝程式。</block>
+  <block id="d0841e0c68b47eabc71d450da0eb4198" category="list-text">最低 1 GbE 網路連線（大型部署需 10 GbE）。</block>
+  <block id="be09bfe2a7cb95c01696de8958129e58" category="list-text">目標主機必須具備 bash 4.0 或更新版本、curl 和 tar。</block>
+  <block id="e659b40d2126ceff49df127acc731bb5" category="list-text">安裝程式會自動下載並引導安裝<block ref="8adf56ad116be901bc1c46fc138f5e35" prefix=" " category="inline-code"></block>、<block ref="e7d07ed8aa8dd8cafce4a527a523d6c5" prefix=" " category="inline-code"></block>、<block ref="0f12ee5c9f1dd90158580f1c292b0d37" prefix=" " category="inline-code"></block>和<block ref="d8757fb4e9ea07606d23a1ef5a4b8d4e" prefix=" " category="inline-code"></block>。無需預先在目標 VM 上安裝這些工具。</block>
+  <block id="bdbae2c2c4e32ec6c1ad43c90a2e0cb1" category="list-text">安裝程式啟動前，主機上的 6443 （TCP）、10250 （TCP） 和 8472 （UDP） 連接埠必須保持可用。如果主機防火牆 <block ref="7ba21652408bcade58b8719451511f2a" prefix="(" category="inline-code"></block> 在 RHEL 上或 <block ref="43a8c9840722971d7bc00f689aaba839" prefix=" " category="inline-code"></block> 在 Ubuntu 上）處於作用中，請在執行安裝程式之前允許這些連接埠以及 k3s pod CIDR <block ref="4cc0d71210465fa62867c07617a07f7c" prefix="(" category="inline-code"></block>）和服務 CIDR <block ref="1791b22edf57421226fdd571bb029cc8" prefix="(" category="inline-code"></block>）。請參閱您的作業系統防火牆文件，以取得所需的命令。</block>
+  <block id="d695202087632e6b4642eb352ae1d72e" category="list-text">在執行強制模式 SELinux 的 RHEL 系統上，安裝程式會自動設定所需的 SELinux 原則套件。無需手冊 SELinux 組態。</block>
+  <block id="d7df956ed8a6009f2697e7ea59f768d5" category="section-title">AIDE 企業需求</block>
+  <block id="4fa7f8915ea18c5e59f278f803e53f3c" category="list-text">您在執行安裝程式的機器上擁有具備 cluster-admin 權限的 kubectl 存取。</block>
+  <block id="6cae2059ae7f40a8509d44cf4088d007" category="list-text">您在執行安裝命令的機器上擁有 Sudo（或根目錄）權限。</block>
+  <block id="1af43e39f476169c4e7048fa30b0d2c7" category="list-text">目標叢集上已安裝 RKE2 v1.34 或更高版本（建議 v1.36.x）。</block>
+  <block id="76fb8e768567e341c1a0798fe4e633d9" category="list-text">安裝程式主機將透過 <block ref="50bc6b145cdb10db9c46326848e35a5f" prefix=" " category="inline-code"></block> 自動下載並啟動 <block ref="e7d07ed8aa8dd8cafce4a527a523d6c5" prefix=" " category="inline-code"></block>、<block ref="0f12ee5c9f1dd90158580f1c292b0d37" prefix=" " category="inline-code"></block> 和 <block ref="d8757fb4e9ea07606d23a1ef5a4b8d4e" prefix=" " category="inline-code"></block>。不需要在管理機器上預先安裝這些工具。</block>
+  <block id="27c33c218c2b02ddcbe36e59b26e901d" category="list-text">已設定的 StorageClass（預設名稱<block ref="92bf138b666c1c986bd7a1a4dcae9436" prefix=" " category="inline-code"></block>）可在叢集上使用，並用於 AIDE 的有狀態後端服務。</block>
+  <block id="ce5ab936ac40869458236d23365a7973" category="list-text">至少有一個匯出路徑的 NFS 伺服器可用，用於 AIDE 組態資料 Volume 和共享的索引快照。</block>
+  <block id="488ff87aea5a8d31ced927df06aa9dc3" category="list-text">叢集上已存在目標 Kubernetes 命名空間（預設<block ref="87a4f89dbcdda862656068534d7005a9" prefix=" " category="inline-code"></block>）；安裝程式不會建立它。</block>
+  <block id="80193bec93acbe5d566695e92ff40775" category="admonition">對於所有企業節點部署，建議使用 NVMe 或高效能 SSD 儲存設備。</block>
+  <block id="3aaf805fc23f2d38628eb9e6dc9e212b" category="section-title">節點規模</block>
+  <block id="a7241bce0d45d1d8412b2bdb9a2eec8e" category="paragraph">這些規模是建議的基準叢集組態，針對大約三天的初始掃描期間最佳化的，並非硬性容量限制。AIDE Enterprise 透過橫向擴充支援超過 60 億個檔案的環境。請參閱 <block ref="11b0da32332d2d0d9386ce7e27a30ee4" category="inline-xref-macro-rx"></block> 以取得詳細資料。</block>
+  <block id="187c6ad3a74cc93ac6c2229d398e383e" category="cell">節點</block>
+  <block id="1bfd2220d8fe0d16364a1fbbcb55ddc7" category="cell">每個節點的 vCPU</block>
+  <block id="b35eb28fbdaf65ec1327e79b53c92e28" category="cell">每個節點的 RAM</block>
+  <block id="423216f082fec9a07efd841cf2b73c0a" category="cell">每個節點的磁碟</block>
+  <block id="34d27416cf2043f878a1146074999ee9" category="cell">每個節點的儲存設備 IOPS</block>
+  <block id="809af93b75fb9d00ddf2e6804ac26921" category="cell">每個節點的儲存處理量</block>
+  <block id="9d5bc42a1c7b5a6800df499cdffee6e5" category="cell">每個節點的網路</block>
+  <block id="eccbc87e4b5ce2fe28308fd9f2a7baf3" category="cell">3</block>
+  <block id="1afcf8ebd4c358721fd35f9b14bffaaf" category="cell">約 1.3TB</block>
+  <block id="1679091c5a880faf6fb5e6087eb1b2dc" category="cell">6</block>
+  <block id="642e92efb79421734881b53e1e1b18b6" category="cell">48</block>
+  <block id="afed790d874c2e5b39e05619b86defab" category="cell">約 2TB</block>
+  <block id="45c48cce2e2d7fbdea1afc51c7c6ad26" category="cell">9</block>
+  <block id="ea5d2f1c4608232e07d3aa3d998e5135" category="cell">64</block>
+  <block id="93bc489a942be947d2726505e1ca48b3" category="cell">256 GB</block>
+  <block id="c37f4c58f39bdadb53567758084c00fe" category="cell">約 2.7TB</block>
+  <block id="f11053ee708ace18a04905ad93419736" category="cell">60 億</block>
+  <block id="34feeb41c12a81b277887e38b0e1ee6c" category="paragraph"><block ref="bfc30cc05666392ab558bedcc9f91c20" category="inline-xref-macro-rx"></block> 這些是針對大約三天初始掃描時段建議的基準叢集組態，並非軟體強制執行的硬性容量上限。AIDE Enterprise 透過跨叢集節點的橫向擴充，支援超過 30 億個檔案的環境。</block>
+  <block id="e7b02f4784ecd28afb8997ce3e05d184" category="list-text">*檔案和目錄總數*：物件總數是儲存設備和運算需求的主要驅動因素。規模較大的環境需要額外的叢集節點來分散處理負載並維持效能。</block>
+  <block id="25086dd45e0992ec487556de2c24cc04" category="list-text">*高可用度複寫*：企業級部署預設啟用跨節點資料複寫以提供容錯能力。與同等的單一節點部署相比，複寫會增加總儲存設備和記憶體容量需求。</block>
+  <block id="4a47b233159281b95c6ff76fd60442fa" category="list-text">*節點數量與工作負載經銷*：處理處理量和總目錄容量隨叢集中節點數量的增加而擴展。增加節點可以將索引工作負載和儲存容量分配到整個叢集。</block>
+  <block id="fc768cfdf2ef096f800a1266bbff12b3" category="list-text">*所需掃描處理量*：叢集範圍內的 CPU 和記憶體容量分配決定了每日掃描速率以及初始目錄的完成速度。</block>
+  <block id="bca9080545e2ebb3d3f268550dacf9ca" category="list-text">*每個節點的儲存效能*：強烈建議在每個節點上使用高效能儲存設備，叢集總容量與節點數量成正比擴充。</block>
+  <block id="a6cb150774c57ec4d46f3f0687ffced7" category="paragraph">資源配置低於建議值不會阻止安裝或導致嚴重故障。實際影響包括：</block>
+  <block id="160c5350b70126814b2fba75f7af8cff" category="list-text">*初始目錄持續時間延長*：節點較少或每個節點的資源減少會降低處理量，進而按比例延長初始目錄的時間範圍。</block>
+  <block id="8c76ce7c020db553216deba2dc8f5401" category="list-text">*峰值負載下處理延遲增加*：叢集記憶體容量不足會導致高容量擷取期間處理延遲升高。後續操作不會中斷，但持續處理量會降低。</block>
+  <block id="182dadf1fe353e7cc124c0b9ccdfd5fa" category="list-text">*儲存容量風險*：叢集儲存設備不足以滿足目標物件數量，可能會導致中繼資料索引接近容量閾值。您可以透過擴充現有節點上的儲存設備（非中斷式）或新增專用儲存節點來解決此問題。</block>
+  <block id="0cfd3ae232b1f5c6e4b55c8d7488d43f" category="paragraph">AIDE Enterprise 支援無需重新部署的橫向擴充：</block>
+  <block id="9eaa27fc36031cf7508a6c9afb5da59b" category="list-text">新增工作節點以增加可用於掃描處理和事件擷取的 CPU 和記憶體容量。</block>
+  <block id="2613221086922fe4c4c02f9bb4e826a6" category="list-text">新增專用儲存節點以增加總目錄容量。這是將環境擴充至超出預先定義的最大部署規模的主要方法。</block>
+  <block id="66176e61e735a415fff25c70d428be82" category="list-text">藉由新增更多節點至叢集，擴充至超過 60 億個檔案。如需自訂規模的節點規模指導，請聯絡您的 NetApp 代表。</block>
+  <block id="bc9887c630f44bf1747981259d20312d" category="admonition">在現有 Enterprise 叢集中新增節點不會中斷後續的掃描操作，但請在活動較少的時段協調變更。</block>
+  <block id="8676992f5e93250096176880b5305a01" category="inline-link-macro">AIDE 部署總覽</block>
+  <block id="d3556613131e318e5f2d2a7ee8d38a7c" category="list-text"><block ref="d3556613131e318e5f2d2a7ee8d38a7c" category="inline-link-macro-rx"></block></block>
+  <block id="07a3b4a364ef4ea2f66e179b22b2c081" category="inline-link-macro">部署 AI Data Engine — 精簡版</block>
+  <block id="10bda37ec504bc21475c363f87d039b7" category="list-text"><block ref="10bda37ec504bc21475c363f87d039b7" category="inline-link-macro-rx"></block></block>
+  <block id="9780340266e04ab00f8baf827c278456" category="inline-link-macro">部署 AI Data Engine — 企業版</block>
+  <block id="b8ffd49b161a0bafa7ac79af99a078d4" category="list-text"><block ref="b8ffd49b161a0bafa7ac79af99a078d4" category="inline-link-macro-rx"></block></block>
+  <block id="bf432db974914045dbdb141a94746102" category="summary">使用部署精靈從 NetApp Console 部署 AIDE Lite。</block>
+  <block id="f7c39236be6bd435ec42b2fa2cf0b64d" category="doc">部署 AI Data Engine 精簡版</block>
+  <block id="b1099081e00f8989d9694c85a0c5923a" category="paragraph">使用部署精靈從 NetApp Console 部署 AIDE Lite。此精靈將引導您選擇安裝位置、選擇組態大小，並在目標主機上執行安裝命令。</block>
+  <block id="6c197e358af4189fc5967ff9d49f6db4" category="list-text">您在 NetApp Console 中擁有 _組織管理員_ 或更高權限。</block>
+  <block id="1f4a2d6200ad6e55158f5376f5cc28b6" category="list-text">需要在目標主機上擁有 sudo（或根目錄）權限才能執行安裝命令。</block>
+  <block id="6d7bfbfb328e91017c8160aec407be19" category="inline-link-macro">AIDE 要求</block>
+  <block id="65eacaaf3bea1fd7a8594828320cd9f6" category="list-text">您的環境符合所有先決條件，如 <block ref="0be0e04edd1e19a89ae931415ae02878" category="inline-link-macro-rx"></block> 所述。</block>
+  <block id="c38a91b64338659be48390e7b59b98be" category="inline-link">已部署</block>
+  <block id="b2c5da1f5dc6f7356acb47cf3ba444d1" category="list-text">NetApp Console 代理程式<block ref="b73290be3504f0507d7e45d060da298b" category="inline-link-rx"></block> 且可從 AI Data Engine 主機存取。執行安裝命令需要 Console 代理程式的 IP 位址。</block>
+  <block id="174790ce4804262cdbb778690ee4a907" category="list-text">在 NetApp Console 中，導覽至 *管制* &gt; *AI Data Engine*。</block>
+  <block id="48602d83d5d9910704adcce3b2ee67e6" category="paragraph">AI Data Engine 活動網頁隨即出現。</block>
+  <block id="5bb86b97d5261c3f0e5705b4f80cac36" category="list-text">選擇 *部署 AI Data Engine*。</block>
+  <block id="f365e3c1684ae4b1c44970f25e545b04" category="list-text">選擇 *Lite* 部署選項，然後選擇 *下一步*。</block>
+  <block id="a2c58206f4ee0d23ded834a18b1daf1f" category="list-text">將精靈中顯示的預先配置安裝命令複製到編輯器中。</block>
+  <block id="96285c2d71bcec3ce19882c295253e45" category="list-text">選擇您的組態大小：</block>
+  <block id="91a62ce5f728453d53ed8d0c2a936aec" category="list-text">*小型*：建議用於檔案數量不超過約 2 億個的環境。</block>
+  <block id="8682893534f62c0d0aff25d6d8c85d96" category="list-text">*中等（預設）*：建議用於檔案數量不超過約 10 億的環境。</block>
+  <block id="8f83f7fa2261b412d2fa290f60ffe9e8" category="list-text">*大型*：建議用於檔案數量不超過約 30 億的環境。</block>
+  <block id="d46a5933f9f2e7d0d06362ecd5dfa041" category="inline-link-macro">靈活的規模指南</block>
+  <block id="b7f0cfda97f42693a8f1e2398887a994" category="paragraph">這些大小是建議的基準，而非硬性限制。如果您的環境超出這些範圍，請參閱 <block ref="6b8e74170b14d312ab21928a851153d3" category="inline-link-macro-rx"></block>。</block>
+  <block id="83ac9607e5958c0984c3f28f18cdc1a1" category="list-text">對於小型或大型組態，請調整安裝命令以反映所選大小：<block ref="8f650be051c9eec5eab6770e03ffce31" prefix=" " category="inline-code"></block></block>
+  <block id="ac18774dc2dba5258b649f18aa8155de" category="list-text">在目標主機上執行安裝命令，並根據需要調整組態大小。</block>
+  <block id="d1a3d9894253a2d72545899e3a59192e" category="admonition">安裝大約需要 45 分鐘才能完成。可能會發生逾時和重試，這是正常現象。</block>
+  <block id="85e6b359225d41261774c22bf2bf080a" category="list-text">出現提示時，請確認主機 IP 位址和使用者 ID 以繼續安裝。</block>
+  <block id="c9ef0d99fbf5ed26a85b92f55e6b6c6e" category="list-text">監控進度畫面，直到出現成功畫面並顯示「AI Data Engine 已部署」。</block>
+  <block id="e9b6d2f0d9b694914f20877d3f88c18f" category="inline-link-macro">連接資料來源</block>
+  <block id="db4300c03495773caef1471c598e802e" category="paragraph">AI Data Engine 已部署並連接至 NetApp Console。現在您可以 <block ref="8616a87379e9890bdf232e0c72419049" category="inline-link-macro-rx"></block> 開始掃描。</block>
+  <block id="83eac39203f6a78bfab5f05109f06f07" category="summary">使用部署精靈從 NetApp Console 部署 AIDE Enterprise。</block>
+  <block id="c2cf1d98d36dbefbfe09eae2488f7247" category="doc">部署 AI Data Engine 企業版</block>
+  <block id="330f7c265828f01dee99afee070313b1" category="paragraph">使用部署精靈從 NetApp Console 部署 AIDE Enterprise。此精靈將引導您選擇安裝位置、選擇組態大小，並針對 RKE2 叢集執行安裝命令。</block>
+  <block id="1a86a03f19ece1eb1fdd892e27ea3956" category="list-text">您的 RKE2 叢集符合 <block ref="0be0e04edd1e19a89ae931415ae02878" category="inline-link-macro-rx"></block> 中所述的企業節點先決條件。</block>
+  <block id="6689cb476023c6c1c9be0efa2539934e" category="list-text">執行安裝命令的機器需要 sudo（或根目錄）權限。</block>
+  <block id="87f9897a401f495b9a1facf1d7bd910d" category="list-text">具有匯出路徑的 NFS 伺服器可供使用，且可從叢集存取，以供 AIDE 組態 Volume 使用。</block>
+  <block id="9dda54b0355e711b7bf378cb95fb1046" category="list-text">NetApp Console 代理程式<block ref="b73290be3504f0507d7e45d060da298b" category="inline-link-rx"></block> 且可從叢集節點存取。執行安裝命令需要 Console 代理程式的 IP 位址。</block>
+  <block id="bb51b81f5223e5f0c8bc58ed7e50a5f4" category="list-text">kubectl 可以在執行安裝命令的機器上使用，並具有對目標叢集的 cluster-admin 存取。</block>
+  <block id="8da2dfbfcb5791d3d926eab6d4e00ae7" category="list-text">在執行安裝命令之前，目標 Kubernetes 命名空間（預設<block ref="87a4f89dbcdda862656068534d7005a9" prefix=" " category="inline-code"></block>）已存在於叢集上。</block>
+  <block id="6d673c33bc8499857dfcdafd62d54f4b" category="list-text">叢集上提供已設定的 StorageClass（預設名稱：<block ref="92bf138b666c1c986bd7a1a4dcae9436" prefix=" " category="inline-code"></block>），並用於 AIDE 的有狀態後端服務。</block>
+  <block id="44e1a4e1589f76ddf1eeaa489bc4cc29" category="list-text">選擇 *Enterprise* 部署選項，然後選擇 *下一步*。</block>
+  <block id="9b58efe1f18455876debd5dc57e57729" category="list-text">*小型*：建議用於檔案數量不超過約 10 億的環境。</block>
+  <block id="a756d5b5aaf4cf555459970b4520faf5" category="list-text">*中等（預設）*：建議用於檔案數量不超過約 30 億的環境。</block>
+  <block id="8774ee0c7f760cf14a59d6eb9c2c926d" category="list-text">*大型*：建議用於最多約 60 億個檔案的環境。</block>
+  <block id="97632a3bfddd2d43a6ad9e18867b01c4" category="paragraph">這些規模是建議的基準值，並非硬性限制。AIDE Enterprise 透過橫向擴充支援超過 60 億個檔案的環境；詳情請參閱 <block ref="89c154f2a0e84f293476bfb9d47ae425" category="inline-link-macro-rx"></block>。</block>
+  <block id="394b930dc1b5023622cb49ed7c298b31" category="list-text">從具有 RKE2 叢集 kubectl 存取權的目標主機執行安裝命令，並進行任何組態大小調整。</block>
+  <block id="f9556a416fe39ca723fd3ecd6f571ded" category="admonition">安裝大約需要 30 分鐘完成。可能會發生逾時和重試，這是正常現象。</block>
+  <block id="869ef2cf26ae6a981846da827aae59f0" category="paragraph">AI Data Engine 企業版已部署並連接至 NetApp Console。您現在可以 <block ref="8616a87379e9890bdf232e0c72419049" category="inline-link-macro-rx"></block> 開始掃描。</block>
+  <block id="fb2aa9495542bd13d3605c929812c980" category="summary">將 AI Data Engine 部署為 AIDE Lite，如果您的環境需要基於 Kubernetes 的高可用度，則部署為 AIDE Enterprise。</block>
+  <block id="2241eca142f39ffb460bb2bf4661c568" category="doc">了解 AI Data Engine 部署</block>
+  <block id="7647c2aafe383ffd0d50b64929b2f530" category="paragraph">將 AI Data Engine 部署為 AIDE Lite，這是一個單一虛擬機器安裝。如果您的環境需要基於 Kubernetes 的大規模高可用度，則可以改為部署 AIDE Enterprise。</block>
+  <block id="a76e498c33f6c726c7b3b1e63f3c9f86" category="section-title">AIDE Lite</block>
+  <block id="b8f59a240d3f4b57a1c6c7e4cc02d32d" category="paragraph">AIDE Lite 可安裝在單一 Linux 虛擬機器上。您無需具備 Kubernetes 專業知識，因為安裝程式會自動資源配置 k3s。</block>
+  <block id="6dc3f2c5a4a07cf906856038dc455b60" category="paragraph">AIDE Lite 提供三種規格——小型、中型和大型——分別適用於檔案數量最高約 2 億、10 億和 30 億的環境。如需完整的虛擬機器規模與作業系統需求，請參閱 <block ref="0be0e04edd1e19a89ae931415ae02878" category="inline-link-macro-rx"></block>。這些規格為建議的基準，並非硬性限制；如需瞭解決定規模的因素以及如何進一步擴充，請參閱 <block ref="6b8e74170b14d312ab21928a851153d3" category="inline-link-macro-rx"></block>。</block>
+  <block id="e56291a61f22a59964581e4b089d9646" category="paragraph">如果您的環境需要高可用度、容錯能力、輪替升級或超出 AIDE Lite 最大規模的橫向擴充，請部署 AIDE Enterprise。AIDE Enterprise 以多節點 Kubernetes 叢集的形式部署在客戶資源配置和代管的 RKE2 叢集上。</block>
+  <block id="511a454fc3a3987519fe85b03965f6c8" category="paragraph">AIDE Enterprise 提供三種規格——小型、中型和大型——分別適用於檔案數量不超過約 10 億、30 億和 60 億的環境。有關完整的節點規模和叢集要求，請參閱 <block ref="0be0e04edd1e19a89ae931415ae02878" category="inline-link-macro-rx"></block>。這些規格是建議的基準值，並非硬性限制：超過 60 億檔案的環境可透過橫向擴充獲得支援。如需詳細資訊，請參閱 <block ref="89c154f2a0e84f293476bfb9d47ae425" category="inline-link-macro-rx"></block>。</block>
+  <block id="0c5241f126b35cf2419c66ba39a5a298" category="section-title">部署流程</block>
+  <block id="46597a2025eee9696dd502828e25e3d5" category="paragraph">NetApp Console 不會為 AI Data Engine 資源配置基礎架構。您準備符合要求的 Linux 機器或叢集，然後從 NetApp Console 複製預先產生的安裝命令，並在目標主機上執行。此命令會自動啟動執行階段並部署 AI Data Engine 堆疊。在安裝期間，安裝程式會提示您確認目標主機 IP 位址和使用者 ID，然後再繼續安裝。</block>
+  <block id="0d7f0465ec681cb9f6e5a8be3b1a0396" category="paragraph">AIDE Lite 安裝通常在 45 分鐘內完成。AIDE Enterprise 安裝通常在 30 分鐘內完成。安裝程式包含內建的逾時與重試機制，以處理元件啟動時的暫時性問題。</block>
+  <block id="c9ff479d3b0a5190f9c70e082837c411" category="section-title">部署模式參考</block>
+  <block id="d41d8cd98f00b204e9800998ecf8427e" category="cell"></block>
+  <block id="a0e3089d312c100208595d685b4104d2" category="cell">部署模型</block>
+  <block id="e944d7416ffeeaf9a68e8ef9da608c26" category="cell">單一 Linux VM</block>
+  <block id="1a92dd236bb30572af26007d261a2e83" category="cell">多節點 Kubernetes 叢集（客戶配置的 RKE2）</block>
+  <block id="4b650ef1239cf58ca9b3eb4dddac9322" category="cell">掃描速率</block>
+  <block id="91a6bef895437e73680f6f013deb9588" category="cell">每天 5000 萬到 10 億個檔案，依大小而異</block>
+  <block id="78fd22e45655dd97ace1673f19b03c74" category="cell">每天 2.5 億到 20 億個檔案，依大小而異</block>
+  <block id="ccb52e04a2105113dc40fe0f8716aea1" category="cell">最大檔案數（大尺寸）</block>
+  <block id="a499f695d0cd8cd297f733cd1289a331" category="cell">約 30 億</block>
+  <block id="d6a79615f28b6194d592e29ba6f5f964" category="cell">約 60 億</block>
+  <block id="0be0e04edd1e19a89ae931415ae02878" category="list-text"><block ref="0be0e04edd1e19a89ae931415ae02878" category="inline-link-macro-rx"></block></block>
+  <block id="c565a648dc1d9e80e46687a0fc1cdfe6" category="summary">了解 AI Data Engine 的元件以及它們如何協同運作，為儲存設備系統中的中繼資料建立目錄。</block>
+  <block id="abb2753fee0210c75705619ab94e6ceb" category="doc">AI Data Engine 架構</block>
+  <block id="fccc76f1cda27ea29c381a63456dc242" category="paragraph">AI Data Engine （AIDE）由 Metadata Engine 和原則架構組成。這些功能協同運作，從您的儲存設備系統中擷取中繼資料，將其目錄至可搜尋的索引中，並讓您定義已儲存的查詢，以識別及處理符合特定條件的檔案。</block>
+  <block id="05bbb43b3d923283e0b6ffafd088f41f" category="section-title">元件</block>
+  <block id="9a8bc3c76ae750342ae6d6959e6d4931" category="paragraph">您主要透過四個功能區域與 AI Data Engine 互動：儀表板、調查、原則和組態。這些功能區域由下列底層元件提供支援。</block>
+  <block id="1dcad9443ae8987b7175c4cdf8acb9f9" category="section-title">Metadata Engine</block>
+  <block id="7539b92c776f337a385f300efb36fd59" category="paragraph">Metadata Engine 是 AI Data Engine 的核心功能。它掃描連接的儲存設備系統，擷取檔案系統中繼資料，並將這些中繼資料儲存在可搜尋的目錄中。Metadata Engine 在每次掃描週期都會更新目錄，偵測儲存設備系統中的新增、變更和刪除操作。</block>
+  <block id="5423702a1b6fd3820d9dbf88027fcfb9" category="section-title">NetApp Console 代理程式</block>
+  <block id="857facec419107b5214ee8fa6aac760e" category="paragraph">AI Data Engine 需要在您的環境中部署 NetApp Console 代理程式。Console 代理程式是通用的 NetApp 平台元件，可維持內部部署環境與 NetApp Console 之間的連線。它負責處理您的站台與 AIDE 服務之間的驗證和通訊。</block>
+  <block id="ae339237ba250f3e9622bc068691a4a4" category="inline-link-macro">NetApp Console 代理程式文件</block>
+  <block id="b4536b8eef87e734777da5e22580bed8" category="admonition">Console 代理程式並非 AI Data Engine 特有。如果您已為其他 NetApp 服務部署了 Console 代理程式，則可以使用同一個代理程式。如需 Console 代理程式部署說明，請參閱 <block ref="2f66cea022adc2ad8169604b656a336f" category="inline-link-macro-rx"></block>。</block>
+  <block id="6762973af9b127d271f0d2b2aea0bc96" category="section-title">部署模型</block>
+  <block id="7e55a28dcce8cb14e4d27ea41261d95e" category="paragraph">AI Data Engine 支援兩種部署模式：</block>
+  <block id="ac4f9e11413c44efe69404bc36ec291c" category="list-text">適合較小環境的單一虛擬機器部署。根據要編入目錄的檔案數量，提供小型、中型和大型組態。</block>
+  <block id="d8624879f2df7108b28170d3c8d0cf6a" category="list-text">基於 Kubernetes 的多節點叢集部署，適用於需要高可用度的大型環境。</block>
+  <block id="932b129d9e40853fb53d785a7bbb7acd" category="paragraph">AIDE Enterprise 可從支援最多約 10 億個檔案及每天 2.5 億個檔案的三節點組態，擴充至支援最多約 60 億個檔案及每天 20 億個檔案的九節點組態。請參閱 <block ref="374da513b9cc4d9fde319e2e3de4220b" category="inline-link-macro-rx"></block> 以取得節點規模詳細資料。額外的節點可將容量擴充至超過 60 億個檔案。請參閱 <block ref="678b19a1fca5ae4e7fd0a6867698af36" category="inline-link-macro-rx"></block> 以取得橫向擴充詳細資料。</block>
+  <block id="1558fd62a25c3c5839314d3d05591cff" category="inline-link-macro">了解更多部署選項</block>
+  <block id="7522e35bcf6b4e765785f2c02ab88732" category="paragraph"><block ref="c85626c591e7dabf2ef44243c8154bd8" category="inline-link-macro-rx"></block>。</block>
+  <block id="51e229527022b23ef548bfc016bfb0ac" category="section-title">資料流</block>
+  <block id="d48e37a5e6e17429470acd5447f7d7a2" category="list-text">AI Data Engine 部署在您的內部部署環境中。</block>
+  <block id="6466ed6a7617c9156b9142fd84ca463e" category="list-text">您可以在 *組態 &gt; 系統* 中新增您希望 AIDE 建立目錄的儲存設備系統。支援的系統包括 NetApp ONTAP、StorageGRID、資料庫系統，以及任何公開 NFS、SMB/CIFS 或 S3 協定的 NAS 或物件儲存系統。</block>
+  <block id="4335b6439217fbe3a78bc483bbb8e2db" category="list-text">Metadata Engine 使用 NFS 和 SMB/CIFS 協定掛載共享，並掃描檔案系統以擷取檔案中繼資料。</block>
+  <block id="ec7c0cda0b856c7b0ef27518243b5770" category="list-text">中繼資料已編入目錄索引。</block>
+  <block id="e08465e99912650826365007e8296ccf" category="list-text">儀表板顯示來自目錄的儲存設備見解。</block>
+  <block id="614bf6aec561c6163de8df0a75ec10e0" category="list-text">調查功能可讓您使用中繼資料篩選器直接查詢目錄。</block>
+  <block id="f76213c17fe77d7795d2575f82e6a911" category="list-text">您可以將搜尋條件儲存為原則，並重新執行這些原則來識別和處理符合的檔案。</block>
+  <block id="af377abffc86ee018a19a7a84fa2e12c" category="admonition">Metadata Engine 完成所有已設定 Volume 的掃描後，會立即開始新一輪掃描，重新掃描檔案系統以偵測新增、變更和刪除。</block>
+  <block id="75d38d77f71f859f0e6bfa05a8868b12" category="inline-link-macro">了解 AI Data Engine</block>
+  <block id="26e666e2e4e46660c91e74754caac64f" category="list-text"><block ref="26e666e2e4e46660c91e74754caac64f" category="inline-link-macro-rx"></block></block>
+  <block id="e24b77f89668ee9cb97930aad67c47cb" category="inline-link-macro">了解 AIDE 部署</block>
+  <block id="71a1e4d97605fe8774b49ca1dce1bf4f" category="list-text"><block ref="71a1e4d97605fe8774b49ca1dce1bf4f" category="inline-link-macro-rx"></block></block>
+  <block id="c161c41ee580d32d31bdc317b8636009" category="summary">了解 AI Data Engine，它能提供儲存在您儲存設備系統中結構化與非結構化資料的可見度。</block>
+  <block id="10205b2b1a0570eb1e538ad453946b06" category="paragraph">AI Data Engine 是一項中繼資料智慧服務，可讓您獲得儲存設備系統中儲存的結構化和非結構化資料的可見度。透過掃描您的儲存設備系統並對檔案系統中繼資料進行編目，AI Data Engine 藉由就地分析中繼資料，而無需移動或複製資料，協助您找出儲存設備最佳化機會、調查您的資料，並執行管制原則。</block>
+  <block id="5b78c83d95e5745d473240203777c774" category="section-title">AI Data Engine 的功能</block>
+  <block id="93ac98d7e0f46af4be06d763ca8e4d9b" category="paragraph">AI Data Engine 掃描已連接的儲存設備系統，擷取檔案系統中繼資料，並建立一個在每次掃描週期後更新的目錄。透過此目錄，您可以：</block>
+  <block id="851d3089d23f602e41cb88e4a24c7049" category="list-text">在儀表板查看儲存設備最佳化洞察，包括哪些資料擁有者持有潛在可回收的儲存設備，例如符合組織冷資料和過期資料閾值的檔案以及複製檔案</block>
+  <block id="d4cf1ae8d3de1580dd4b64635c327386" category="list-text">使用靈活的中繼資料過濾器來調查您的資料，以建立目標資料分組</block>
+  <block id="365d4efead84b227551ff1b66a19925b" category="list-text">建立原則，將調查標準儲存為可重複使用的規則</block>
+  <block id="df7ad139df65c04c4945d61374956c8b" category="list-text">對資料執行操作：對符合原則標準的檔案進行標記、歸檔、複製或刪除</block>
+  <block id="149bf441b327b46f1cee6927c3821fb9" category="section-title">儲存最佳化與資料管制</block>
+  <block id="652d2454860d7fc35944afe99e879614" category="paragraph">AI Data Engine 專注於您儲存設備系統中儲存的結構化和非結構化資料的儲存設備最佳化和資料生命週期管理。</block>
+  <block id="0c46a9a4d5421afa53e0965858a40308" category="section-title">誰在使用 AI Data Engine</block>
+  <block id="64f79c32b0b61631101d478d31e9f7d3" category="paragraph">AI Data Engine 專為以下使用者設計：</block>
+  <block id="cd407958cd82f6304bcf61eaf827f40c" category="list-text">*儲存管理員* 需要識別和監控哪些資料擁有者持有符合其組織冷資料和過期資料閾值的檔案，識別複製檔案，並評估儲存設備最佳化機會。</block>
+  <block id="ba9f66e96d3a72c260292e7e433d9c1e" category="list-text">*IT 維運團隊* 需要集中檢視其儲存環境中存在的結構化和非結構化資料</block>
+  <block id="f5d8c539c573d98ed75c16e6120b556e" category="section-title">AI Data Engine 所在位置</block>
+  <block id="2e41d1b0867653660816d43d38a3d448" category="paragraph">您可以透過 NetApp Console 存取 AI Data Engine，路徑為 *治理 &gt; AI Data Engine*。您可以將其部署為 AIDE Lite（單一虛擬機器安裝），部署在您管理的 Linux 基礎架構上，該基礎架構可以是您雲端帳戶中的虛擬機器，也可以是內部部署環境中的機器。如果您的環境需要大規模且以 Kubernetes 為基礎的高可用度，您可以改為部署 AIDE Enterprise。</block>
+  <block id="e3d3e027f48463eb78e548236f017140" category="paragraph">AI Data Engine 掃描 NetApp ONTAP 和 StorageGRID 系統上的資料，以及支援 NFS、SMB/CIFS 或 S3 協定的非 NetApp 系統上的資料。</block>
+  <block id="5195f9c28c95a19d82dbbab0c1b03be8" category="list-text"><block ref="5195f9c28c95a19d82dbbab0c1b03be8" category="inline-link-macro-rx"></block></block>
+  <block id="06ad314b340900d226b1196e1fe289e9" category="inline-link-macro">快速入門</block>
+  <block id="bdeb5cd25a7dbc37504b3514d1fd7016" category="list-text"><block ref="bdeb5cd25a7dbc37504b3514d1fd7016" category="inline-link-macro-rx"></block></block>
+  <block id="977e38bc044068997869d10e6979a705" category="list-text"><block ref="977e38bc044068997869d10e6979a705" category="inline-link-macro-rx"></block></block>
+  <block id="4c1a261e30da6a55a9b3726af88508d4" category="summary">透過部署服務、連接儲存設備系統並開始首次調查，即可啟動並執行 AI Data Engine。</block>
+  <block id="0faf8679fa64c37768334eb399f37dcc" category="doc">AI Data Engine 快速入門</block>
+  <block id="06c2cea18679d64399783748fa367bdd" category="inline-image-macro">一</block>
+  <block id="a8f814495d9a5097386d4d0fa44d053b" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block> 審查要求</block>
+  <block id="d95edcb83173c645e4cdae7d65d60d50" category="inline-link-macro">了解部署模式</block>
+  <block id="bc643586ebbdea3a67e8e78803edef1d" category="paragraph">審查<block ref="374da513b9cc4d9fde319e2e3de4220b" category="inline-link-macro-rx"></block>和<block ref="1fb19d6de740c7259fc64be5fec6d5ce" category="inline-link-macro-rx"></block>以決定要安裝 AIDE Lite 還是 AIDE Enterprise。</block>
+  <block id="aada29daee1d64ed0fe907043855cb7e" category="inline-image-macro">二</block>
+  <block id="5508a1321b4a833f86a54cc7821a3b51" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block> 部署 AI Data Engine</block>
+  <block id="8b64721c44a2f53b46f63f848ac39d35" category="paragraph">從 NetApp Console 部署 <block ref="f746162465c96a1adff24c92f0728c5e" category="inline-link-macro-rx"></block> 或 <block ref="eb04f2a0df94baa820b9a7e6f474747f" category="inline-link-macro-rx"></block>。設定頁面會引導您選擇安裝位置和組態大小，並執行安裝命令。</block>
+  <block id="ca8a2087e5557e317599344687a57391" category="inline-image-macro">三</block>
+  <block id="1c588aa33f42b4c4c20be39616a29ded" category="paragraph-title"><block ref="05b2444faffd66d76e88602ea7dd353f" category="inline-image-macro-rx" type="image"></block> 連接資料來源</block>
+  <block id="96542a64c03a6496363376fdc6a2fbc6" category="paragraph"><block ref="3540fa5efa78b3ae6e9c7d52a1e7d21a" category="inline-link-macro-rx"></block> 開始掃描。AI Data Engine 會將您指定的儲存設備系統中的檔案系統中繼資料編入目錄。</block>
+  <block id="981b8fcee42e1e726a67a2b9a98ea6e9" category="inline-image-macro">四</block>
+  <block id="be456a52157be16e2bb64e80582b27c7" category="paragraph-title"><block ref="beadfa85a2fdca06b91edc1131c603e6" category="inline-image-macro-rx" type="image"></block> 探索您的資料</block>
+  <block id="dc7161be3dbf2250c8954e560cc35060" category="inline-link-macro">儀表板</block>
+  <block id="5cbac16d406ddfc92080f39efa7437d8" category="inline-link-macro">調查</block>
+  <block id="fb3b1d7b841806f690ee73aaa0c8d14c" category="paragraph">開啟<block ref="fb0f058ee96ad213f6425340e1f6e497" category="inline-link-macro-rx"></block>即可查看儲存設備最佳化見解，或前往<block ref="baf11e96ddb5cf9a99e9104cce3d98fd" category="inline-link-macro-rx"></block>即可直接搜尋並篩選中繼資料。</block>
+  <block id="e5d9de39f7ca1ba2637e5640af3ae8aa" category="inline-image-macro">五</block>
+  <block id="27daab068a7cde6f0b947da706cd9c7a" category="paragraph-title"><block ref="99e8b2f00e172bfcff96afdce69907bc" category="inline-image-macro-rx" type="image"></block> 建立原則</block>
+  <block id="434a141f3cf546ea041658ccf5e2e280" category="inline-link-macro">將您的調查篩選條件儲存為原則</block>
+  <block id="90d578959921e40c779e3651e77e209f" category="paragraph"><block ref="bf586bccd0bf27b6e1fabd9280d26067" category="inline-link-macro-rx"></block> 監控隨時間符合相同條件的檔案。您可以設定原則以傳送通知、永久刪除符合的檔案，或追蹤結果。</block>
+  <block id="fdb19c6fec05b54408b4b0f903fd81ee" category="summary">使用端對端流程，將儀表板發現進行調查、行動及後續原則監控。</block>
+  <block id="1df62125b1fa407d537cb4d69ea2cea4" category="doc">探索 AI Data Engine 中的儲存設備優化工作流程</block>
+  <block id="b7a7e43957c3e85adef192b310b6b3d2" category="paragraph">這些 AI Data Engine 工作流程引導您從在儀表板識別儲存設備問題，到進行調查和行動，最終制定後續監控原則。每個工作流程都遵循相同的路徑：儀表板、調查、採取行動，然後儲存為原則。</block>
+  <block id="2e48f83a3b8559bc839f287b372ae63a" category="section-title">辨識並對冷資料採取行動</block>
+  <block id="54861efdd06fc309e1c9a420feff98eb" category="paragraph-title">情境</block>
+  <block id="3b84a859e68974b8b6a7c2e5209e8031" category="paragraph">您在儀表板上注意到，某個儲存設備資源有大量資料被標記為冷資料。冷檔案在設定的冷資料臨界值內未被存取過，該臨界值預設為一年，且可在 *組態* &gt; *設定* 中進行設定。</block>
+  <block id="44e6a1f5dab90577824d8f22e1988fde" category="inline-link-macro">儀表板</block>
+  <block id="a9ff44ea6a5fe6dc227b4ea55b034864" category="list-text">從 <block ref="8f8592489ae57c27af5c107a0d44dae6" category="inline-link-macro-rx"></block> 中，找出冷資料濃度最高的資源，然後選擇 *Investigate*。</block>
+  <block id="47f41e739fa983e85fc6c87ce98479c5" category="list-text">在 <block ref="52e9ed5e3e773251fd429eeb0045af22" category="inline-link-macro-rx"></block> 中，使用設定為符合您設定的冷資料臨界值（預設值：*1+ 年*）的 *上次存取* 篩選器來確認資源。</block>
+  <block id="af03039d1382ef8676c4fdd8760440cf" category="inline-link-macro">是否新增標籤、歸檔或刪除</block>
+  <block id="e9ed6d698e78f62a0321650cd016f395" category="list-text">審查結果以決定<block ref="3efcafeea256ec5f5f80d2df60560120" category="inline-link-macro-rx"></block>相符的檔案。</block>
+  <block id="7ef0163ee717bd6fd04d7eeb49b51058" category="inline-link-macro">將篩選器集儲存為原則</block>
+  <block id="5b5ae5eda1079bc84d33033a52fa0bd2" category="list-text">如果這些資源值得後續監控，<block ref="7d8ac40ed60791213197ab6f4e0c9736" category="inline-link-macro-rx"></block> 那麼當有新檔案失效時，您會收到通知。</block>
+  <block id="0d10005b6bd2a6b85eb9f287e40da0fe" category="section-title">識別並處理過時資料</block>
+  <block id="90fe85823d1212c8a3b704aa6c8ded5c" category="paragraph">仍然偶爾被存取但多年未修改的檔案，當它們超出組織的過期臨界值（預設值：自上次存取或修改以來三年）時，會被歸類為過期。</block>
+  <block id="b0c4d387a50a45d4f64e0a353764db5a" category="admonition">此臨界值可在 *組態* &gt; *設定* 中進行設定。</block>
+  <block id="7bdb301d8f2bd1bc4dc8ff7228adae25" category="list-text">從 <block ref="8f8592489ae57c27af5c107a0d44dae6" category="inline-link-macro-rx"></block> 中，找出包含大量過時資料的資源。</block>
+  <block id="1456972c0c54611fb33073481d7d23b9" category="list-text">在 <block ref="52e9ed5e3e773251fd429eeb0045af22" category="inline-link-macro-rx"></block> 中，將 *上次修改時間* 過濾器設定為您的陳舊臨界值（預設為 *3 年以上*）。</block>
+  <block id="ee0e6032122c761b81fc2cd66a35b691" category="inline-link-macro">將篩選器集儲存為原則</block>
+  <block id="b35a68b716804484978c21c7594fcad8" category="list-text"><block ref="537d965580da49e1e6c3a096271213f7" category="inline-link-macro-rx"></block>在後續掃描中追蹤這些資源。</block>
+  <block id="1c26e78563d9a7bad5cd8730fb3014eb" category="section-title">管理資料保留法規遵循</block>
+  <block id="a255165b7b7823a623dbb6b105440b3f" category="paragraph">您的組織要求對超過一定期限的檔案進行保留審查。AI Data Engine 中的預設保留臨界值為檔案建立後七年或更長時間。您可以調整此臨界值，以符合您組織的法規遵循與保留原則。</block>
+  <block id="1882b006574819130803840fe1b9469b" category="list-text">在 <block ref="52e9ed5e3e773251fd429eeb0045af22" category="inline-link-macro-rx"></block> 中，套用設定為您保留臨界值的 *上次建立* 篩選器（預設為 *7 年以上*）。</block>
+  <block id="5913dad45eb7f4d4c33e3d5282acecea" category="list-text">在採取行動前，請與相關利益方審查結果。標記為保留的檔案通常會受到監控，而不是自動刪除。</block>
+  <block id="9ccc4a73e855e5fd0cf236f7725bec04" category="list-text"><block ref="a6ba65d5603bedd3e970c59f52c864db" category="inline-link-macro-rx"></block> 搭配僅監控或電子郵件通知行動，以便在新檔案達到保留臨界值時收到提醒，而不是對這些資源進行一次性操作。</block>
+  <block id="03490a48891dc30405298515cb0a2ec1" category="section-title">尋找並刪除複製檔案</block>
+  <block id="ef14c05b00c07359bf1b4ea88e94054e" category="paragraph">相同檔案的多個相同複本存在於磁碟區或共用區中，這是在具有備份作業、資料移轉或共享的專案資料夾的環境中常見的問題。</block>
+  <block id="f9ca2405c30ced0ee904d9e0f97cf9a0" category="list-text">在 <block ref="52e9ed5e3e773251fd429eeb0045af22" category="inline-link-macro-rx"></block> 中，選擇 *新增篩選器*，然後選擇 *複製*。</block>
+  <block id="01d46cb938e4d511d3e9999a33fcf5f9" category="list-text">請審查結果。所列檔案在目錄中其他地方有一個或多個相同的複本。</block>
+  <block id="7742546bbb754d84caafaa114682a8fa" category="inline-link-macro">一個行動</block>
+  <block id="7314dc8edb48e7722955c7e114704518" category="list-text">選擇要操作的檔案並選擇 <block ref="969e8bd9170e1e99801569561e044682" category="inline-link-macro-rx"></block>。歸檔或刪除在其他位置有原始複本的已確認重複檔案。</block>
+  <block id="b0c0d5d2684f243b989c8f373fd49af4" category="inline-link-macro">將篩選器儲存為原則</block>
+  <block id="c9ff8855af97bd1a12a7e6912ad77df9" category="list-text"><block ref="46439728f888d79fb7cc9b685ae19ce6" category="inline-link-macro-rx"></block>追蹤複製隨時間累積的情況，並在計數增加時接收通知。</block>
+  <block id="5f142691dc2e5880dde4fa4e8308addd" category="section-title">資料擁有者的目標清理</block>
+  <block id="eb825210e78145b21120ef3c8c285534" category="paragraph">符合組織冷與舊臨界值的資料分散在多個擁有者手中。確定哪些資料擁有者持有這些類別中最多的檔案，有助於您確定清理工作的優先順序。</block>
+  <block id="d18055bb263b716bd2926c7fbc634768" category="list-text">從 <block ref="8f8592489ae57c27af5c107a0d44dae6" category="inline-link-macro-rx"></block> 中，尋找 _依可回收儲存設備區分的最高資料擁有者_ 表格。</block>
+  <block id="4b9bd7dec241c003603e9ba36f85a4e9" category="list-text">選擇擁有者列以開啟<block ref="52e9ed5e3e773251fd429eeb0045af22" category="inline-link-macro-rx"></block>篩選至該擁有者的檔案。</block>
+  <block id="8826c83ac41b279afb2deb64b8e4f22d" category="list-text">審查結果並決定<block ref="3efcafeea256ec5f5f80d2df60560120" category="inline-link-macro-rx"></block>檔案。</block>
+  <block id="e2b9c3b26ba26fd50d8e5ea52baf5615" category="list-text"><block ref="537d965580da49e1e6c3a096271213f7" category="inline-link-macro-rx"></block> 監控該擁有者的潛在可回收資料隨時間的變化。</block>
+  <block id="099b7eb42ed02e26b076249d7bc9e248" category="inline-link-macro">調查非結構化資料</block>
+  <block id="86f84a6aeae2c3ff3b735d8e60ef5504" category="list-text"><block ref="86f84a6aeae2c3ff3b735d8e60ef5504" category="inline-link-macro-rx"></block></block>
+  <block id="4e17f6659f1ce957a9128ff286ebb060" category="summary">使用「調查」檢視可以探索已連線系統中的檔案儲存設備、資料庫表格和目錄結構。選擇與您要尋找的內容相符的索引標籤。</block>
+  <block id="679e69e9bdc70ba02f2657d93510fff9" category="doc">在 AI Data Engine 中調查您的資料</block>
+  <block id="44da94769eacd19020729f27fef9441d" category="paragraph">當您需要了解哪些內容正在佔用儲存設備、確定哪些資料庫表格正在不受控制地成長，或尋找存取過於寬鬆的目錄時，請使用中繼資料篩選器來調查所有連接系統中的資料。</block>
+  <block id="3082e4bef0a9c97ce9f133bff6ea5eb5" category="section-title">選擇起點</block>
+  <block id="18102ed05bb0a8ff6f88556fda449b9c" category="paragraph">在左側導覽中選擇 *調查* 以開啟檢視。您也可以從儀表板開啟調查檢視，方法是在 _依可回收儲存設備排序的熱門資料資源_ 表格中選擇 *調查*，這會自動套用該資源的篩選條件。</block>
+  <block id="b4554dcd354d221900b1346138e1cd61" category="paragraph">「調查」功能分為三個標籤頁。請選擇與您正在調查的資料類型相符的標籤頁。</block>
+  <block id="5c6ba25104401c9ee0650230fc6ba413" category="cell">標籤頁</block>
+  <block id="e214b95958c9f93ea16e42f7db6cc60d" category="cell">當您想要時使用</block>
+  <block id="ab066b3292d8ab61ef3b5c77169cdd19" category="cell">更多資訊</block>
+  <block id="c7187f6fea22a59bf7665d6a00bc979f" category="cell">*非結構化*</block>
+  <block id="df48daaf43ed83934872f416dc296e9a" category="cell">尋找 NFS 和 SMB/CIFS 磁碟區中冷、過時或複製的檔案資料</block>
+  <block id="81764035d4bb7622fe386f2c8b866f2d" category="cell"><block ref="81764035d4bb7622fe386f2c8b866f2d" category="inline-link-macro-rx"></block></block>
+  <block id="5eca2bb7beed7342cca1106688651049" category="cell">*結構化*</block>
+  <block id="f0c49b1f5a3d381d7e5aaf049286da6b" category="cell">識別佔用儲存設備的過大或未使用的資料庫資料表</block>
+  <block id="4a85d1ee07bb8b9d1edfdad83663f695" category="inline-link-macro">調查結構化資料</block>
+  <block id="56e5a25f46de7fd625c2a35f379b85a5" category="cell"><block ref="56e5a25f46de7fd625c2a35f379b85a5" category="inline-link-macro-rx"></block></block>
+  <block id="6f81d7719620f85dcacb3a3a4375a869" category="cell">*目錄*</block>
+  <block id="85076b52dccc264b25239b17f908a37d" category="cell">審核目錄層級權限並尋找可廣泛存取的路徑</block>
+  <block id="c3752096b16f86b02150e9d64aeefb03" category="inline-link-macro">調查目錄</block>
+  <block id="243090fac4ef0153c4d49200a899b55c" category="cell"><block ref="243090fac4ef0153c4d49200a899b55c" category="inline-link-macro-rx"></block></block>
+  <block id="2febbf7b97a1bd1e8bf90649b86ce36f" category="paragraph">頁面頂部的總結計數和總大小會更新以反映作用中標籤（例如，「非結構化 (400M) | 5.7 PiB」）。</block>
+  <block id="03469f3b31a2702640b0a64e1fae7825" category="inline-link-macro">使用過濾器</block>
+  <block id="4b141310f8c42d32665587f57a3d5e06" category="list-text"><block ref="4b141310f8c42d32665587f57a3d5e06" category="inline-link-macro-rx"></block></block>
+  <block id="0a32a9c8f26d2c4f95b1f16b549ee04a" category="list-text"><block ref="0a32a9c8f26d2c4f95b1f16b549ee04a" category="inline-link-macro-rx"></block></block>
+  <block id="acc5764f7cffbcb72bf1a80039f58b45" category="summary">審核儲存設備系統中的目錄級權限，尋找可廣泛存取的路徑，審查誰有存取權，並將發現儲存為可重複使用的原則。</block>
+  <block id="0112ff7d7742da75e2844fccf8e0c00d" category="doc">在 AI Data Engine 中調查目錄</block>
+  <block id="6613a2040255dc6982fe712823bd450a" category="paragraph">當您需要確定哪些目錄的存取權限超出預期時，可以按權限篩選，尋找對整個組織開啟的資料夾。例如，安全性系統管理員在儀表板看到標記的暴露目錄後，可以找到所有具有組織範圍存取的目錄，審查哪些使用者擁有讀取和寫入權限，並建立原則，以便在每次掃描後監控新的暴露情況。</block>
+  <block id="99cf048b4570a503827b433537bf7a58" category="list-text">至少需要一個資料來源處於連線和掃描狀態。請參閱<block ref="3540fa5efa78b3ae6e9c7d52a1e7d21a" category="inline-link-macro-rx"></block>。</block>
+  <block id="51572c9a667a33a3847aef86b292e654" category="section-title">尋找可廣泛存取的目錄</block>
+  <block id="87e928f2a1c66c783997d4245415120c" category="paragraph">使用權限過濾器來識別超出預期對象範圍的開啟目錄。</block>
+  <block id="f2a60bd092547b3abe2cf0a9d1abe8e2" category="list-text">在 AI Data Engine 使用者介面中，選擇 *調查*。</block>
+  <block id="10ba159cb5ee1b6139fccac82d24494d" category="list-text">選取 *目錄* 標籤。</block>
+  <block id="453c1a03af4844925b9c44be0f0a776e" category="paragraph">此表顯示目錄名稱（完整路徑）、資料容器、目錄擁有者、目錄類型和系統。</block>
+  <block id="bf1cef9127c9e6edc37958d8a4037666" category="list-text">選擇 *新增篩選器*，然後選擇 *開啟權限*。</block>
+  <block id="aa0dd989b4d2622818bfe9976fab25fe" category="list-text">將篩選條件設定為 *對組織開啟*，以顯示組織範圍內可存取的目錄。</block>
+  <block id="dd386e911c1b569dfc2cf3427f37d663" category="paragraph">結果表會更新，顯示符合權限條件的目錄，包括上次存取日期和權限狀態。</block>
+  <block id="f2d7a774ed1ac216d1452a55765e4201" category="paragraph">如需可用篩選條件的完整清單，請參閱<block ref="4b141310f8c42d32665587f57a3d5e06" category="inline-link-macro-rx"></block>。</block>
+  <block id="c790c517b487eb008ec91ccb9c64b087" category="section-title">審查目錄權限</block>
+  <block id="23fdcec5412294db96c0d0fa0caa9028" category="paragraph">選擇目錄列以開啟詳細資訊面板，並審查誰有存取權。</block>
+  <block id="3cad8b69ba020943e96d17a6e54caf82" category="paragraph">詳細資訊面板顯示目錄類型、系統、目錄擁有者以及權限總結（例如，「對組織開放」）。選擇 *檢視權限* 以查看有權存取該目錄的每個使用者或群組的讀取和寫入存取明細。</block>
+  <block id="7ba5f74e28642cd22f893052cee01692" category="paragraph">在建立原則或呈報給目錄擁有者之前，請使用此資訊確認存取層級是否為有意為之。</block>
+  <block id="31bfae586bf76c48ae93881709c7e146" category="section-title">將發現儲存為原則</block>
+  <block id="cba82d10856d128f229e20e00b1e9a2a" category="paragraph">在篩選出可廣泛存取的目錄後，將標準儲存為原則，以便在每次掃描週期後監控新的暴露情況。</block>
+  <block id="29d02aa1a491ca6fa24ed83bafd47040" category="list-text">套用權限篩選器後，在篩選工具列中選擇 *建立原則*。</block>
+  <block id="4fbab17ed9ad970e5548a7d1d4569e6b" category="list-text">填寫原則表格。請參閱<block ref="a6ba65d5603bedd3e970c59f52c864db" category="inline-link-macro-rx"></block>。</block>
+  <block id="801ab24683a4a8c433c6eb40c48bcd9d" category="inline-image-macro">下載</block>
+  <block id="ac81d0c9d07b55c8f3e61604209babad" category="paragraph">若要從「目錄」標籤下載篩選後的結果，請選擇<block ref="5cdab54312f4c99b6053532c2103d660" category="inline-image-macro-rx" type="image"></block>。</block>
+  <block id="d59f12356f9957c4b4ff227159fcf4ce" category="list-text"><block ref="d59f12356f9957c4b4ff227159fcf4ce" category="inline-link-macro-rx"></block></block>
+  <block id="882b7cd90ab9c836a860233e4f0eead8" category="list-text"><block ref="882b7cd90ab9c836a860233e4f0eead8" category="inline-link-macro-rx"></block></block>
+  <block id="b91af9e0d2dba364d6d2a561af5363cd" category="summary">尋找已連接資料庫伺服器中過大或未使用的資料庫表，然後將發現結果儲存為可重複使用的治理原則。</block>
+  <block id="b1a1fd02deed95037828a36a7179afbf" category="doc">在 AI Data Engine 中調查結構化資料</block>
+  <block id="1e41100e4bae97b934039a13901ff517" category="paragraph">當資料庫儲存設備意外增長時，可以透過表中繼資料進行篩選，找出哪些表過大或自首次探索以來一直沒有活動。例如，儲存管理員可以識別出自早期掃描以來未發生任何變更的大型資料表，然後與資料庫擁有者協調，評估這些資料表是否仍然必要。</block>
+  <block id="c8cd110517c3b92d3347f4ec9aa59bfb" category="list-text">至少必須連接並掃描一個資料庫資料來源。請參閱 <block ref="3540fa5efa78b3ae6e9c7d52a1e7d21a" category="inline-link-macro-rx"></block>。</block>
+  <block id="4bbbe5b15760624da31d87f512b3cc15" category="section-title">審查資料庫表格列表</block>
+  <block id="43d29d6a732a4589622f09b5ac4afdf9" category="list-text">選擇 *結構化* 標籤。</block>
+  <block id="1ecc9fc79ee3d69d421d06063a731522" category="paragraph">表格顯示資料庫表格名稱、架構、DB 伺服器、探索時間、表格維度（欄 × 列）和表格大小。</block>
+  <block id="5ad9d9ad516549de5fb814e3b5b35506" category="section-title">找出過大或未使用的資料表</block>
+  <block id="6a0c39f9c98f5df1491258dd20bb772d" category="paragraph">使用篩選器將清單範圍縮小至最有可能提供回收商機的表格。</block>
+  <block id="382d8811bbc95deb4119e6f0dfd639c3" category="list-text">選擇 *新增篩選條件*，然後選擇 *探索時間*。</block>
+  <block id="3b3db3939971236d8ce2306dd9d88c2d" category="list-text">將範圍設定為顯示在多個掃描週期中都存在的資料表，例如一年多前首次探索到的資料表。</block>
+  <block id="df9b75f54ade626477192154c29e9801" category="list-text">若要進一步縮小範圍，請再次選取 *新增篩選器*，然後依資料庫伺服器或架構進行篩選，以專注於特定系統。</block>
+  <block id="ce7f610ced968febc3cd61a9bb7cdefb" category="paragraph">已套用的篩選條件會以標籤的形式顯示在篩選欄下方。結果會隨著您新增每個篩選條件而更新。</block>
+  <block id="4dd34ef90a77f1d09391c45476e798b3" category="section-title">審查表格詳情</block>
+  <block id="fd3754f4f7b2ef38094a8fc62525fab1" category="paragraph">選取表格列以開啟詳細資訊面板，並評估該表格是否為回收候選項目。</block>
+  <block id="84287206d3f05ec7283ab9d5a52c461c" category="paragraph">詳細資訊面板顯示資料庫伺服器、架構、表格維度、表格大小和探索時間。使用此資訊來判斷表格自探索以來是否已增長或保持不變。</block>
+  <block id="07ac78891bad6396bded1a9176f8e297" category="admonition">在對資料庫表進行任何操作之前，請與資料庫擁有者協調，確認該表已不再需要。</block>
+  <block id="25f30c6941a078ab089edf63b56bd24d" category="paragraph">套用篩選器辨識感興趣的表格後，儲存篩選條件以便後續監控。</block>
+  <block id="3f6002a9d5a412d0cfc083657206daed" category="list-text">在篩選工具列中選擇「建立原則」。</block>
+  <block id="39760bf31d6d1280fffe7fdda7c2f0f5" category="paragraph">若要從「結構化」標籤下載篩選後的結果，請選擇<block ref="5cdab54312f4c99b6053532c2103d660" category="inline-image-macro-rx" type="image"></block>。</block>
+  <block id="66b7953990a2c19a573306360e644fe9" category="summary">使用中繼資料篩選器在 NFS 和 SMB/CIFS 磁碟區中尋找檔案，並將其分類為冷檔案、過時檔案或大型檔案，然後審查結果、採取適當的行動，或將您的篩選條件儲存為可重複使用的原則。</block>
+  <block id="e641dbbcf92be8ee6a73622ebe033070" category="doc">在 AI Data Engine 中調查非結構化資料</block>
+  <block id="1c4dfb9d2f2d457842021d37ab190421" category="paragraph">當基於檔案的儲存設備意外增長時，可以按上次存取時間、檔案大小和擁有者進行篩選，找出哪些檔案正在佔用容量。例如，儲存管理員可以識別出超過一年未存取的數 TB VM 快照，並評估是否將其歸檔、刪除或保留。</block>
+  <block id="ba342bb770d37972475e46fec4007716" category="section-title">依最後存取時間尋找冷檔案或過時檔案</block>
+  <block id="8ab92643f17b04229c9edd9da18a21b5" category="inline-link-macro">設定冷資料與過時資料臨界值</block>
+  <block id="28f4c25388d7d09ca2a87d44d5c9a79f" category="paragraph">使用以日期為基礎的篩選器來識別在組織的冷資料或過時資料臨界值內未存取的檔案。臨界值可在 *Configuration* &gt; *Settings* 中設定。請參閱 <block ref="5b2f6a0e7f285ed05b047fba791060b7" category="inline-link-macro-rx"></block>。</block>
+  <block id="81b39180656b54592301851e11944e31" category="paragraph">預設會選取「非結構化」索引標籤。</block>
+  <block id="24446f194b4e840f6a8fc2e8d83584fa" category="list-text">選擇 *新增篩選條件*，然後選擇 *上次存取*。</block>
+  <block id="69c7c55399371b6a9da3b5a279f6218f" category="list-text">選擇與您的冷資料臨界值相符的時間範圍，例如 *1 年以上*。</block>
+  <block id="75a212d69d73a2bed522805ef8d11c80" category="list-text">若要聚焦於最大的取用者，請再次選取 *新增篩選器*，然後選取 *檔案大小*，並設定最小值，例如 *&gt;1 GiB*。</block>
+  <block id="93161565eff7dd1bcd7695ef334eb442" category="paragraph">已套用的篩選條件會以標籤的形式顯示在篩選欄下方。當您新增每個篩選條件時，結果表格和項目計數會隨之更新。</block>
+  <block id="c064ea72a2e73b982c10fdbee1cc2f42" category="section-title">依擁有者分組結果</block>
+  <block id="27e3ceb3bbe18fe6b8cbfdbf811dadc1" category="paragraph">依擁有者分組有助於您在決定採取行動之前，了解誰擁有最多可能可回收的資料。</block>
+  <block id="77327dffbe725494ad0395784b0923ab" category="list-text">套用篩選條件後，選擇 *檢視方式* 下拉式選單。</block>
+  <block id="22e027d4752aaf407ea183c679494a52" category="list-text">選擇*擁有者*。</block>
+  <block id="bd41ceeb815c1a7689b77f615b603cd5" category="paragraph">結果會重新排列，顯示每個擁有者的檔案總數和檔案大小。選擇任何擁有者列即可擴充並檢視其個別檔案。</block>
+  <block id="13102176d90562c915296329d372cf05" category="section-title">審查檔案詳細資料</block>
+  <block id="e45fbe0fa3391072b64ce7b218c7f9cd" category="paragraph">選擇任何檔案列以開啟詳細資訊面板，並在執行行動之前確認檔案符合您的預期範圍。</block>
+  <block id="570232dc9d8301751d1f0df3d7d6ded5" category="paragraph">詳細資訊面板顯示檔案的系統、儲存設備儲存庫、檔案擁有者以及任何已套用的標籤或原則。在歸檔或刪除之前，請先驗證系統和擁有者。</block>
+  <block id="739c8a225ec9d4388a87cbff74a364d6" category="section-title">根據結果採取行動或儲存為原則</block>
+  <block id="9115023d9a2299cdbb6c4094a3b32978" category="paragraph">確定要處理的檔案後，使用結果表中的核取方塊選擇一個或多個項目。</block>
+  <block id="1da1c3b62b44c3206eda6a0bfaa3608b" category="list-text">如需立即採取行動，請參閱<block ref="0a32a9c8f26d2c4f95b1f16b549ee04a" category="inline-link-macro-rx"></block>。</block>
+  <block id="4dfc97cca55649475fd1827176bf7835" category="list-text">若要儲存篩選條件以便後續監控，請在篩選工具列中選擇「建立原則」。請參閱<block ref="a6ba65d5603bedd3e970c59f52c864db" category="inline-link-macro-rx"></block>。</block>
+  <block id="c53e81a36cf6536770e3901db796b77b" category="paragraph">若要從「非結構化」標籤下載篩選後的結果，請選擇<block ref="5cdab54312f4c99b6053532c2103d660" category="inline-image-macro-rx" type="image"></block>。</block>
+  <block id="466cb045e839cbb73b8cad13c419eadc" category="summary">對已識別為冷、舊或過時的檔案採取行動，將其歸檔、標記項目以供追蹤，或永久刪除不再需要的內容。</block>
+  <block id="c6cdf2484e43853022e3d34a4196e735" category="doc">在 AI Data Engine 中對您的資料採取行動</block>
+  <block id="cb54b53eef654e8ada475149b79f002c" category="paragraph">使用您定義的篩選條件識別檔案後，您可以採取直接行動來執行組織的資料生命週期原則。例如，儲存管理員篩選出一年多未存取的數 TB VM 快照後，可以根據保留需求和業務原則，將這些快照批次歸檔到冷儲存設備共享中，或將其刪除。</block>
+  <block id="bbe48fb854ea022537208eeeff822f91" category="paragraph-title">關於此任務</block>
+  <block id="728d5066b3e522f53ee9bb1aa1cceff2" category="paragraph">若要執行行動，請使用核取方塊在「調查結果」表格中選擇一個或多個項目。行動工具列會啟用，其中包含四個選項：*刪除*、*歸檔*、*複本*和*標記*。</block>
+  <block id="3b701cb2531be0b00189872b17d5f0c9" category="paragraph">您可用的行動取決於您指派的角色：</block>
+  <block id="004bf6c9a40003140292e97330236c53" category="cell">行動</block>
+  <block id="c101058e7ea21bbbf2a5ac893088e90b" category="cell">標籤</block>
+  <block id="e727b00944f81e1d0a95c12886ac4641" category="cell">封存</block>
+  <block id="5fb63579fc981698f97d55bfecb213ea" category="cell">複製</block>
+  <block id="f2a6c498fb90ee345d997f888fce3b18" category="cell">刪除</block>
+  <block id="95649a07a392f0eeb3ca64399627eba1" category="paragraph">有關角色的完整執行摘要，請參閱<block ref="d59f12356f9957c4b4ff227159fcf4ce" category="inline-link-macro-rx"></block>。</block>
+  <block id="db1d23e5179a9fe160dcc88e195ec706" category="section-title">決定做什麼</block>
+  <block id="147b072cafab1c2dd42e22e5d15301b6" category="paragraph">根據您對資料的確定程度選擇行動：</block>
+  <block id="098576d35c2d491f4817320ed47b6aaa" category="cell">何時使用</block>
+  <block id="0f9189cdc3e0a037abe09638c750c872" category="cell">在決定歸檔或刪除之前，您需要更多時間，或者需要與其他團隊協調。新增標籤可以追蹤檔案，而不會改變檔案的位置。</block>
+  <block id="b2ec648a2d141cdfffc053e7b6563866" category="cell">這些資料可能仍然有價值，但不應該保存在主儲存設備中。歸檔可以將其移動到成本更低的目的地，同時保持其可恢復性。</block>
+  <block id="7a513a3c28a8f669fd4aca87edc7d4ff" category="cell">資料應存在於第二個位置，例如用於備份或移轉目的。建立複本會將原始資料保留在原處。</block>
+  <block id="bc3816ab076629adfe40a0bb74253630" category="cell">這些資料已不再需要，也沒有保留要求。刪除操作是永久性的，因此請僅在確定需要時才使用。</block>
+  <block id="3a86a1f3200bc13f3e6e25cd8c63f387" category="paragraph">如果資料可能仍有價值或需要進一步審查，請選擇標記、歸檔或複製，而不是刪除。只有在確定資料可以安全永久移除時，才應刪除。</block>
+  <block id="b94cf9b41dc14b08e350609a8dda9851" category="section-title">歸檔檔案</block>
+  <block id="d583e1dacb23bebde940fa5e8d865f0e" category="paragraph">歸檔作業會將檔案透過 NFS 或 SMB/CIFS 協定移至冷儲存設備目的地。您可以選擇在原始位置保留一個路徑標記檔案。</block>
+  <block id="1570687f8725a213b4a686f6ac4fdae2" category="list-text">在「調查」檢視中，選擇要歸檔的檔案。</block>
+  <block id="2c77adf5fa1de4ed37a6e14d2212f074" category="list-text">選擇 *歸檔*。</block>
+  <block id="f54b7c864a181cded9240ed6104e3daf" category="list-text">在「歸檔」對話方塊中，選擇目的地 Volume 協定：</block>
+  <block id="cd500862e33a75abfb5031fad39b1142" category="list-text">*NFS*：輸入 NFS 目的地資料夾路徑。</block>
+  <block id="3935da95b9989cca3c105737826afe11" category="list-text">*CIFS*：輸入 CIFS 目的地資料夾路徑，格式為<block ref="fe92c67c0b14ced5563463f4fafedf55" prefix=" " category="inline-code"></block>。提供 Active Directory 憑證：輸入使用者名稱，格式為<block ref="17d3c626ba751e0e94dda4f25e2f7917" prefix=" " category="inline-code"></block>或<block ref="6dbef44fd2513f0adc2001ca12b9ab28" prefix=" " category="inline-code"></block>，並輸入密碼。</block>
+  <block id="057781ed20a2756d33dd5357cc3202fe" category="list-text">若要在原始位置建立麵包屑檔案，請啟用 *留下麵包屑*。</block>
+  <block id="58a462660ae302250a4d780d0b3e6c75" category="paragraph">麵包屑檔案可以幫助使用者了解檔案被移動的原因。</block>
+  <block id="558f28628ba8ab4cb8420949524832d3" category="section-title">複製檔案</block>
+  <block id="02a8733c4bf7bb8ff585c8b99ea9c13d" category="paragraph">將重複檔案複製到目的地 Volume，而不從原始位置移除它們。</block>
+  <block id="a058b0c45ff3df328bd80e228d5ce518" category="list-text">在「調查」檢視中，選擇要複本的檔案。</block>
+  <block id="ff721def565be95c3cfffe25fdb400a0" category="list-text">選擇 *複本*。</block>
+  <block id="672c6ba1d9b352d97c0a978b29edc305" category="list-text">在「複製」對話方塊中，選擇目的地 Volume 協定：</block>
+  <block id="19e43848563797a6f937c7895b604754" category="section-title">刪除檔案</block>
+  <block id="febaf5fabe3319f93b2fe563154ea639" category="paragraph">刪除操作會將檔案從儲存設備中永久移除，且無法撤銷。</block>
+  <block id="78ed60cd08755488e6329393322735be" category="admonition">刪除操作是永久性的，無法撤銷。即使來源檔案包含作用中資料，此行動也會將其刪除。</block>
+  <block id="2502b05a7977f127e7281b538960066d" category="list-text">在「調查」檢視中，選擇要刪除的檔案。</block>
+  <block id="0f024621e0673f1f4e657983682d6e72" category="list-text">選擇 *Delete*。</block>
+  <block id="0dd343f5a1b1a1c2fe813f560aebc821" category="list-text">在「刪除」對話方塊中，在確認欄位中輸入 *永久刪除*。</block>
+  <block id="72e2db7d480025db5af43c2aac619bc7" category="paragraph">選定的檔案將從儲存設備中永久刪除。</block>
+  <block id="df35ebac2a41097b9917523bd3c2bc09" category="section-title">標籤檔案</block>
+  <block id="44449c40b94c6968d500d3ac0000d80f" category="paragraph">標籤功能是將業務標籤應用於檔案，以便進行分類和追蹤。</block>
+  <block id="8e257df1aecf26a0f56609f5b258ac48" category="list-text">在「調查」檢視中，選擇要標記的檔案。</block>
+  <block id="2aef7b9ad66d778cf2b4d09ef8ca9e20" category="list-text">選擇*標籤*。</block>
+  <block id="4a928d09a792f7bb80c2f5c0cd76c45d" category="list-text">輸入或選擇要套用的標籤（例如，「歸檔候選」）。</block>
+  <block id="e0c82a884434f7335c9d93b81ff581a8" category="list-text">確認套用標籤。</block>
+  <block id="1a00c6d70a5f287fa08a2f560298aaaf" category="list-text"><block ref="1a00c6d70a5f287fa08a2f560298aaaf" category="inline-link-macro-rx"></block></block>
+  <block id="e8feacb52d9a8d1ca3dc8fece412de38" category="summary">評估整個環境中的儲存設備健全狀況，確定潛在可回收儲存設備的集中位置，並決定先調查哪些系統或資料擁有者。</block>
+  <block id="e51a89894bc2fbb0eac3aacc1ae7e58e" category="doc">使用 AI Data Engine 儀表板評估儲存設備健全狀況</block>
+  <block id="b943da8162c47c91e3486439e26e1301" category="paragraph">在決定調查方向之前，您需要了解儲存設備的現狀。有多少儲存設備符合組織設定的冷資料和過期資料分類臨界值？哪些系統或擁有者持有這些類別中最多的資料？例如，儲存管理員在收到容量警報後，可能會發現掃描到的儲存設備中很大一部分是冷資料，然後可以深入分析影響最大的系統，立即展開調查。</block>
+  <block id="c3f8d99caf13f1c9cc868c7e63ac0b27" category="paragraph">從 NetApp Console 中，選擇 *Governance* &gt; *AI Data Engine UI*。預設會開啟儀表板。</block>
+  <block id="91e4a9de07cf0d0c9175eae1427f1f38" category="section-title">了解有多少儲存設備受到影響</block>
+  <block id="c8e00eaecbe5dcb031f4ca326e46a4c6" category="paragraph">總結面板顯示您掃描環境中問題的規模：</block>
+  <block id="7ef3152904e46ae7f94840efc09c3b92" category="list-text">*冷資料*：在冷資料臨界值（預設：一年）內未存取的儲存設備。貴組織可以根據您的保留和治理原則來評估這些資料。</block>
+  <block id="d712d7ee942e358c4009c49431ef2f2d" category="list-text">*過期資料*：在過期資料臨界值（預設：三年）內未被存取或修改的儲存設備。根據貴組織的資料生命週期原則，在決定採取歸檔或刪除等行動之前，可能需要對過期資料進行審查。</block>
+  <block id="cc2f4d57c9484a23c4a96fc8f23b8656" category="list-text">*暴露目錄*：存取權限設定過於寬鬆的目錄。這會帶來與儲存設備消耗無關的治理風險。</block>
+  <block id="10f5b659d787bd27e2a927247a54a851" category="list-text">*資料資源*：目前掃描的 Volume、共享和儲存桶的數量。</block>
+  <block id="4032aca872e761b4f5e049b7efe7b33b" category="list-text">*已掃描檔案總數*：所有已掃描資料資源中已索引的檔案總數。</block>
+  <block id="5ecd0a2f3bf7cb827b44868e8678c44a" category="paragraph">冷資料與過時資料臨界值反映您設定的組態，並可在 *Configuration* &gt; *Settings* 中變更。預設值為產品預設值，並不代表法律、法規遵循或業界標準的保留期間。請參閱 <block ref="5b2f6a0e7f285ed05b047fba791060b7" category="inline-link-macro-rx"></block>。</block>
+  <block id="4c1929bca68da328a7aa87cbf4e79c82" category="paragraph">_作用中與可回收儲存設備_ 圖表顯示所有掃描資源中，作用中資料與冷資料和過期資料的比例。冷資料、過期資料或重複資料的比例過高，可能表示存在顯著的儲存設備最佳化商機。</block>
+  <block id="13350d4cdc4449515291e667e2318234" category="paragraph">*系統* 和 *系統類型* 篩選器控制儀表板範圍。如果儲存系統未出現在篩選器清單中，請參閱 <block ref="3540fa5efa78b3ae6e9c7d52a1e7d21a" category="inline-link-macro-rx"></block>。</block>
+  <block id="8b361c02b649d493e4f9211584d129e7" category="section-title">識別儲存設備優化機會</block>
+  <block id="4bab448286926edb332cf3552e879598" category="paragraph">使用總結面板和圖表來識別儲存設備最佳化機會並確定其優先順序：</block>
+  <block id="2e8488475a072fccfcc2119d2b03ea22" category="list-text">應該優先考慮那些潛在可回收規模最大的資源，而不是那些總規模最大的資源。一個主要由冷資料或過時資料組成的小型系統，可能比一個主要由作用中資料組成的大型系統更適合作為首選評估資源。</block>
+  <block id="b1bb6fb4de70db88e5ce6c82540ddb6d" category="list-text">尋找大量集中的冷資料或過時資料，而不是隔離的檔案。在一個資源上，達到過時臨界值的數十 TB 資料值得評估；隔離的檔案可能不需要行動。</block>
+  <block id="9b7c190f314417a73c41881f5ea8e249" category="section-title">從儀表板切換到調查</block>
+  <block id="e17f5b218ebb105d6297d499db8bf9ab" category="paragraph">當您確定了值得調查的資源或所有者後，請使用儀表板底部的表格直接進入詳細資訊。</block>
+  <block id="e7ef56695ea04d5a8ed28ad8f4c0057d" category="inline-link-macro">非結構化</block>
+  <block id="f60bce136c62f7ab3c73aa4f0d5fcae9" category="inline-link-macro">目錄</block>
+  <block id="f902c7ef331eec27ba7c19c76dd13ea7" category="paragraph">_依可回收儲存設備排序的頂級資料資源_ 表格列出您已掃描的儲存資源，並依據被複製或符合您組織冷資料與過時資料臨界值的資料比例進行排名。選擇任何列以開啟篩選至該資源的調查檢視。從那裡，使用 <block ref="2ffd1417cc35a965547bb2150ad9550e" category="inline-link-macro-rx"></block> 索引標籤來識別冷檔案或過時檔案，或使用 <block ref="6d961a2a6fb0e60e8e41943755ff0165" category="inline-link-macro-rx"></block> 索引標籤來稽核權限暴露。</block>
+  <block id="10160b4a6005b5e64e6bb3c6cd4ce9f4" category="paragraph">_依可回收儲存設備區分的頂級資料擁有者_ 表格顯示哪些資料擁有者擁有可能可回收的資料。選擇任何列以開啟篩選為該擁有者檔案的 <block ref="7c7d8a698a0c8312e3f60c4049c831eb" category="inline-link-macro-rx"></block> 檢視。從那裡，您可以審查結果、對其採取行動，或將其儲存為原則。</block>
+  <block id="5b2f6a0e7f285ed05b047fba791060b7" category="list-text"><block ref="5b2f6a0e7f285ed05b047fba791060b7" category="inline-link-macro-rx"></block></block>
+  <block id="29f269506dea333c951e5bdd24f562e8" category="summary">AI Data Engine 調查檢視中可用中繼資料過濾器的參考資訊。</block>
+  <block id="3f1e5985ebe63ee48079ec674c8e712c" category="doc">AI Data Engine 中的中繼資料過濾器</block>
+  <block id="32098fe855860a385d3e78e6f21bddba" category="paragraph">AI Data Engine 調查檢視提供中繼資料篩選器，可將結果範圍縮小到特定的資料分組。您可以同時套用一個或多個篩選器，以定義要檢查或處理的檔案。</block>
+  <block id="4f0571511f3798371fc4148cfd519ee4" category="section-title">時間過濾器</block>
+  <block id="d7778d0c64b6ba21494c97f77a66885a" category="cell">篩選</block>
+  <block id="12707aedcfa4c45ecea0e99004cb9c09" category="cell">最後建立</block>
+  <block id="6c4f535cc063708aa94771d54aac42fc" category="cell">按建立日期篩選檔案。</block>
+  <block id="fe8430e1398bb650f70a7f4ac687f688" category="cell">最後修改時間</block>
+  <block id="932670db976eb5163da370a9844d60a2" category="cell">依最後修改日期篩選檔案。</block>
+  <block id="54bc6f9dec592e510fe90ddcb5c6e572" category="cell">最後存取</block>
+  <block id="fae6ad3654612fb7f673d44ed469f25d" category="cell">按檔案最後存取日期篩選檔案。使用此篩選器來識別冷資料或陳舊資料。</block>
+  <block id="eed7cc7f64269eb19a98b58ae0d79b6f" category="cell">發現時間</block>
+  <block id="0cd081aab0fdbd4873a2df7b40288c7e" category="cell">按 AI Data Engine 在掃描過程中首次偵測到檔案的時間篩選檔案。</block>
+  <block id="478b6b0fb2364dfbd840a53ccc181cdf" category="section-title">檔案屬性過濾器</block>
+  <block id="e539fd665e202f536325140d87d7bf72" category="cell">檔案類型</block>
+  <block id="451bd265f7d7e6ef80f9660ce3f8938b" category="cell">按檔案副檔名或類型分類篩選。從清單中選擇一種或多種檔案類型。</block>
+  <block id="a00fe904aecabd4bff74d8776e6da2c5" category="cell">檔案大小</block>
+  <block id="ab46ef9ee6c9aeb566a0052138ce96fe" category="cell">按檔案大小篩選。輸入最小值、最大值或範圍。</block>
+  <block id="39ef84f61972b7a15df8579366a81c58" category="cell">檔案/目錄路徑</block>
+  <block id="c15d26ebf6d6ddcb7b27630b29418303" category="cell">依檔案或其所在目錄的完整或部分路徑進行篩選。</block>
+  <block id="bca27ee6b79f497c1dda149cd12ce9f6" category="cell">檔案 / 目錄所有者</block>
+  <block id="19642f59edd25d4d972fe6baaccee253" category="cell">依檔案或目錄的擁有者（使用者或群組）進行篩選。</block>
+  <block id="116279f96a5a5a07b36a9ed5e3b30ae8" category="cell">檔案雜湊</block>
+  <block id="c0714ffda0184867f1dc524ff0e5e420" category="cell">透過檔案的雜湊值進行篩選，以尋找特定檔案或確認複製內容。</block>
+  <block id="763275034b3bde5ad4f0fb074a35e741" category="cell">複製</block>
+  <block id="32faa42aebad484f8da6541b5505c7e0" category="cell">篩選以僅顯示在目錄中偵測到複製副本的檔案。</block>
+  <block id="c3a9830be43f6515257f3979e66816fd" category="cell">目錄類型</block>
+  <block id="6354853e63c8ea1bdaef8b483969bac2" category="cell">依目錄類型篩選。適用於「目錄」索引標籤。</block>
+  <block id="f6ee46e7a4dcaeef127cb631d4d71eba" category="section-title">來源過濾器</block>
+  <block id="0a2e90839e516c5beec6a6b2383bebbb" category="cell">資料容器</block>
+  <block id="18f84adbe62810f511dc08313445b852" category="cell">篩選特定 Volume 或共享。</block>
+  <block id="a45da96d0bf6575970f2d27af22be28a" category="cell">系統</block>
+  <block id="b4e6aff3dc86a2a0b3d147648dcffc93" category="cell">篩選至特定叢集。</block>
+  <block id="09a501049563e4eed9d4a3de0e0ef779" category="cell">系統類型</block>
+  <block id="817145c1a1deab51f396b987565b3847" category="cell">依儲存系統類型篩選。</block>
+  <block id="1b3b8b36365509a34458842ab634d447" category="section-title">管制篩選器</block>
+  <block id="189f63f277cd73395561651753563065" category="cell">標籤</block>
+  <block id="088563aec15dfe81a18f529521715ea6" category="cell">篩選已套用特定企業標籤的檔案。</block>
+  <block id="51359e8b51c63b87d50cb1bab73380e2" category="cell">原則</block>
+  <block id="a7958d6b539c348235ccc6bee16e5ce1" category="cell">篩選符合特定已儲存原則的檔案。原則名稱會顯示在篩選清單中。</block>
+  <block id="9f6155ee2fa8065bc4074b1d7c733d3f" category="section-title">存取過濾器</block>
+  <block id="81593873baa2c232be0bc3600b554eb3" category="cell">擁有存取權的使用者數量</block>
+  <block id="7b94fe52ebacb5ec60b2cc5908f95eab" category="cell">按有權存取的使用者或群組數量篩選檔案。使用此功能可以識別可廣泛存取的資料。</block>
+  <block id="1f5111136feebd2cebb509caf39d84ea" category="cell">使用者/群組權限</block>
+  <block id="2c6c8d72b780de32255fbc74be0e6042" category="cell">按具有存取權限的特定使用者或使用者群組篩選檔案。</block>
+  <block id="56dc1022c52105e2bab579a7c3eb86ec" category="section-title">組合過濾器</block>
+  <block id="30b3b28cbcc9fe320c89ccf0cd63c711" category="paragraph">過濾器採用 AND 邏輯組合，這表示結果必須同時符合所有套用的過濾器。</block>
+  <block id="30d965eef5ba25c6b9998ae38270b43e" category="doc">法律聲明</block>
+  <block id="e9c44bbfd795a5d63d74c6a77afee70d" category="paragraph">法律聲明提供版權聲明、商標、專利等資訊的存取權限。</block>
+  <block id="6016a2b341113bf496b719905398ecd2" category="section-title">版權</block>
+  <block id="52009bb7ee17227f566cd26a02caee56" category="inline-link-macro"><block ref="52009bb7ee17227f566cd26a02caee56" category="inline-link-rx"></block></block>
+  <block id="a1a9afcf552a769c282769271829889a" category="paragraph"><block ref="a1a9afcf552a769c282769271829889a" category="inline-link-macro-rx"></block></block>
+  <block id="126a02652da6de02962cf1b654fd6376" category="section-title">商標</block>
+  <block id="c4ce4761e466527d26b3e3d5ed1006fd" category="paragraph">NETAPP、NETAPP 標誌以及 NetApp 商標頁面上所列的標記均為 NetApp, Inc. 的商標。其他公司和產品名稱可能是其各自所有者的商標。</block>
+  <block id="f99aa604031e5049799e73b5c3748a98" category="inline-link-macro"><block ref="f99aa604031e5049799e73b5c3748a98" category="inline-link-rx"></block></block>
+  <block id="5d545fe5152641e2ebe654e336e520e5" category="paragraph"><block ref="5d545fe5152641e2ebe654e336e520e5" category="inline-link-macro-rx"></block></block>
+  <block id="be89498d2f8a22ce47c02ba9795fe2af" category="section-title">專利</block>
+  <block id="d0b19d36be2c5f16e9aef46c8a452d3d" category="paragraph">目前 NetApp 擁有的專利清單可在以下網址找到：</block>
+  <block id="88e5eabd3917048b6927c42496b98f86" category="inline-link-macro"><block ref="88e5eabd3917048b6927c42496b98f86" category="inline-link-rx"></block></block>
+  <block id="dd38f906b37d412de7d1c1dcf4cbf31c" category="paragraph"><block ref="dd38f906b37d412de7d1c1dcf4cbf31c" category="inline-link-macro-rx"></block></block>
+  <block id="56c34c6410dd45c5cec44149ad0ce037" category="section-title">隱私權政策</block>
+  <block id="8acb58cbd50ef1b468a020ee0bd351d3" category="inline-link-macro"><block ref="8acb58cbd50ef1b468a020ee0bd351d3" category="inline-link-rx"></block></block>
+  <block id="2352c4e1f4d0024ade0869e00e6243f4" category="paragraph"><block ref="2352c4e1f4d0024ade0869e00e6243f4" category="inline-link-macro-rx"></block></block>
+  <block id="c0227cef6f07a8cd2ac72f2945b031aa" category="section-title">開放原始碼</block>
+  <block id="9b73989307c1975dfa4d5e1581e4afe8" category="paragraph">通知文件提供有關 NetApp 軟體中使用的第三方版權和授權的資訊。</block>
+  <block id="93d6496a69f6384320dab15ccadbc4e8" category="inline-link-macro">AI Data Engine 通知</block>
+  <block id="7ab36480d3c1a530e02ac892b3191e4a" category="paragraph"><block ref="7ab36480d3c1a530e02ac892b3191e4a" category="inline-link-macro-rx"></block></block>
+  <block id="e7dc26f23cfcebf955f51e9ec20046b1" category="summary">將調查篩選條件儲存為命名原則，以便您可以追蹤相同資料分組隨時間的變化，並在條件發生變化時收到通知。</block>
+  <block id="0e276db5651852f12c3a3c7be8b2939e" category="doc">在 AI Data Engine 中建立原則</block>
+  <block id="ede0a89e2e37ef9e8c3495af56db91eb" category="paragraph">當您想要監控重複出現的資料狀況，而無需手動重複相同的調查時，可以建立原則。例如，資料管制管理程式可以儲存「大型過時檔案」原則，以便在掃描週期內追蹤該分組，並在受影響的檔案數量發生變化時收到電子郵件更新。</block>
+  <block id="f52de95261912772fdb0cf144dbe03b4" category="section-title">關於原則</block>
+  <block id="a5fa586a92013c5c97e29689057b2cb1" category="paragraph">原則會將您在「調查」中定義的篩選條件儲存為可重複使用的規則。AI Data Engine 會在每次掃描週期結束後，根據中繼資料目錄評估每個原則。您可以隨時開啟原則以檢視目前的相符結果集。如果您附加了「刪除」行動，AI Data Engine 會在每次掃描週期結束後移除相符的檔案。如果您附加了電子郵件通知，當受影響的檔案數量發生變化時，AI Data Engine 會傳送更新。</block>
+  <block id="a6386166765944cb85899326a6b2c476" category="section-title">選擇一項原則行動</block>
+  <block id="c64d18b33c4649a44b2628b0bb93ef7c" category="paragraph">原則是已儲存的篩選器集，並附加了選用的行動：</block>
+  <block id="0c38824176557eba4a1f516f7b088c6a" category="list-text">*僅監控（無行動）*：追蹤一段時間內的相符分組，而不採取行動。當您需要可見度，但又不想設定自動回應時，請使用此功能。</block>
+  <block id="c2e1f4c774ea10b57abefcb31aa76536" category="list-text">*傳送電子郵件通知*：當符合的檔案數量變更時，透過電子郵件通知使用者。</block>
+  <block id="cb68685abc4007772bf80e880f6ac0b8" category="list-text">*永久刪除*：每次掃描週期結束後，系統將自動永久移除所有符合的檔案，無需進一步確認。此行動不可逆。在附加此行動之前，請確認您的篩選條件準確無誤，並且您擁有刪除已識別檔案的權限。</block>
+  <block id="e1b7f70c1cf13a700c2cf801fe8ab552" category="section-title">從調查建立原則</block>
+  <block id="238cdb076cf9e0d915750e9789485a70" category="list-text">若要附加刪除或電子郵件通知行動，您必須擁有 _AI Data Engine 管理員_ 角色。_AI Data Engine 檢視者_ 角色只能建立僅監控原則。</block>
+  <block id="b2aa56915b8338c2ab4bb92754d8c8b0" category="list-text">在 NetApp Console 中，導覽至 *治理* &gt; *AI Data Engine* &gt; *調查*。</block>
+  <block id="4556be3d18976a94e35e9505a84ce0a8" category="list-text">套用一個或多個篩選器來識別您希望原則設為目標的檔案。</block>
+  <block id="3c5d0d0d1c86fad21c867f867ba470c0" category="paragraph">例如：*檔案類型* = .vmdk 且 *上次存取時間* &gt; 365 天。</block>
+  <block id="af8e50ebd71c84b70d4d016cc5af3ace" category="paragraph">審查結果表，確認篩選集擷取預期的資料分組。</block>
+  <block id="2a2288a0330a9617d3c0853f85e68419" category="list-text">在篩選行動列中，選擇 *建立原則*。</block>
+  <block id="8a37796b9da962274f41ca52f950bc99" category="list-text">請輸入 *原則名稱*。</block>
+  <block id="9915d257811585adeea12f4d8e40cc73" category="list-text">（選用）輸入*描述*（最多 500 個字元）。</block>
+  <block id="d334da0bb32759f8d5a78f143560afcd" category="list-text">審查篩選條件表示式（例如，<block ref="9ece38ef1bce889b5cd8f71bfea85fdc" prefix=" " category="inline-code"></block>），以確認其反映您的選擇。</block>
+  <block id="f77f4eb500540d8520b974e5058db78e" category="list-text">若要附加行動，請在 *行動* 下選擇下列選項之一：</block>
+  <block id="f07b095e62dc1ddbd4bf74cc9ca2b983" category="list-text">*僅監控（不行動）*（預設）：此原則儲存為僅監控條件。</block>
+  <block id="5942095503f6d7e1e26b60a2a6e62d7f" category="list-text">*傳送電子郵件通知*：向您指定的收件者傳送電子郵件通知。</block>
+  <block id="92b84f78dfb45bf70e508b01224589fc" category="list-text">*永久刪除*：無需其他輸入。</block>
+  <block id="e396b1ac5c2d912ca6a8b13ed0e05a07" category="admonition">「永久刪除」行動會在每次掃描週期後自動且不可逆地刪除所有符合此原則的檔案。儲存前，請驗證您的篩選條件並確認您擁有刪除這些檔案的權限。</block>
+  <block id="bf18811faac9b8e4fcaebab51afd1113" category="list-text">選擇 *Create*。</block>
+  <block id="9e476387322a5c250893cf9c5c4ce78c" category="inline-link-macro">政策</block>
+  <block id="ce31e5e1b0f1c49223168a724c959c80" category="paragraph">原則已儲存並顯示在 <block ref="94996367e765be6e764d9bd137e8806b" category="inline-link-macro-rx"></block> 頁面上。如果您關聯了某個行動，AI Data Engine 會將該行動套用至符合原則條件的檔案。</block>
+  <block id="2fdca2ba1ed7693e487bec5025936503" category="section-title">例如：辨識冷歸檔檔案</block>
+  <block id="8d0110cf0e0c534d680481796f5a88f5" category="paragraph">以下範例建立一個原則，當偵測到超過一年未存取的檔案時，發送電子郵件通知。</block>
+  <block id="e86db3241da52f3960cf869272355591" category="list-text">在調查中，套用這些篩選條件：</block>
+  <block id="d91d018dd5cfcadde4007e74098c07ea" category="list-text">*上次存取時間* &gt; 365 天</block>
+  <block id="db92c743d97601150bbdfa11bf3cf66b" category="list-text">選擇 *建立原則*。</block>
+  <block id="874c7fe25e0efe0e2f1f89158d6b2375" category="list-text">輸入原則名稱：*冷檔案 — 未存取 1 年*。</block>
+  <block id="ce8113155f35b52456a2501ac34f598f" category="list-text">選擇 *傳送電子郵件通知* 行動，然後輸入收件者電子郵件地址。</block>
+  <block id="e7326f303b8abf78625da7d8f22fa0b4" category="inline-link-macro">管理原則</block>
+  <block id="e9ba76d54e1aa8410ae34a053e8340ea" category="list-text"><block ref="e9ba76d54e1aa8410ae34a053e8340ea" category="inline-link-macro-rx"></block></block>
+  <block id="56a7a067af00ee6bab27db9405ac066d" category="summary">審查您儲存的原則，以了解哪些檔案目前符合每組條件，並移除您不再需要的原則。</block>
+  <block id="74ec5da2fefa69fddb2881fbc2dbd402" category="doc">在 AI Data Engine 中管理原則</block>
+  <block id="ff4836632ff67a727c02672236e6e643" category="paragraph">當您想要審查哪些已儲存的原則與資料相符、比較受影響的檔案數量以排定行動的優先順序，或移除不再需要的原則時，請使用「原則」頁面。例如，擁有多個冷資料原則的儲存管理員可以比較受影響的檔案數量，以決定哪些資料分組需要優先注意。</block>
+  <block id="64c6e97782938b65828124df5bf425e3" category="paragraph">每個原則清單都會顯示目前符合其條件的檔案和物件數量。使用此計數來識別哪些原則正在積極擷取值得審查的資料。</block>
+  <block id="369b015b44433288d8d9f44f10b8f01c" category="section-title">檢查哪些檔案符合原則</block>
+  <block id="f1d0cd6ff1faaa9828ee3daf3aa01b7c" category="paragraph">在編輯或刪除原則之前，請審查其目前符合的檔案，以確認標準仍然能夠擷取正確的資料。</block>
+  <block id="fb1f704e8084c654c300bf0b7e8f6abd" category="list-text">在 AI Data Engine 使用者介面中，選擇 *原則*。</block>
+  <block id="1e62455bacaf81600fe41fd0658e0acf" category="list-text">開啟原則旁邊的行動選單，然後選擇 *調查結果*。</block>
+  <block id="fb6e9d876191a4c0c156e739e377be59" category="section-title">編輯原則</block>
+  <block id="7bce56498401ba4fb04b8af6d984b307" category="list-text">開啟您要編輯之原則的行動選單，然後選取 *編輯原則*。</block>
+  <block id="b43ad3d67481f4076cbc1f9453c9b41c" category="list-text">根據需要更新原則名稱、執行摘要或行動。</block>
+  <block id="8b6af900279ab887f7d317420c8ef15c" category="section-title">刪除原則</block>
+  <block id="6da2239d74d67983073e7b7ef1decbb0" category="admonition">刪除操作是永久性的，無法撤銷。</block>
+  <block id="55c29241fe1686604368df5845be9163" category="list-text">開啟要刪除的原則的行動選單，然後選擇 *刪除原則*。</block>
+  <block id="172a47418c24bf93ca97612514cafed3" category="list-text">在預覽對話方塊中確認刪除操作。</block>
+  <block id="28fa47d57487a7a01a693e7abece3024" category="list-text"><block ref="28fa47d57487a7a01a693e7abece3024" category="inline-link-macro-rx"></block></block>
+  <block id="a80dc868c7fe91b119b830460ef35842" category="summary">已知限制是指此版本的 AI Data Engine 不支援的功能。</block>
+  <block id="df210d5dd27498fc443f259d10010182" category="doc">AI Data Engine 的已知限制</block>
+  <block id="c1d0108537baf61ec55a7c0d2bf2865c" category="paragraph">已知限制是指此版本 AI Data Engine 不支援的功能，或無法正確互通的功能。請在部署或使用產品前審查這些限制。</block>
+  <block id="ea355214fd4bc7c57f471bd92918879b" category="section-title">部署</block>
+  <block id="b154839e03c7861cb59c16d126dfb18b" category="list-text">精簡版和企業版部署是相互獨立的</block>
+  <block id="50994614c7e6b09b219e17a7563708d8" category="list-text">AIDE Lite 和 AIDE Enterprise 是分隔的部署模式。目前沒有支援的移轉路徑可將現有部署從一種模式移至另一種模式。</block>
+  <block id="d7ac65d8f6471ff1370e8ad4fda2db56" category="section-title">原則和行動</block>
+  <block id="22d58514041f9d266de2982f62b704e1" category="list-text">原則觸發的行動受到限制</block>
+  <block id="1bd7116c1271070fddc738ca1e2a63ac" category="list-text">建立原則時，可用的自動化行動僅限於永久刪除和電子郵件通知。此版本不提供原則的自動歸檔和標記行動。您可以建立不包含任何行動的原則，以監控資料狀況隨時間的變化。</block>
+  <block id="5e5599b4ab847835c7ed2699cdee9711" category="list-text">標籤無法刪除或重新命名</block>
+  <block id="f8219070c8f68fd81cbf60bf1fe96f84" category="list-text">此版本無法使用標籤管理。建立標籤後，它會保留在系統中。您可以將標籤套用至項目或從項目中移除標籤，但無法刪除標籤定義本身，也無法修正包含拼字錯誤的標籤名稱。</block>
+  <block id="33871b6190a8d5adbe8b15282054766c" category="inline-link-macro">新增功能</block>
+  <block id="d2cf1d75a14c1b649ad24af4f7cc016a" category="list-text"><block ref="d2cf1d75a14c1b649ad24af4f7cc016a" category="inline-link-macro-rx"></block></block>
+  <block id="42f8643eb52a942747937327c72c8361" category="inline-link-macro">部署總覽</block>
+  <block id="cd987b27c3ccd639db6b361c502cc401" category="list-text"><block ref="cd987b27c3ccd639db6b361c502cc401" category="inline-link-macro-rx"></block></block>
+  <block id="f83adadb9550a879c846995e2192c210" category="summary">了解 AI Data Engine 的新功能。</block>
+  <block id="44b91c30c9b87c702f04abec51577e90" category="doc">AI Data Engine 的新功能</block>
+  <block id="18b0745779f8b981a16d46a4004a7a76" category="section-title">AI Data Engine 1.1.0</block>
+  <block id="4803fa959f55c9868ce67add988b1bc3" category="paragraph">AI Data Engine 是一項中繼資料智慧服務，透過 NetApp Console 代管，可掃描您連接的系統，建立中繼資料目錄，並提供可見度與工具，以大規模最佳化儲存設備與治理資料。您可以將 AI Data Engine 部署為 <block ref="8fdf49583b6b6aae3264dbfdc5e4db3c" category="inline-link-macro-rx"></block>，如果您的環境需要以 Kubernetes 為基礎的大規模高可用度，則可部署為 AIDE Enterprise。</block>
+  <block id="acff41ea8efa2706fc9a587f718f0796" category="paragraph">新增功能：</block>
+  <block id="5985e93b91139d269803898603d579a6" category="inline-link-macro">恢復儲存容量</block>
+  <block id="b86b47941c4c25cee43b3c71138fd185" category="list-text"><block ref="b86b47941c4c25cee43b3c71138fd185" category="inline-link-macro-rx"></block></block>
+  <block id="28ee8cd4b89e717d7369cec556fc8ecb" category="list-text">根據您設定的閾值，識別已連線系統中的冷資料、陳舊資料和複製資料，並查看哪些系統和資料擁有者擁有最高濃度的此類資料。</block>
+  <block id="48f8775f839e036416f7dc0d633d5f90" category="inline-link-macro">降低成本和風險</block>
+  <block id="e52b3bfa6b31678effcc50ac056804c0" category="list-text"><block ref="e52b3bfa6b31678effcc50ac056804c0" category="inline-link-macro-rx"></block></block>
+  <block id="847b10ef72a08afa0a7a2bccfc9f722a" category="list-text">按存取時間、修改日期、建立日期、檔案大小、複製狀態和其他條件篩選所有已連接系統中的檔案，以尋找符合組織資料管理員目標的檔案。可以直接根據結果採取行動，也可以將篩選條件儲存為原則。</block>
+  <block id="3ff38183453704f2e6ad7755f7b18083" category="inline-link-macro">持續治理資料</block>
+  <block id="051b1389b635c6321bf59c8160978b9c" category="list-text"><block ref="051b1389b635c6321bf59c8160978b9c" category="inline-link-macro-rx"></block></block>
+  <block id="324524f3e5ca24846ad76aa3a39d085c" category="list-text">將篩選條件儲存為命名原則，以便追蹤一段時間內重複出現的資料情況（例如冷檔案或超大檔案），並在受影響的檔案數量變更時接收通知。</block>
+  <block id="a82c68dd721dede489a3f3b8e95372d3" category="inline-link-macro">降低儲存設備成本</block>
+  <block id="3cdd5ec3a4c7cb1197214bf213ebc152" category="list-text"><block ref="3cdd5ec3a4c7cb1197214bf213ebc152" category="inline-link-macro-rx"></block></block>
+  <block id="5ba3f47da1647119a0c451e5cddf25f4" category="list-text">透過將檔案複製和歸檔到 NFS 或 SMB/CIFS 目標位置、標記項目以進行追蹤，或根據您的保留要求永久刪除檔案，來強制執行您組織的資料生命週期原則。</block>
+  <block id="a39bf4bdcac229739d4368182e65aa6a" category="inline-link-macro">指派管理員與檢視者角色</block>
+  <block id="c0d075a2db1d36d19fe844351b6f646e" category="list-text"><block ref="c0d075a2db1d36d19fe844351b6f646e" category="inline-link-macro-rx"></block></block>
+  <block id="05cd97f29840d5823c5d103c71b26a1a" category="list-text">透過將 AI Data Engine 系統管理員或檢視者角色指派給組織中的使用者，來控制誰可以調查資料並採取行動。</block>
+  <block id="aa06fbb4900808cad7e234eac413020c" category="inline-link-macro">消除複製資料</block>
+  <block id="ac3a7591b6c527c7f8b4165add1344e5" category="list-text"><block ref="ac3a7591b6c527c7f8b4165add1344e5" category="inline-link-macro-rx"></block></block>
+  <block id="7b13634364ab63bb85b99711d8e97507" category="list-text">尋找在您連接的系統中具有複製副本的檔案。依據複製屬性或檔案雜湊值進行篩選，以直接審查並處理複製群組。</block>
+  <block id="b35eff1ca35dd2f41cd4416cbe7b1867" category="inline-link-macro">追究資料所有者的責任</block>
+  <block id="95ab69d3f8b9dd3c20895e2a8f620b1d" category="list-text"><block ref="95ab69d3f8b9dd3c20895e2a8f620b1d" category="inline-link-macro-rx"></block></block>
+  <block id="7dbe065509bb17277c7b17f3766f97be" category="list-text">從儀表板中確定哪些資料所有者持有最高濃度的冷資料、過時資料或複製資料，然後在調查檢視中按所有者或群組進行篩選，以根據您的原則審查和管理結果。</block>
+  <block id="482723983a4f2af954e36ff41e567451" category="inline-link-macro">已知限制</block>
+  <block id="34e34c0debc388181c3934f84b977ddd" category="list-text"><block ref="34e34c0debc388181c3934f84b977ddd" category="inline-link-macro-rx"></block></block>
+  <block id="e72c60c273700856ad0eeb853a353e52" category="sidebar">AI Data Engine 提供您儲存於 NetApp 系統上非結構化資料的可見度。使用它來識別儲存設備最佳化機會、調查您的資料，並強制執行生命週期原則。</block>
+  <block id="ed67b8aec97dcec019f1b2972d70f5af" category="sidebar">AI Data Engine 文件</block>
+  <block id="0416d02572f9d563fa4967178dc5c5fb" category="sidebar">AI Data Engine 文件涵蓋如何部署、連接資料來源以及如何使用 AI Data Engine 進行儲存設備優化、中繼資料調查和資料管制。</block>
+  <block id="be11c74c1dd7f307bb80183a90dc2067" category="sidebar">開始使用</block>
+  <block id="507a3a88cebc46603ce2be8eaa924eee" category="sidebar">部署</block>
+  <block id="11806d1dadc91ccfe2ae6f339e25a1c9" category="sidebar">部署 AIDE Lite</block>
+  <block id="257ce553226ee14243e41d9927b62f9a" category="sidebar">部署 AIDE 企業版</block>
+  <block id="1b127134042c4fb15c087d142010cbf8" category="sidebar">探索您的資料</block>
+  <block id="aa01e24e60b9724b9b233b2a1e85f950" category="sidebar">使用過濾器</block>
+  <block id="325a8ad959d134128fc6baa371b4bbac" category="sidebar">對資料採取行動</block>
+  <block id="10a6be92e43e8ae9229f893030d4ea66" category="sidebar">管理</block>
+  <block id="a0b9d46eb31f48b358b5d002a6a61532" category="sidebar">設定資料閾值</block>
+  <block id="482048d0a60a52e1c59023a695b7ddf7" category="sidebar">AI Data Engine 文件</block>
+  <block id="dd60be60a280d7b79db7dd4b933c4f6c" category="sidebar">使用 AIDE</block>
+  <block id="c362fa2cf25cd98532ce4b3771f9fc76" category="sidebar">連接資料來源</block>
+  <block id="ec728291e475cad65a149d393bcb1011" category="sidebar">了解 AIDE</block>
+  <block id="0e68193094000ac3da408457283ae464" category="sidebar">AIDE 架構</block>
+  <block id="1cbaf70f8f4340f5a7ef57a023be3309" category="sidebar">調查資料</block>
+  <block id="6b2443d2529b7b19a67154f7a04c9877" category="sidebar">使用 AIDE 儀表板評估儲存設備健全狀況</block>
+  <block id="4bd61438e659088dded1d69964caccb1" category="sidebar">管理原則和行動</block>
+  <block id="7d0ee6fed10d3d4e5c9ee496729ab519" category="sidebar">版本資訊</block>
+</blocks>

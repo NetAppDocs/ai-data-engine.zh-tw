@@ -1,0 +1,34 @@
+---
+sidebar: sidebar 
+permalink: get-started/quick-start.html 
+keywords: quick start, deploy, connect, investigate, policies 
+summary: 透過部署服務、連接儲存設備系統並開始首次調查，即可啟動並執行 AI Data Engine。 
+---
+= AI Data Engine 快速入門
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+透過部署服務、連接儲存設備系統並開始首次調查，即可啟動並執行 AI Data Engine。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一"] 審查要求
+[role="quick-margin-para"]
+審查link:../deploy/aide-requirements.html["AIDE 要求"]和link:../deploy/deployment-overview.html["了解部署模式"]以決定要安裝 AIDE Lite 還是 AIDE Enterprise。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["二"] 部署 AI Data Engine
+[role="quick-margin-para"]
+從 NetApp Console 部署 link:../deploy/deploy-aide-lite.html["AIDE Lite"] 或 link:../deploy/deploy-enterprise.html["AIDE Enterprise"]。設定頁面會引導您選擇安裝位置和組態大小，並執行安裝命令。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"] 連接資料來源
+[role="quick-margin-para"]
+link:../data-sources/connect-data-source.html["連接資料來源"] 開始掃描。AI Data Engine 會將您指定的儲存設備系統中的檔案系統中繼資料編入目錄。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四"] 探索您的資料
+[role="quick-margin-para"]
+開啟link:../investigate/understand-dashboard.html["儀表板"]即可查看儲存設備最佳化見解，或前往link:../investigate/investigate-data.html["調查"]即可直接搜尋並篩選中繼資料。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五"] 建立原則
+[role="quick-margin-para"]
+link:../policies/create-policy.html["將您的調查篩選條件儲存為原則"] 監控隨時間符合相同條件的檔案。您可以設定原則以傳送通知、永久刪除符合的檔案，或追蹤結果。

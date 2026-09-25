@@ -1,0 +1,69 @@
+---
+sidebar: sidebar 
+permalink: investigate/understand-dashboard.html 
+keywords: dashboard, overview, reclaimable storage, cold data, stale data, storage health, capacity risk, data owners, investigate 
+summary: 評估整個環境中的儲存設備健全狀況，確定潛在可回收儲存設備的集中位置，並決定先調查哪些系統或資料擁有者。 
+---
+= 使用 AI Data Engine 儀表板評估儲存設備健全狀況
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在決定調查方向之前，您需要了解儲存設備的現狀。有多少儲存設備符合組織設定的冷資料和過期資料分類臨界值？哪些系統或擁有者持有這些類別中最多的資料？例如，儲存管理員在收到容量警報後，可能會發現掃描到的儲存設備中很大一部分是冷資料，然後可以深入分析影響最大的系統，立即展開調查。
+
+從 NetApp Console 中，選擇 *Governance* > *AI Data Engine UI*。預設會開啟儀表板。
+
+
+
+[[understand-how-much-storage-is-affected]]
+== 了解有多少儲存設備受到影響
+
+總結面板顯示您掃描環境中問題的規模：
+
+* *冷資料*：在冷資料臨界值（預設：一年）內未存取的儲存設備。貴組織可以根據您的保留和治理原則來評估這些資料。
+* *過期資料*：在過期資料臨界值（預設：三年）內未被存取或修改的儲存設備。根據貴組織的資料生命週期原則，在決定採取歸檔或刪除等行動之前，可能需要對過期資料進行審查。
+* *暴露目錄*：存取權限設定過於寬鬆的目錄。這會帶來與儲存設備消耗無關的治理風險。
+* *資料資源*：目前掃描的 Volume、共享和儲存桶的數量。
+* *已掃描檔案總數*：所有已掃描資料資源中已索引的檔案總數。
+
+
+冷資料與過時資料臨界值反映您設定的組態，並可在 *Configuration* > *Settings* 中變更。預設值為產品預設值，並不代表法律、法規遵循或業界標準的保留期間。請參閱 link:../administer/configure-settings.html["設定冷資料與過時資料臨界值"]。
+
+_作用中與可回收儲存設備_ 圖表顯示所有掃描資源中，作用中資料與冷資料和過期資料的比例。冷資料、過期資料或重複資料的比例過高，可能表示存在顯著的儲存設備最佳化商機。
+
+*系統* 和 *系統類型* 篩選器控制儀表板範圍。如果儲存系統未出現在篩選器清單中，請參閱 link:../data-sources/connect-data-source.html["連接資料來源"]。
+
+
+
+[[identify-storage-optimization-opportunities]]
+== 識別儲存設備優化機會
+
+使用總結面板和圖表來識別儲存設備最佳化機會並確定其優先順序：
+
+* 應該優先考慮那些潛在可回收規模最大的資源，而不是那些總規模最大的資源。一個主要由冷資料或過時資料組成的小型系統，可能比一個主要由作用中資料組成的大型系統更適合作為首選評估資源。
+* 尋找大量集中的冷資料或過時資料，而不是隔離的檔案。在一個資源上，達到過時臨界值的數十 TB 資料值得評估；隔離的檔案可能不需要行動。
+
+
+
+
+[[move-from-the-dashboard-to-investigation]]
+== 從儀表板切換到調查
+
+當您確定了值得調查的資源或所有者後，請使用儀表板底部的表格直接進入詳細資訊。
+
+_依可回收儲存設備排序的頂級資料資源_ 表格列出您已掃描的儲存資源，並依據被複製或符合您組織冷資料與過時資料臨界值的資料比例進行排名。選擇任何列以開啟篩選至該資源的調查檢視。從那裡，使用 link:investigate-unstructured.html["非結構化"] 索引標籤來識別冷檔案或過時檔案，或使用 link:investigate-directories.html["目錄"] 索引標籤來稽核權限暴露。
+
+_依可回收儲存設備區分的頂級資料擁有者_ 表格顯示哪些資料擁有者擁有可能可回收的資料。選擇任何列以開啟篩選為該擁有者檔案的 link:investigate-unstructured.html["調查"] 檢視。從那裡，您可以審查結果、對其採取行動，或將其儲存為原則。
+
+
+
+[[related-information]]
+== 相關資訊
+
+* link:investigate-data.html["調查您的資料"]
+* link:investigate-unstructured.html["調查非結構化資料"]
+* link:../data-sources/connect-data-source.html["連接資料來源"]
+* link:../administer/configure-settings.html["設定冷資料與過時資料臨界值"]
+

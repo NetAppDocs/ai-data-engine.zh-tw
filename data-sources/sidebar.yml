@@ -1,0 +1,10 @@
+---
+section: data-sources
+title: 連接資料來源
+entries:
+- title: 連接資料來源
+  url: "/data-sources/connect-data-source.html"
+- title: 管理資料來源
+  url: "/data-sources/manage-data-sources.html"
+- title: 監控掃描健全狀況
+  url: "/data-sources/monitor-scanning-health.html"

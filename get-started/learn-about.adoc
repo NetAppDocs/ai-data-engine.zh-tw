@@ -1,0 +1,66 @@
+---
+sidebar: sidebar 
+permalink: get-started/learn-about.html 
+keywords: ai data engine, aide, overview, use cases, storage optimization, data governance 
+summary: 了解 AI Data Engine，它能提供儲存在您儲存設備系統中結構化與非結構化資料的可見度。 
+---
+= 了解 AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+AI Data Engine 是一項中繼資料智慧服務，可讓您獲得儲存設備系統中儲存的結構化和非結構化資料的可見度。透過掃描您的儲存設備系統並對檔案系統中繼資料進行編目，AI Data Engine 藉由就地分析中繼資料，而無需移動或複製資料，協助您找出儲存設備最佳化機會、調查您的資料，並執行管制原則。
+
+
+
+[[what-ai-data-engine-does]]
+== AI Data Engine 的功能
+
+AI Data Engine 掃描已連接的儲存設備系統，擷取檔案系統中繼資料，並建立一個在每次掃描週期後更新的目錄。透過此目錄，您可以：
+
+* 在儀表板查看儲存設備最佳化洞察，包括哪些資料擁有者持有潛在可回收的儲存設備，例如符合組織冷資料和過期資料閾值的檔案以及複製檔案
+* 使用靈活的中繼資料過濾器來調查您的資料，以建立目標資料分組
+* 建立原則，將調查標準儲存為可重複使用的規則
+* 對資料執行操作：對符合原則標準的檔案進行標記、歸檔、複製或刪除
+
+
+
+
+[[storage-optimization-and-data-governance]]
+== 儲存最佳化與資料管制
+
+AI Data Engine 專注於您儲存設備系統中儲存的結構化和非結構化資料的儲存設備最佳化和資料生命週期管理。
+
+
+
+[[who-uses-ai-data-engine]]
+== 誰在使用 AI Data Engine
+
+AI Data Engine 專為以下使用者設計：
+
+* *儲存管理員* 需要識別和監控哪些資料擁有者持有符合其組織冷資料和過期資料閾值的檔案，識別複製檔案，並評估儲存設備最佳化機會。
+* *IT 維運團隊* 需要集中檢視其儲存環境中存在的結構化和非結構化資料
+
+
+
+
+[[where-ai-data-engine-lives]]
+== AI Data Engine 所在位置
+
+您可以透過 NetApp Console 存取 AI Data Engine，路徑為 *治理 > AI Data Engine*。您可以將其部署為 AIDE Lite（單一虛擬機器安裝），部署在您管理的 Linux 基礎架構上，該基礎架構可以是您雲端帳戶中的虛擬機器，也可以是內部部署環境中的機器。如果您的環境需要大規模且以 Kubernetes 為基礎的高可用度，您可以改為部署 AIDE Enterprise。
+
+AI Data Engine 掃描 NetApp ONTAP 和 StorageGRID 系統上的資料，以及支援 NFS、SMB/CIFS 或 S3 協定的非 NetApp 系統上的資料。
+
+link:../deploy/deployment-overview.html["了解更多部署選項"]。
+
+
+
+[[related-information]]
+== 相關資訊
+
+* link:architecture.html["AI Data Engine 架構"]
+* link:quick-start.html["快速入門"]
+* link:storage-optimization-workflows.html["探索儲存設備最佳化工作流程"]
+

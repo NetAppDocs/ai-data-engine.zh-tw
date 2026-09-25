@@ -1,0 +1,56 @@
+---
+sidebar: sidebar 
+permalink: deploy/deploy-enterprise.html 
+keywords: deploy, install, enterprise, wizard, NetApp Console, deployment wizard, kubernetes, RKE2 
+summary: 使用部署精靈從 NetApp Console 部署 AIDE Enterprise。 
+---
+= 部署 AI Data Engine 企業版
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+使用部署精靈從 NetApp Console 部署 AIDE Enterprise。此精靈將引導您選擇安裝位置、選擇組態大小，並針對 RKE2 叢集執行安裝命令。
+
+.開始之前
+* 您在 NetApp Console 中擁有 _組織管理員_ 或更高權限。
+* 您的 RKE2 叢集符合 link:aide-requirements.html["AIDE 要求"] 中所述的企業節點先決條件。
+* 執行安裝命令的機器需要 sudo（或根目錄）權限。
+* 具有匯出路徑的 NFS 伺服器可供使用，且可從叢集存取，以供 AIDE 組態 Volume 使用。
+* NetApp Console 代理程式 https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy["已部署"^] 且可從叢集節點存取。執行安裝命令需要 Console 代理程式的 IP 位址。
+* kubectl 可以在執行安裝命令的機器上使用，並具有對目標叢集的 cluster-admin 存取。
+* 在執行安裝命令之前，目標 Kubernetes 命名空間（預設 `aide`）已存在於叢集上。
+* 叢集上提供已設定的 StorageClass（預設名稱： `aide-sc`），並用於 AIDE 的有狀態後端服務。
+
+
+.步驟
+. 在 NetApp Console 中，導覽至 *管制* > *AI Data Engine*。
++
+AI Data Engine 活動網頁隨即出現。
+
+. 選擇 *部署 AI Data Engine*。
+. 選擇 *Enterprise* 部署選項，然後選擇 *下一步*。
+. 將精靈中顯示的預先配置安裝命令複製到編輯器中。
+. 選擇您的組態大小：
++
+** *小型*：建議用於檔案數量不超過約 10 億的環境。
+** *中等（預設）*：建議用於檔案數量不超過約 30 億的環境。
+** *大型*：建議用於最多約 60 億個檔案的環境。
++
+這些規模是建議的基準值，並非硬性限制。AIDE Enterprise 透過橫向擴充支援超過 60 億個檔案的環境；詳情請參閱 link:aide-requirements.html#flexible-sizing-enterprise["靈活的規模指南"]。
+
+
+
+. 對於小型或大型組態，請調整安裝命令以反映所選大小： `--flavor <small|medium|large>`
+. 從具有 RKE2 叢集 kubectl 存取權的目標主機執行安裝命令，並進行任何組態大小調整。
++
+
+NOTE: 安裝大約需要 30 分鐘完成。可能會發生逾時和重試，這是正常現象。
+
+. 出現提示時，請確認主機 IP 位址和使用者 ID 以繼續安裝。
+. 監控進度畫面，直到出現成功畫面並顯示「AI Data Engine 已部署」。
+
+
+.結果
+AI Data Engine 企業版已部署並連接至 NetApp Console。您現在可以 link:../data-sources/connect-data-source.html["連接資料來源"] 開始掃描。

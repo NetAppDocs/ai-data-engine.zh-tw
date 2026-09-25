@@ -1,0 +1,132 @@
+---
+sidebar: sidebar 
+permalink: investigate/use-filters.html 
+keywords: filters, metadata filters, file type, last accessed, last modified, tags, policy, investigation 
+summary: AI Data Engine 調查檢視中可用中繼資料過濾器的參考資訊。 
+---
+= AI Data Engine 中的中繼資料過濾器
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+AI Data Engine 調查檢視提供中繼資料篩選器，可將結果範圍縮小到特定的資料分組。您可以同時套用一個或多個篩選器，以定義要檢查或處理的檔案。
+
+
+
+[[time-filters]]
+== 時間過濾器
+
+[cols="1,2"]
+|===
+| 篩選 | 說明 
+
+
+| 最後建立 | 按建立日期篩選檔案。 
+
+
+| 最後修改時間 | 依最後修改日期篩選檔案。 
+
+
+| 最後存取 | 按檔案最後存取日期篩選檔案。使用此篩選器來識別冷資料或陳舊資料。 
+
+
+| 發現時間 | 按 AI Data Engine 在掃描過程中首次偵測到檔案的時間篩選檔案。 
+|===
+
+
+[[file-attribute-filters]]
+== 檔案屬性過濾器
+
+[cols="1,2"]
+|===
+| 篩選 | 說明 
+
+
+| 檔案類型 | 按檔案副檔名或類型分類篩選。從清單中選擇一種或多種檔案類型。 
+
+
+| 檔案大小 | 按檔案大小篩選。輸入最小值、最大值或範圍。 
+
+
+| 檔案/目錄路徑 | 依檔案或其所在目錄的完整或部分路徑進行篩選。 
+
+
+| 檔案 / 目錄所有者 | 依檔案或目錄的擁有者（使用者或群組）進行篩選。 
+
+
+| 檔案雜湊 | 透過檔案的雜湊值進行篩選，以尋找特定檔案或確認複製內容。 
+
+
+| 複製 | 篩選以僅顯示在目錄中偵測到複製副本的檔案。 
+
+
+| 目錄類型 | 依目錄類型篩選。適用於「目錄」索引標籤。 
+|===
+
+
+[[source-filters]]
+== 來源過濾器
+
+[cols="1,2"]
+|===
+| 篩選 | 說明 
+
+
+| 資料容器 | 篩選特定 Volume 或共享。 
+
+
+| 系統 | 篩選至特定叢集。 
+
+
+| 系統類型 | 依儲存系統類型篩選。 
+|===
+
+
+[[governance-filters]]
+== 管制篩選器
+
+[cols="1,2"]
+|===
+| 篩選 | 說明 
+
+
+| 標籤 | 篩選已套用特定企業標籤的檔案。 
+
+
+| 原則 | 篩選符合特定已儲存原則的檔案。原則名稱會顯示在篩選清單中。 
+|===
+
+
+[[access-filters]]
+== 存取過濾器
+
+[cols="1,2"]
+|===
+| 篩選 | 說明 
+
+
+| 擁有存取權的使用者數量 | 按有權存取的使用者或群組數量篩選檔案。使用此功能可以識別可廣泛存取的資料。 
+
+
+| 使用者/群組權限 | 按具有存取權限的特定使用者或使用者群組篩選檔案。 
+|===
+
+
+[[combining-filters]]
+== 組合過濾器
+
+過濾器採用 AND 邏輯組合，這表示結果必須同時符合所有套用的過濾器。
+
+
+
+[[related-information]]
+== 相關資訊
+
+* link:investigate-data.html["調查您的資料"]
+* link:investigate-unstructured.html["調查非結構化資料"]
+* link:investigate-structured.html["調查結構化資料"]
+* link:investigate-directories.html["調查目錄"]
+* link:../policies/create-policy.html["建立原則"]
+

@@ -1,0 +1,48 @@
+---
+sidebar: sidebar 
+permalink: release-notes/known-limitations.html 
+keywords: known limitations, limitations, restrictions, AI Data Engine 
+summary: 已知限制是指此版本的 AI Data Engine 不支援的功能。 
+---
+= AI Data Engine 的已知限制
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+已知限制是指此版本 AI Data Engine 不支援的功能，或無法正確互通的功能。請在部署或使用產品前審查這些限制。
+
+
+
+[[deployment]]
+== 部署
+
+精簡版和企業版部署是相互獨立的:: AIDE Lite 和 AIDE Enterprise 是分隔的部署模式。目前沒有支援的移轉路徑可將現有部署從一種模式移至另一種模式。
+
+
+
+
+[[policies-and-actions]]
+== 原則和行動
+
+原則觸發的行動受到限制:: 建立原則時，可用的自動化行動僅限於永久刪除和電子郵件通知。此版本不提供原則的自動歸檔和標記行動。您可以建立不包含任何行動的原則，以監控資料狀況隨時間的變化。
+
+
+
+
+[[tags]]
+== 標籤
+
+標籤無法刪除或重新命名:: 此版本無法使用標籤管理。建立標籤後，它會保留在系統中。您可以將標籤套用至項目或從項目中移除標籤，但無法刪除標籤定義本身，也無法修正包含拼字錯誤的標籤名稱。
+
+
+
+
+[[related-information]]
+== 相關資訊
+
+* link:whats-new.html["新增功能"]
+* link:../deploy/deployment-overview.html["部署總覽"]
+* link:../investigate/take-actions.html["對您的資料採取行動"]
+

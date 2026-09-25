@@ -1,0 +1,79 @@
+---
+sidebar: sidebar 
+permalink: get-started/architecture.html 
+keywords: architecture, components, metadata engine, policy, deployment, data flow 
+summary: 了解 AI Data Engine 的元件以及它們如何協同運作，為儲存設備系統中的中繼資料建立目錄。 
+---
+= AI Data Engine 架構
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+AI Data Engine （AIDE）由 Metadata Engine 和原則架構組成。這些功能協同運作，從您的儲存設備系統中擷取中繼資料，將其目錄至可搜尋的索引中，並讓您定義已儲存的查詢，以識別及處理符合特定條件的檔案。
+
+
+
+[[components]]
+== 元件
+
+您主要透過四個功能區域與 AI Data Engine 互動：儀表板、調查、原則和組態。這些功能區域由下列底層元件提供支援。
+
+
+
+[[metadata-engine]]
+=== Metadata Engine
+
+Metadata Engine 是 AI Data Engine 的核心功能。它掃描連接的儲存設備系統，擷取檔案系統中繼資料，並將這些中繼資料儲存在可搜尋的目錄中。Metadata Engine 在每次掃描週期都會更新目錄，偵測儲存設備系統中的新增、變更和刪除操作。
+
+
+
+[[netapp-console-agent]]
+=== NetApp Console 代理程式
+
+AI Data Engine 需要在您的環境中部署 NetApp Console 代理程式。Console 代理程式是通用的 NetApp 平台元件，可維持內部部署環境與 NetApp Console 之間的連線。它負責處理您的站台與 AIDE 服務之間的驗證和通訊。
+
+
+NOTE: Console 代理程式並非 AI Data Engine 特有。如果您已為其他 NetApp 服務部署了 Console 代理程式，則可以使用同一個代理程式。如需 Console 代理程式部署說明，請參閱 link:https://docs.netapp.com/us-en/console-setup-admin/concept-agents.html["NetApp Console 代理程式文件"]。
+
+
+
+[[deployment-models]]
+== 部署模型
+
+AI Data Engine 支援兩種部署模式：
+
+AIDE Lite:: 適合較小環境的單一虛擬機器部署。根據要編入目錄的檔案數量，提供小型、中型和大型組態。
+AIDE Enterprise:: 基於 Kubernetes 的多節點叢集部署，適用於需要高可用度的大型環境。
+
+
+AIDE Enterprise 可從支援最多約 10 億個檔案及每天 2.5 億個檔案的三節點組態，擴充至支援最多約 60 億個檔案及每天 20 億個檔案的九節點組態。請參閱 link:../deploy/aide-requirements.html["AIDE 要求"] 以取得節點規模詳細資料。額外的節點可將容量擴充至超過 60 億個檔案。請參閱 link:../deploy/aide-requirements.html#flexible-sizing-enterprise["靈活的規模指南"] 以取得橫向擴充詳細資料。
+
+link:../deploy/deployment-overview.html["了解更多部署選項"]。
+
+
+
+[[data-flow]]
+== 資料流
+
+. AI Data Engine 部署在您的內部部署環境中。
+. 您可以在 *組態 > 系統* 中新增您希望 AIDE 建立目錄的儲存設備系統。支援的系統包括 NetApp ONTAP、StorageGRID、資料庫系統，以及任何公開 NFS、SMB/CIFS 或 S3 協定的 NAS 或物件儲存系統。
+. Metadata Engine 使用 NFS 和 SMB/CIFS 協定掛載共享，並掃描檔案系統以擷取檔案中繼資料。
+. 中繼資料已編入目錄索引。
+. 儀表板顯示來自目錄的儲存設備見解。
+. 調查功能可讓您使用中繼資料篩選器直接查詢目錄。
+. 您可以將搜尋條件儲存為原則，並重新執行這些原則來識別和處理符合的檔案。
+
+
+
+NOTE: Metadata Engine 完成所有已設定 Volume 的掃描後，會立即開始新一輪掃描，重新掃描檔案系統以偵測新增、變更和刪除。
+
+
+
+[[related-information]]
+== 相關資訊
+
+* link:learn-about.html["了解 AI Data Engine"]
+* link:../deploy/deployment-overview.html["了解 AIDE 部署"]
+

@@ -1,0 +1,8 @@
+---
+section: administer
+title: 管理
+entries:
+- title: 管理使用者和角色
+  url: "/administer/manage-users-roles.html"
+- title: 設定資料閾值
+  url: "/administer/configure-settings.html"

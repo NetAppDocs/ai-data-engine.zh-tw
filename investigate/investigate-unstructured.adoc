@@ -1,0 +1,89 @@
+---
+sidebar: sidebar 
+permalink: investigate/investigate-unstructured.html 
+keywords: investigate, unstructured, cold data, stale data, last accessed, file size, file owner, reclaimable storage, NFS, SMB, CIFS 
+summary: 使用中繼資料篩選器在 NFS 和 SMB/CIFS 磁碟區中尋找檔案，並將其分類為冷檔案、過時檔案或大型檔案，然後審查結果、採取適當的行動，或將您的篩選條件儲存為可重複使用的原則。 
+---
+= 在 AI Data Engine 中調查非結構化資料
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+當基於檔案的儲存設備意外增長時，可以按上次存取時間、檔案大小和擁有者進行篩選，找出哪些檔案正在佔用容量。例如，儲存管理員可以識別出超過一年未存取的數 TB VM 快照，並評估是否將其歸檔、刪除或保留。
+
+.開始之前
+* 至少需要一個資料來源處於連線和掃描狀態。請參閱link:../data-sources/connect-data-source.html["連接資料來源"]。
+
+
+
+
+[[find-cold-or-stale-files-by-last-access-time]]
+== 依最後存取時間尋找冷檔案或過時檔案
+
+使用以日期為基礎的篩選器來識別在組織的冷資料或過時資料臨界值內未存取的檔案。臨界值可在 *Configuration* > *Settings* 中設定。請參閱 link:../administer/configure-settings.html["設定冷資料與過時資料臨界值"]。
+
+.步驟
+. 在 AI Data Engine 使用者介面中，選擇 *調查*。
++
+預設會選取「非結構化」索引標籤。
+
+. 選擇 *新增篩選條件*，然後選擇 *上次存取*。
+. 選擇與您的冷資料臨界值相符的時間範圍，例如 *1 年以上*。
+. 若要聚焦於最大的取用者，請再次選取 *新增篩選器*，然後選取 *檔案大小*，並設定最小值，例如 *>1 GiB*。
++
+已套用的篩選條件會以標籤的形式顯示在篩選欄下方。當您新增每個篩選條件時，結果表格和項目計數會隨之更新。
+
+
+
+如需可用篩選條件的完整清單，請參閱link:use-filters.html["使用過濾器"]。
+
+
+
+[[group-results-by-owner]]
+== 依擁有者分組結果
+
+依擁有者分組有助於您在決定採取行動之前，了解誰擁有最多可能可回收的資料。
+
+.步驟
+. 套用篩選條件後，選擇 *檢視方式* 下拉式選單。
+. 選擇*擁有者*。
++
+結果會重新排列，顯示每個擁有者的檔案總數和檔案大小。選擇任何擁有者列即可擴充並檢視其個別檔案。
+
+
+
+
+
+[[review-file-details]]
+== 審查檔案詳細資料
+
+選擇任何檔案列以開啟詳細資訊面板，並在執行行動之前確認檔案符合您的預期範圍。
+
+詳細資訊面板顯示檔案的系統、儲存設備儲存庫、檔案擁有者以及任何已套用的標籤或原則。在歸檔或刪除之前，請先驗證系統和擁有者。
+
+
+
+[[act-on-results-or-save-as-a-policy]]
+== 根據結果採取行動或儲存為原則
+
+確定要處理的檔案後，使用結果表中的核取方塊選擇一個或多個項目。
+
+* 如需立即採取行動，請參閱link:take-actions.html["對您的資料採取行動"]。
+* 若要儲存篩選條件以便後續監控，請在篩選工具列中選擇「建立原則」。請參閱link:../policies/create-policy.html["建立原則"]。
+
+
+若要從「非結構化」標籤下載篩選後的結果，請選擇image:icon_download_file.png["下載"]。
+
+
+
+[[related-information]]
+== 相關資訊
+
+* link:use-filters.html["使用過濾器"]
+* link:take-actions.html["對您的資料採取行動"]
+* link:../policies/create-policy.html["建立原則"]
+* link:../get-started/storage-optimization-workflows.html["探索儲存設備最佳化工作流程"]
+* link:understand-dashboard.html["從儀表板評估儲存使用率"]
+
