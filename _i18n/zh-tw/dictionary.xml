@@ -369,7 +369,6 @@
   <block id="65eacaaf3bea1fd7a8594828320cd9f6" category="list-text">您的環境符合所有先決條件，如 <block ref="0be0e04edd1e19a89ae931415ae02878" category="inline-link-macro-rx"></block> 所述。</block>
   <block id="c38a91b64338659be48390e7b59b98be" category="inline-link">已部署</block>
   <block id="b2c5da1f5dc6f7356acb47cf3ba444d1" category="list-text">NetApp Console 代理程式<block ref="b73290be3504f0507d7e45d060da298b" category="inline-link-rx"></block> 且可從 AI Data Engine 主機存取。執行安裝命令需要 Console 代理程式的 IP 位址。</block>
-  <block id="174790ce4804262cdbb778690ee4a907" category="list-text">在 NetApp Console 中，導覽至 *管制* &gt; *AI Data Engine*。</block>
   <block id="48602d83d5d9910704adcce3b2ee67e6" category="paragraph">AI Data Engine 活動網頁隨即出現。</block>
   <block id="5bb86b97d5261c3f0e5705b4f80cac36" category="list-text">選擇 *部署 AI Data Engine*。</block>
   <block id="f365e3c1684ae4b1c44970f25e545b04" category="list-text">選擇 *Lite* 部署選項，然後選擇 *下一步*。</block>
@@ -474,7 +473,6 @@
   <block id="cd407958cd82f6304bcf61eaf827f40c" category="list-text">*儲存管理員* 需要識別和監控哪些資料擁有者持有符合其組織冷資料和過期資料閾值的檔案，識別複製檔案，並評估儲存設備最佳化機會。</block>
   <block id="ba9f66e96d3a72c260292e7e433d9c1e" category="list-text">*IT 維運團隊* 需要集中檢視其儲存環境中存在的結構化和非結構化資料</block>
   <block id="f5d8c539c573d98ed75c16e6120b556e" category="section-title">AI Data Engine 所在位置</block>
-  <block id="2e41d1b0867653660816d43d38a3d448" category="paragraph">您可以透過 NetApp Console 存取 AI Data Engine，路徑為 *治理 &gt; AI Data Engine*。您可以將其部署為 AIDE Lite（單一虛擬機器安裝），部署在您管理的 Linux 基礎架構上，該基礎架構可以是您雲端帳戶中的虛擬機器，也可以是內部部署環境中的機器。如果您的環境需要大規模且以 Kubernetes 為基礎的高可用度，您可以改為部署 AIDE Enterprise。</block>
   <block id="e3d3e027f48463eb78e548236f017140" category="paragraph">AI Data Engine 掃描 NetApp ONTAP 和 StorageGRID 系統上的資料，以及支援 NFS、SMB/CIFS 或 S3 協定的非 NetApp 系統上的資料。</block>
   <block id="5195f9c28c95a19d82dbbab0c1b03be8" category="list-text"><block ref="5195f9c28c95a19d82dbbab0c1b03be8" category="inline-link-macro-rx"></block></block>
   <block id="06ad314b340900d226b1196e1fe289e9" category="inline-link-macro">快速入門</block>
@@ -485,7 +483,6 @@
   <block id="06c2cea18679d64399783748fa367bdd" category="inline-image-macro">一</block>
   <block id="a8f814495d9a5097386d4d0fa44d053b" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block> 審查要求</block>
   <block id="d95edcb83173c645e4cdae7d65d60d50" category="inline-link-macro">了解部署模式</block>
-  <block id="bc643586ebbdea3a67e8e78803edef1d" category="paragraph">審查<block ref="374da513b9cc4d9fde319e2e3de4220b" category="inline-link-macro-rx"></block>和<block ref="1fb19d6de740c7259fc64be5fec6d5ce" category="inline-link-macro-rx"></block>以決定要安裝 AIDE Lite 還是 AIDE Enterprise。</block>
   <block id="aada29daee1d64ed0fe907043855cb7e" category="inline-image-macro">二</block>
   <block id="5508a1321b4a833f86a54cc7821a3b51" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block> 部署 AI Data Engine</block>
   <block id="8b64721c44a2f53b46f63f848ac39d35" category="paragraph">從 NetApp Console 部署 <block ref="f746162465c96a1adff24c92f0728c5e" category="inline-link-macro-rx"></block> 或 <block ref="eb04f2a0df94baa820b9a7e6f474747f" category="inline-link-macro-rx"></block>。設定頁面會引導您選擇安裝位置和組態大小，並執行安裝命令。</block>
@@ -686,7 +683,6 @@
   <block id="e8feacb52d9a8d1ca3dc8fece412de38" category="summary">評估整個環境中的儲存設備健全狀況，確定潛在可回收儲存設備的集中位置，並決定先調查哪些系統或資料擁有者。</block>
   <block id="e51a89894bc2fbb0eac3aacc1ae7e58e" category="doc">使用 AI Data Engine 儀表板評估儲存設備健全狀況</block>
   <block id="b943da8162c47c91e3486439e26e1301" category="paragraph">在決定調查方向之前，您需要了解儲存設備的現狀。有多少儲存設備符合組織設定的冷資料和過期資料分類臨界值？哪些系統或擁有者持有這些類別中最多的資料？例如，儲存管理員在收到容量警報後，可能會發現掃描到的儲存設備中很大一部分是冷資料，然後可以深入分析影響最大的系統，立即展開調查。</block>
-  <block id="c3f8d99caf13f1c9cc868c7e63ac0b27" category="paragraph">從 NetApp Console 中，選擇 *Governance* &gt; *AI Data Engine UI*。預設會開啟儀表板。</block>
   <block id="91e4a9de07cf0d0c9175eae1427f1f38" category="section-title">了解有多少儲存設備受到影響</block>
   <block id="c8e00eaecbe5dcb031f4ca326e46a4c6" category="paragraph">總結面板顯示您掃描環境中問題的規模：</block>
   <block id="7ef3152904e46ae7f94840efc09c3b92" category="list-text">*冷資料*：在冷資料臨界值（預設：一年）內未存取的儲存設備。貴組織可以根據您的保留和治理原則來評估這些資料。</block>
@@ -787,7 +783,6 @@
   <block id="cb68685abc4007772bf80e880f6ac0b8" category="list-text">*永久刪除*：每次掃描週期結束後，系統將自動永久移除所有符合的檔案，無需進一步確認。此行動不可逆。在附加此行動之前，請確認您的篩選條件準確無誤，並且您擁有刪除已識別檔案的權限。</block>
   <block id="e1b7f70c1cf13a700c2cf801fe8ab552" category="section-title">從調查建立原則</block>
   <block id="238cdb076cf9e0d915750e9789485a70" category="list-text">若要附加刪除或電子郵件通知行動，您必須擁有 _AI Data Engine 管理員_ 角色。_AI Data Engine 檢視者_ 角色只能建立僅監控原則。</block>
-  <block id="b2aa56915b8338c2ab4bb92754d8c8b0" category="list-text">在 NetApp Console 中，導覽至 *治理* &gt; *AI Data Engine* &gt; *調查*。</block>
   <block id="4556be3d18976a94e35e9505a84ce0a8" category="list-text">套用一個或多個篩選器來識別您希望原則設為目標的檔案。</block>
   <block id="3c5d0d0d1c86fad21c867f867ba470c0" category="paragraph">例如：*檔案類型* = .vmdk 且 *上次存取時間* &gt; 365 天。</block>
   <block id="af8e50ebd71c84b70d4d016cc5af3ace" category="paragraph">審查結果表，確認篩選集擷取預期的資料分組。</block>
@@ -892,4 +887,11 @@
   <block id="4bd61438e659088dded1d69964caccb1" category="sidebar">管理原則和行動</block>
   <block id="7d0ee6fed10d3d4e5c9ee496729ab519" category="sidebar">版本資訊</block>
   <block id="ac219e2fd9f167e916107df50eb88fad" category="sidebar">AI Data Engine 是一項中繼資料智慧服務，透過 NetApp Console 代管，可掃描您連接的系統，建立中繼資料目錄，並提供可見度與工具，以大規模最佳化儲存設備與治理資料。</block>
+  <block id="4e35cd7b03502a6d8f6b53e64e2a6e44" category="list-text">您的組織可存取 NetApp Console 中的 AI Data Engine 私有預覽版。請聯絡您的 NetApp 代表申請存取，以便部署 AI Data Engine。</block>
+  <block id="f7fd830545827491ee3c01212013db34" category="list-text">在 NetApp Console 中，導覽至 *AI 資料中心* &gt; *AI Data Engine*。</block>
+  <block id="40c66f79c77adffb04740604041ba2a5" category="admonition">AI Data Engine 目前在 NetApp Console 中提供私人預覽版。請聯絡您的 NetApp 代表申請存取，以便部署 AI Data Engine。</block>
+  <block id="c100ddb67434deb680f88b265641335a" category="paragraph">您可以透過 NetApp Console 存取 AI Data Engine，路徑為 *AI data hub &gt; AI Data Engine*。AI Data Engine 目前處於私有預覽階段。請聯絡您的 NetApp 代表申請存取。您可以將 AI Data Engine 部署為 AIDE Lite（單一虛擬機器安裝），部署在您管理的 Linux 基礎架構上，作為雲端帳戶中的虛擬機器，或是內部部署環境中的機器。如果您的環境需要基於 Kubernetes 的大規模高可用度，您可以改為部署 AIDE Enterprise。</block>
+  <block id="40f6a7f11f99c5214b0fc2a136471fde" category="paragraph">請檢閱 <block ref="374da513b9cc4d9fde319e2e3de4220b" category="inline-link-macro-rx"></block> 和 <block ref="1fb19d6de740c7259fc64be5fec6d5ce" category="inline-link-macro-rx"></block>，以決定要安裝 AIDE Lite 或 AIDE Enterprise。AI Data Engine 目前在 NetApp Console 中提供私人預覽版。請聯絡您的 NetApp 代表申請存取，以便部署 AI Data Engine。</block>
+  <block id="94d45305f4fc53040da39b42fa3d4f79" category="paragraph">從 NetApp Console 中，選擇 *AI data hub* &gt; *AI Data Engine UI*。預設會開啟儀表板。</block>
+  <block id="d25ee9a2e40107ed164395b3680690c6" category="list-text">在 NetApp Console 中，導覽至 *AI 資料中心* &gt; *AI Data Engine* &gt; *調查*。</block>
 </blocks>

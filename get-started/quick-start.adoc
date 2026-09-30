@@ -15,7 +15,7 @@ summary: 透過部署服務、連接儲存設備系統並開始首次調查，�
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一"] 審查要求
 [role="quick-margin-para"]
-審查link:../deploy/aide-requirements.html["AIDE 要求"]和link:../deploy/deployment-overview.html["了解部署模式"]以決定要安裝 AIDE Lite 還是 AIDE Enterprise。
+請檢閱 link:../deploy/aide-requirements.html["AIDE 要求"] 和 link:../deploy/deployment-overview.html["了解部署模式"]，以決定要安裝 AIDE Lite 或 AIDE Enterprise。AI Data Engine 目前在 NetApp Console 中提供私人預覽版。請聯絡您的 NetApp 代表申請存取，以便部署 AI Data Engine。
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["二"] 部署 AI Data Engine
 [role="quick-margin-para"]

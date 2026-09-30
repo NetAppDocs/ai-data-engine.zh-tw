@@ -36,6 +36,9 @@ AIDE Enterprise 提供三種規格——小型、中型和大型——分別適�
 [[deployment-process]]
 == 部署流程
 
+
+NOTE: AI Data Engine 目前在 NetApp Console 中提供私人預覽版。請聯絡您的 NetApp 代表申請存取，以便部署 AI Data Engine。
+
 NetApp Console 不會為 AI Data Engine 資源配置基礎架構。您準備符合要求的 Linux 機器或叢集，然後從 NetApp Console 複製預先產生的安裝命令，並在目標主機上執行。此命令會自動啟動執行階段並部署 AI Data Engine 堆疊。在安裝期間，安裝程式會提示您確認目標主機 IP 位址和使用者 ID，然後再繼續安裝。
 
 AIDE Lite 安裝通常在 45 分鐘內完成。AIDE Enterprise 安裝通常在 30 分鐘內完成。安裝程式包含內建的逾時與重試機制，以處理元件啟動時的暫時性問題。

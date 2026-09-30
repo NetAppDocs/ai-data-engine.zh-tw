@@ -42,7 +42,7 @@ summary: 將調查篩選條件儲存為命名原則，以便您可以追蹤相�
 
 
 .步驟
-. 在 NetApp Console 中，導覽至 *治理* > *AI Data Engine* > *調查*。
+. 在 NetApp Console 中，導覽至 *AI 資料中心* > *AI Data Engine* > *調查*。
 . 套用一個或多個篩選器來識別您希望原則設為目標的檔案。
 +
 例如：*檔案類型* = .vmdk 且 *上次存取時間* > 365 天。

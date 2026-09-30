@@ -14,6 +14,7 @@ summary: 使用部署精靈從 NetApp Console 部署 AIDE Lite。
 使用部署精靈從 NetApp Console 部署 AIDE Lite。此精靈將引導您選擇安裝位置、選擇組態大小，並在目標主機上執行安裝命令。
 
 .開始之前
+* 您的組織可存取 NetApp Console 中的 AI Data Engine 私有預覽版。請聯絡您的 NetApp 代表申請存取，以便部署 AI Data Engine。
 * 您在 NetApp Console 中擁有 _組織管理員_ 或更高權限。
 * 需要在目標主機上擁有 sudo（或根目錄）權限才能執行安裝命令。
 * 您的環境符合所有先決條件，如 link:aide-requirements.html["AIDE 要求"] 所述。
@@ -21,7 +22,7 @@ summary: 使用部署精靈從 NetApp Console 部署 AIDE Lite。
 
 
 .步驟
-. 在 NetApp Console 中，導覽至 *管制* > *AI Data Engine*。
+. 在 NetApp Console 中，導覽至 *AI 資料中心* > *AI Data Engine*。
 +
 AI Data Engine 活動網頁隨即出現。
 
