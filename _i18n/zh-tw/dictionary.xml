@@ -433,7 +433,6 @@
   <block id="c0227cef6f07a8cd2ac72f2945b031aa" category="section-title">開放原始碼</block>
   <block id="9b73989307c1975dfa4d5e1581e4afe8" category="paragraph">通知文件提供有關 NetApp 軟體中使用的第三方版權和授權的資訊。</block>
   <block id="93d6496a69f6384320dab15ccadbc4e8" category="inline-link-macro">AI Data Engine 通知</block>
-  <block id="7ab36480d3c1a530e02ac892b3191e4a" category="paragraph"><block ref="7ab36480d3c1a530e02ac892b3191e4a" category="inline-link-macro-rx"></block></block>
   <block id="e7dc26f23cfcebf955f51e9ec20046b1" category="summary">將調查篩選條件儲存為命名原則，以便您可以追蹤相同資料分組隨時間的變化，並在條件發生變化時收到通知。</block>
   <block id="0e276db5651852f12c3a3c7be8b2939e" category="doc">在 AI Data Engine 中建立原則</block>
   <block id="ede0a89e2e37ef9e8c3495af56db91eb" category="paragraph">當您想要監控重複出現的資料狀況，而無需手動重複相同的調查時，可以建立原則。例如，資料管制管理程式可以儲存「大型過時檔案」原則，以便在掃描週期內追蹤該分組，並在受影響的檔案數量發生變化時收到電子郵件更新。</block>
@@ -2452,4 +2451,5 @@
   <block id="1f2989a2e9ce42f8b0db48acd9ed2e4e" category="sidebar">將 AIDE 部署為具有 Proxy 的多節點部署</block>
   <block id="d76d64858ff00ec6f65866ed6c6641f4" category="sidebar">將 AIDE 連接到 Microsoft Entra ID</block>
   <block id="156586dd7dceda9f103091b3c0beb1e6" category="sidebar">AIDE MCP 工具</block>
+  <block id="7da93123cf77bf1f1d116b04b8d380c2" category="paragraph"><block ref="7da93123cf77bf1f1d116b04b8d380c2" category="inline-link-macro-rx"></block></block>
 </blocks>
