@@ -1,0 +1,306 @@
+---
+sidebar: sidebar 
+permalink: deploy/deploy-aide-single-node-proxy.html 
+keywords: deploy, install, single-node, single node, proxy, outbound proxy, forward proxy, wizard, NetApp Console, installer download, proxy password file, proxy CA certificate 
+summary: 當目標主機僅透過傳出 Proxy 連線至網際網路時，從 NetApp Console 將 AIDE 部署為單一節點部署。 
+---
+= 將 AI Data Engine 部署為具有 Proxy 的單節點部署
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+當目標主機僅透過傳出 Proxy 連線至網際網路時，請從 NetApp Console 將 AI Data Engine （AIDE） 部署為單一節點部署。此程序包含單一節點部署的每個步驟，以及 Proxy 步驟。如果目標主機具有直接的網際網路存取，請改用 link:deploy-aide-single-node.html["將 AI Data Engine 部署為單節點部署"]。
+
+如需支援的 Proxy 類型與完整的參數參考，請參閱 link:configure-proxy.html["了解 AI Data Engine 的 Proxy"]。如需在 Proxy 上允許的端點，請參閱 link:aide-requirements.html#outbound-internet-access["傳出網際網路存取"]。
+
+
+
+[[before-you-begin]]
+== 開始之前
+
+.權限和存取
+* 您在 NetApp Console 中擁有 _組織管理員_ 或更高權限。
+* 您在目標主機上擁有 sudo 或根目錄權限，以執行安裝命令。
+
+
+.環境
+* 您的環境符合 link:single-node-prerequisites.html["AIDE 單節點部署先決條件"] 和 link:aide-requirements.html["AIDE 要求"] 所述的所有先決條件。
+* 目標主機上的作業系統儲存庫提供了 link:single-node-prerequisites.html#operating-system-packages["作業系統套件"] 中列出的軟體包。如果您的環境需要，請驗證您的軟體套件管理程式是否具有適當的 Proxy 組態。
+
+
+.NetApp Console
+* NetApp Console 代理程式 https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy["已部署"^] 且可從 AI Data Engine 主機存取。執行安裝命令需要 Console 代理程式的 IP。
+
+
+.Proxy
+* 您已設定 Proxy 以允許 link:aide-requirements.html#outbound-internet-access["傳出網際網路存取"] 中的端點。
+* 您知道 Proxy 主機、連接埠和協定 (`http` 或  `https`）。如果 Proxy 需要驗證，您也知道使用者名稱和密碼。
+* 如果您使用具有私下簽署憑證的 HTTPS Proxy，則 CA 憑證將以 PEM 檔案或包含 `.crt`與 `.pem`檔案的扁平目錄的形式位於目標主機上。
+
+
+
+NOTE: 安裝程式僅用於首次安裝 AIDE。請勿使用它來升級 AIDE。安裝後，AIDE 營運者會管理升級。如需升級的相關資訊，請聯絡 NetApp 支援部門。
+
+
+
+[[what-the-installer-configures]]
+== 安裝程式設定的內容
+
+在單一節點部署中，AI Data Engine 擁有其安裝所在的虛擬機器。安裝程式會為 Proxy 設定 k3s 執行階段和 AI Data Engine。它不會變更主機的 Proxy 組態，例如作業系統套件管理員。安裝程式會執行下列動作：
+
+* 透過 Proxy 下載 k3s 安裝指令碼和二進位檔案。它不會為 k3s 或 kubelet 提供系統範圍的 Proxy。
+* 設定 k3s Container 執行階段，以透過 Proxy 提取映像。
+* 將您使用 `--proxy-ca-cert`提供的 CA 憑證新增至 AI Data Engine 信任庫。
+
+
+您無需設定 k3s Container 執行階段或信任庫。
+
+
+
+[[copy-the-install-command]]
+== 複製安裝命令
+
+. 在 NetApp Console 中，導覽至 *AI 資料中心* > *AI Data Engine*。
++
+AI Data Engine 活動網頁隨即出現。
+
+. 選擇 *部署 AI Data Engine*。
+. 選擇 *單一節點* 部署選項，然後選擇 *下一步*。
+. 選擇您的組態大小：
++
+** *小型*：建議用於檔案數量不超過約 2 億個的環境。
+** *中等（預設）*：建議用於檔案數量不超過約 10 億的環境。
+** *大型*：建議用於檔案數量不超過約 30 億的環境。
++
+這些規模是建議的基準值，並非硬性限制。如果您的環境超出這些範圍，請參閱 link:aide-requirements.html#flexible-sizing-single-node["靈活的規模指南"]。
+
++
+精靈會根據您選擇的組態大小產生安裝命令。您無需編輯該命令來設定大小。
+
+
+
+. 將精靈中顯示的安裝命令複製到編輯器中。
++
+安裝命令會從 `d13jb5dapseb36.cloudfront.net`下載安裝程式，並一步完成啟動。該下載不使用 Proxy。
+
++
+** 如果目標主機可以直接連線至  `d13jb5dapseb36.cloudfront.net`，請跳過下一節並繼續執行 <<create-password-file-single-node,建立 Proxy 密碼檔案>>。執行複製的安裝命令。安裝程式會提示您輸入 Proxy 設定。若要改為在命令列中提供這些設定，請參閱 <<command-line-flags-single-node,使用命令列標誌進行非互動式安裝>>。
+** 如果目標主機只能透過 Proxy 存取網際網路，則命令會在下載時停止。請先完成下一節。
+
+
+
+
+
+
+[[download-the-installer-through-the-proxy]]
+[[download-installer-single-node]]
+== 透過 Proxy 下載安裝程式
+
+自行下載安裝程式，然後從  `sudo ./install-lite.sh` 開始執行安裝命令。
+
+. 將安裝程式上傳到目標主機。使用您環境允許的任何方法，然後將檔案放置在目標主機上。
++
+若要透過 Proxy 從目標主機下載安裝程式：
+
++
+[source, bash]
+----
+mkdir -p ~/aide && cd ~/aide
+curl -fsSL -x http://PROXY_HOST:PROXY_PORT \
+  https://d13jb5dapseb36.cloudfront.net/aide/latest/aide-installer.tar.gz -o aide-installer.tar.gz
+----
++
+如果 Proxy 需要使用者名稱，請將  `--proxy-user USER` 新增至  `curl` 命令。如果您省略密碼， `curl` 會提示您輸入密碼，因此它不會儲存在您的 shell 歷史記錄中。
+
++
+** 如果您的 Proxy 監聽 HTTPS，請在 `-x`位址中使用 `https://`。
+** 如果您的 Proxy 使用私人簽署的憑證，請新增 `--proxy-cacert CA_FILE`，或先將 CA 憑證新增至目標主機信任儲存區。
+** 如果您使用 HTTPS Proxy 且 `curl`版本低於 8.3，下載可能會暫停約一分鐘。Ubuntu 22.04 包含此類版本。請等待其完成。
++
+或者，從另一台裝置下載 `\https://d13jb5dapseb36.cloudfront.net/aide/latest/aide-installer.tar.gz`，然後使用 `scp`或您常用的檔案傳輸方法將其複本到目標主機。
+
+
+
+. 解壓縮安裝程式，並切換至安裝程式資料夾：
++
+[source, bash]
+----
+tar -xzf aide-installer.tar.gz
+cd installer
+----
++
+請在此安裝程式資料夾內執行下列每個命令。資料夾中的  `version.txt` 檔案會顯示安裝程式的建置版本。
+
+. 準備您從 NetApp Console 複製的安裝命令。它以 `sudo bash -c '`開頭，下載安裝程式，然後使用您的參數執行 `./install-lite.sh`。因為您已經下載了安裝程式：
++
+** 刪除 `./install-lite.sh`之前的所有內容，使命令以 `./install-lite.sh`開頭。
+** 刪除最末尾的單一引號 (`'`)。
+** 在前面加上 `sudo`，使命令以 `sudo ./install-lite.sh`開頭。安裝程式必須以根目錄身分執行，移除 `bash -c`包裝器會移除提供它的 `sudo`。
+** 如果命令包含 `--no-proxy`，請將其刪除。
++
+剩餘的命令如下：
+
++
+[source, bash]
+----
+sudo ./install-lite.sh --account-id <account-id> --organization-id <organization-id> --agent-id <agent-id> --env <environment> --user-token <user-token> --cm-host <console-agent-ip> --catalog-endpoint <catalog-endpoint> --flavor <small|medium|large>
+----
++
+請保留 `./install-lite.sh`之後的每個參數，使其與您複製的命令完全一致。安裝程式會提示您輸入 Proxy 設定。請參閱<<interactive-setup-single-node,互動式引導設定>>。
+
+
+
+
+
+
+
+[[create-a-proxy-password-file]]
+[[create-password-file-single-node]]
+== 建立 Proxy 密碼檔案
+
+如果您的 Proxy 需要驗證，並且您希望在不提示輸入密碼的情況下提供密碼（例如在自動化部署中），請在執行安裝程式之前建立密碼檔案。否則，請跳過此部分。安裝程式會以隱藏輸入的方式提示輸入密碼。
+
+該檔案僅包含密碼。請完全照原樣輸入密碼，無需對特殊字元進行百分號編碼。
+
+以根目錄執行以下命令。單一節點安裝命令使用 `sudo`執行，因此它可以讀取 `/root`下的檔案。
+
+[source, bash]
+----
+umask 077
+read -rs -p 'Proxy password: ' P && printf '%s' "$P" > /root/.aide-proxy-password; unset P; echo
+chmod 600 /root/.aide-proxy-password
+----
+安裝完成後刪除該檔案。
+
+
+
+[[supply-the-proxy-settings]]
+== 提供 Proxy 設定
+
+安裝程式會提示您輸入 Proxy 設定。執行從 NetApp Console 複製的安裝命令，並按照提示操作。對於必須在沒有提示的情況下執行的自動部署，請參閱 <<command-line-flags-single-node,使用命令列標誌進行非互動式安裝>>。
+
+
+
+[[use-the-interactive-guided-setup]]
+[[interactive-setup-single-node]]
+=== 使用互動式引導設定
+
+當您在終端機中執行安裝命令而沒有 `--proxy-host`或 `--no-proxy`時，安裝程式會詢問下列問題。如果您傳遞值作為參數，安裝程式就不會再詢問。
+
+[cols="2,3"]
+|===
+| 提示 | 要輸入的內容 
+
+
+| `Configure outbound proxy? (y/N)` | 輸入 `y`。 
+
+
+| Proxy 主機或 IP | 輸入 Proxy 主機名稱或 IPv4 位址，可選擇加上連接埠 (`host:port`）。 
+
+
+| Proxy 方案 (`https` 或 `http`） | 請輸入 Proxy 監聽的通訊協定。預設值為 `https`。 
+
+
+| Proxy 連接埠 | 輸入 Proxy 連接埠。HTTPS 的預設值為 `443`，HTTP 的預設值為 `80`。 
+
+
+| Proxy 類型 | 按 Enter 鍵接受預設值。 
+
+
+| Proxy 自身憑證的 CA 憑證（僅限 HTTPS，選用） | 輸入 CA 檔案或目錄的路徑。如果 Proxy 憑證是由公用 CA 簽署的，請按 Enter 鍵。 
+
+
+| Proxy 是否需要使用者名稱和密碼？（y/N） | 如果是，請輸入使用者名稱，然後輸入兩次密碼。安裝程式不會回顯密碼。 
+|===
+如果沒有終端機，安裝程式將不會提示。傳遞 `--proxy-host`以使用 Proxy，並在 Proxy 需要密碼時傳遞 `--proxy-password-file`。
+
+
+
+[[use-command-line-flags-for-setup]]
+[[command-line-flags-single-node]]
+=== 使用命令列標誌進行設定
+
+對於必須無需提示即可執行的自動化或其他非互動式部署，請使用命令列旗標。這些旗標是選用的。安裝程式會提示您輸入任何您未提供的 Proxy 資訊。
+
+將 Proxy 參數新增到安裝命令的末尾，放在最後一個現有參數之後。
+
+* 如果您執行從 NetApp Console 複製的安裝命令，請將參數新增至引號內，放在結束引號之前。
+* 如果您下載了安裝程式並縮短了命令，請將參數新增至縮短命令的末端。
+
+
+如果命令包含 `--no-proxy`，請將其移除。保留安裝命令中的所有其他參數。有關每個參數的執行摘要和預設值，請參閱 link:configure-proxy.html#proxy-parameters["Proxy 組態參數"]。以下範例僅顯示 Proxy 參數。
+
+.使用使用者名稱和密碼的 HTTP Proxy
+[source, bash]
+----
+--proxy-host proxy.example.com \
+--proxy-port 3128 \
+--proxy-scheme http \
+--proxy-user svc-aide \
+--proxy-password-file /root/.aide-proxy-password
+----
+.使用私有簽署憑證且無需驗證的 HTTPS Proxy
+[source, bash]
+----
+--proxy-host proxy.example.com \
+--proxy-port 8443 \
+--proxy-scheme https \
+--proxy-ca-cert /root/proxy-ca.pem
+----
+* 如果您的 Proxy 不需要驗證，請省略 `--proxy-user`和 `--proxy-password-file`。
+* 如果您指定 `--proxy-user`而未指定 `--proxy-password-file`，則從終端機執行安裝程式時，安裝程式會提示您輸入密碼。
+
+
+
+CAUTION: 使用 HTTP Proxy 時，Proxy 的使用者名稱和密碼會以清除文字傳送。如果 Proxy 需要驗證，請使用 HTTPS Proxy。
+
+
+
+[[run-the-installation]]
+== 執行安裝
+
+. 在目標主機上執行安裝命令。如果您下載了安裝程式，請從安裝程式資料夾執行命令。
++
+安裝程式在下載任何內容之前，會先從目標主機檢查 Proxy 是否回應、Proxy 是否接受您的認證資料，以及 Proxy 憑證是否對您選擇的協定有效。如果檢查失敗，安裝程式將停止並指出原因。
+
++
+
+NOTE: 安裝大約需要 45 分鐘才能完成。可能會發生逾時和重試，這是正常現象。
+
+. 如果您沒有傳遞所有 Proxy 參數，請回答 Proxy 提示。請參閱 <<interactive-setup-single-node,互動式引導設定>>。
+. 回答安裝程式的確認提示以繼續安裝。
++
+安裝程式會偵測執行 AI Data Engine NGINX 入口的節點的 IP 位址，並要求您確認。按 Enter 鍵保留顯示的位址，或輸入其他位址。請使用可從虛擬機器外部存取的位址。請勿輸入 Console 代理程式的位址。
+
+. 監控進度畫面，直到出現成功畫面並確認 AIDE 安裝完成。
+
+
+.結果
+AI Data Engine 已部署並連接至 NetApp Console。現在您可以 link:../data-sources/connect-data-source.html["連接資料來源"] 開始掃描。
+
+
+
+[[check-the-proxy-after-installation]]
+[[check-proxy-single-node]]
+== 安裝後檢查 Proxy
+
+AI Data Engine 營運者會記錄其使用的 Proxy。日誌永遠不會包含密碼。安裝程式會下載自己的 `kubectl`複本至 `/opt/netapp/aide/.aide-installer-tools`，且不會將其新增至您的 `PATH`。k3s kubeconfig 僅可由根目錄讀取。若要檢查 Proxy，請在目標主機上執行下列命令：
+
+[source, bash]
+----
+sudo /opt/netapp/aide/.aide-installer-tools/kubectl --kubeconfig /etc/rancher/k3s/k3s.yaml -n aide logs deploy/aide-operator -c chart-fetcher | grep -m1 'proxy enabled'
+----
+該行顯示 Proxy 端點、驗證是否開啟以及是否掛載了 CA 憑證。
+
+
+
+[[related-information]]
+== 相關資訊
+
+* link:configure-proxy.html["了解 AI Data Engine 的 Proxy"]
+* link:single-node-prerequisites.html["AIDE 單節點部署先決條件"]
+* link:aide-requirements.html["AIDE 要求"]
+* link:deploy-aide-single-node.html["將 AI Data Engine 部署為單節點部署"]
+

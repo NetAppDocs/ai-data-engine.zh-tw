@@ -1,0 +1,136 @@
+---
+sidebar: sidebar 
+permalink: mcp/learn-about-mcp.html 
+keywords: governed ai access, mcp, model context protocol, ai clients, collections, entra id, claude code, claude desktop, cursor, opencode 
+summary: 受控 AI 存取允許 AI 用戶端透過模型上下文協定（MCP）搜尋選定的 AI Data Engine 集合中的中繼資料，並使用您在 NetApp Console 中控制的存取。 
+---
+= 透過 AI Data Engine 了解受監管的 AI 存取
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+受控 AI 存取允許 AI 用戶端使用模型上下文協定（MCP）搜尋您選擇的 AI Data Engine（AIDE）集合中的中繼資料。您可以決定 AI 用戶端可以搜尋哪些 link:manage-data-collections.html#about-data-collections["集合"]，以及誰可以使用它們。AI 助理會在您設定的範圍內，根據您編目的中繼資料運作。
+
+
+
+[[what-governed-ai-access-does]]
+== 受管控的 AI 存取有何作用
+
+模型上下文協定（MCP）是一種開放式標準，可讓 AI 用戶端連線至外部資料來源與工具。AI Data Engine 提供名為 Governed Access Gateway 的 MCP 伺服器，以便 AI 用戶端可以查詢 AI Data Engine 中繼資料目錄，而無需直接存取您的儲存設備系統。
+
+透過 MCP，聯網的 AI 用戶端可以：
+
+* 搜尋您已啟用 AI 存取的集合中檔案的中繼資料。
+* 列出標籤、建立標籤，以及在這些檔案中新增或移除標籤。如果標籤不存在，請將其新增至檔案以建立該標籤。標籤操作可在進階使用者工作階段中使用，這需要 Microsoft Entra ID 應用程式角色和範圍。請參閱 link:configure-entra-id-mcp.html#create-and-assign-the-power-user-app-role["建立並指派 power-user 應用程式角色"]。如需 AI 用戶端可使用的工具，請參閱 link:mcp-tools-reference.html["MCP 工具用於 AI Data Engine 管理的 AI 存取"]。
+
+
+
+
+[[governed-ai-access-and-the-investigation-view]]
+== 受監管的 AI 存取和調查檢視
+
+受控 AI 存取為您提供了一個基於 AI 的調查工作替代方案，以取代您在 AI Data Engine 中進行的工作。您無需在 UI 的 link:../investigate/investigate-data.html["調查檢視"] 中建立過濾器並選擇要標記的檔案，只需在 AI 用戶端（例如 Claude Desktop）中提出問題或發出指令即可。
+
+[cols="1,2,2"]
+|===
+| 任務 | 在 AI Data Engine 中 | 透過人工智慧用戶端 
+
+
+| 依其中繼資料尋找檔案 | 在 link:../investigate/investigate-unstructured.html["調查檢視"] 中套用中繼資料篩選器。 | 請 AI 用戶端以檔案名稱前綴、檔案類型或擁有者搜尋集合。 
+
+
+| 審查檔案詳細資料 | 開啟檔案的詳細資訊面板，即可查看其系統、儲存設備儲存庫、擁有者和套用的標籤。 | 向 AI 用戶端詢問結果中檔案的路徑、類型、大小、最後修改時間和擁有者。 
+
+
+| 標籤檔案 | 在調查結果中選擇檔案並使用 link:../investigate/take-actions.html#tag-files["標籤行動"]。 | 請 AI 用戶端建立標籤、將其新增至檔案或從檔案中移除標籤。 
+|===
+兩個位置都提供相同的目錄中繼資料和標籤。您可以在調查檢視中或透過 AI 用戶端建立、新增或移除標籤。每個介面都會反映您在另一個介面中所做的變更，因此基於標籤的搜尋是一致的。
+
+AI 用戶端僅在已啟用 AI 存取的集合中運作。如需搜尋選項與範例，請參閱 link:connect-ai-clients-mcp.html#search-metadata["搜尋中繼資料"]。
+
+如需範例提示，請參閱link:connect-ai-clients-mcp.html#sample-prompts["連線 AI 用戶端"]。
+
+
+
+[[how-governed-ai-access-works]]
+== 受監管的 AI 存取如何運作
+
+您在 Microsoft Entra ID 和 NetApp Console 中設定受控的 AI 存取。這些任務在 AI Data Engine 系統管理員和 Microsoft Entra ID 系統管理員之間分割，這兩者可能是同一個人：
+
+. AI Data Engine 系統管理員：link:prepare-mcp-host.html["準備 MCP 主機"] 透過執行入口指令碼。使用已在 Microsoft Entra ID 中驗證的網域上的 AIDE 叢集主機名稱。
+. Entra ID 系統管理員：link:configure-entra-id-mcp.html["設定 Microsoft Entra ID"]透過為每個 AI Data Engine 執行個體註冊專用應用程式，定義應用程式 ID URI 和 `power_users`範圍，建立並指派 power-user 應用程式角色，並為您的 AI 用戶端新增重新導向 URI。
+. AI Data Engine 系統管理員：link:connect-entra-id-aide-mcp.html["將 Microsoft Entra ID 設定為身分識別供應商"] 在 AI Data Engine 中。
+. 選用：從選定的 Volume 建立資料收集。*所有檔案* 收集預設存在，其中包含每個掃描的檔案。
+. 在 *MCP 設定* 中啟用與 MCP 的連線，並確認 MCP 伺服器正在運作。預設情況下，該連線處於停用狀態。
+. 透過選擇身分供應商和使用者範圍，為 MCP 設定每個集合。您包含的範圍定義了 AI 用戶端可以搜尋的內容。
+. 使用 MCP 伺服器 URL 或您在 NetApp Console 中產生的用戶端特定程式碼片段來連接 AI 用戶端。
+
+
+組態完成後，使用者使用其 Entra ID 身分登入 AI 用戶端。然後，用戶端只能搜尋使用者 Entra ID 權限範圍內允許存取的集合。
+
+存取僅在集合層級授予。您無法授予個別檔案或目錄的存取。
+
+
+
+[[how-ai-clients-sign-in]]
+== AI 用戶端如何登入
+
+Microsoft Entra ID 驗證使用者。AI Data Engine MCP 伺服器從不核發權杖，也不保存任何機密。它僅驗證您的 Entra ID 租戶所核發的權杖。
+
+當使用者連接 AI 用戶端時，會發生以下情況：
+
+. AI 用戶端在沒有權杖的情況下，向位於 `/mcp/tools` 的 MCP 伺服器傳送第一個請求。伺服器以 `401 Unauthorized` 回應，並指向其 OAuth 中繼資料。
+. AI 用戶端讀取中繼資料，以了解 Entra ID 頒發者和支援的範圍。
+. 瀏覽器開啟 Entra ID 登入頁面。使用者登入並同意後，Entra ID 會重新導向至您註冊的回呼 URI。
+. Entra ID 為您的應用程式核發 v2.0 權杖。權杖對象是應用程式（用戶端）ID， `scp` 宣告為  `power_users`，且  `roles` 宣告包含  `AIDEPowerUsers`。
+. MCP 伺服器會在每次要求時根據您的 Entra ID 租戶驗證代幣簽署、發行者、對象和過期時間。
+
+
+有關權杖需求，請參閱link:configure-entra-id-mcp.html#token-expectations["權杖預期"]。
+
+
+
+[[validated-ai-clients]]
+== 已驗證的 AI 用戶端
+
+NetApp 已使用下列 AI 用戶端測試並驗證受控的 AI 存取設定：
+
+* Claude Code
+* Claude Desktop
+* 游標
+* OpenCode
+
+
+NetApp 尚未測試其他 MCP 用戶端。如果您能設定它們連線，它們或許可以運作，但未經驗證。
+
+
+
+[[what-isnt-available-through-mcp]]
+== MCP 不提供哪些服務
+
+受控 AI 存取僅限於集合內的中繼資料搜尋和標籤操作。透過 MCP，AI 用戶端無法：
+
+* 擷取檔案內容。
+* 新增、刪除或修改檔案。
+* 更改資料來源組態。
+
+
+如需完整的限制清單，請參閱 link:../release-notes/known-limitations.html["已知限制"]。
+
+
+
+[[related-information]]
+== 相關資訊
+
+* link:manage-data-collections.html["管理資料收集"]
+* link:maintain-mcp-setup.html["維護您的 MCP 設定"]
+* link:quick-start-mcp.html["使用 AI Data Engine 快速啟動受控 AI 存取"]
+* link:prepare-mcp-host.html["準備 MCP 主機"]
+* link:configure-entra-id-mcp.html["設定 Microsoft Entra ID 以進行受控 AI 存取"]
+* link:connect-entra-id-aide-mcp.html["將 AI Data Engine 連接到 Microsoft Entra ID"]
+* link:connect-ai-clients-mcp.html["將 AI 用戶端連接到 AI Data Engine MCP 伺服器"]
+* link:mcp-tools-reference.html["MCP 工具用於 AI Data Engine 管理的 AI 存取"]
+* link:../release-notes/known-limitations.html["已知限制"]
+

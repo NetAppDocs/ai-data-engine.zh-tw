@@ -1,0 +1,172 @@
+---
+sidebar: sidebar 
+permalink: deploy/single-node-prerequisites.html 
+keywords: single-node, prerequisites, disk space, firewall, k3s, ports, host preparation, block storage 
+summary: 透過驗證存取、磁碟空間、防火牆規則和作業系統套件，為 AIDE 單一節點部署準備 Linux 虛擬機器。 
+---
+= AI Data Engine 單一節點部署先決條件
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+對於 AI Data Engine （AIDE） 的單一節點部署，您需要提供一台 Linux 虛擬機器。安裝程式會安裝 k3s，使用本機 hostPath 儲存設備作為 AIDE 組態 Volume，並設定核心參數、主機目錄和 Kubernetes 資源。在執行安裝命令之前，請先準備好虛擬機器，檢查其存取和工具、可用磁碟空間、防火牆規則以及作業系統套件。
+
+在執行安裝命令之前，您的虛擬機器必須符合下列各節的要求。如需虛擬機器規模、支援的作業系統和網路連接埠，請參閱 link:aide-requirements.html["AIDE 要求"]。
+
+
+
+[[access-and-tools]]
+== 存取與工具
+
+* 您擁有目標虛擬機器的根目錄或 sudo 存取才能執行安裝程式。
+* 目標主機有可用的 bash 4.0 或更新版本、curl 和 tar。不支援 macOS，因為它隨附 bash 3.2。
+* 如果未安裝 curl 或 tar，請在基於 RHEL 的發行版上使用 `dnf install curl tar`，或在 Ubuntu 上使用 `apt-get install curl tar`來安裝它們。
+* 安裝程式會自動下載並引導  `k3s`、 `helm`、 `kubectl` 和  `jq`。您不需要在 VM 上安裝這些工具。安裝程式一律會將自己的  `kubectl` 複本下載至  `/opt/netapp/aide/.aide-installer-tools`，而且不會將其新增至您的  `PATH`。
+
+
+
+
+[[storage-type]]
+== 儲存類型
+
+AIDE 資料 Volume 應使用區塊儲存設備，而非 NFS。以 NFS 為後端的儲存設備可能會導致效能下降。所有部署規模都建議使用 NVMe SSD 或其他固態儲存設備。儲存設備還必須滿足 link:aide-requirements.html#single-node-vm-sizes["AIDE 要求"] 中針對您規模所需的 IOPS 和處理量。
+
+
+
+[[disk-space]]
+[[single-node-disk-space]]
+== 磁碟空間
+
+下表中的路徑所在的每個檔案系統都需要一定的可用空間。共享相同磁碟的路徑共享一個可用空間資源池，因此需要將它們的最小可用空間相加。
+
+如果單一磁碟代管所有內容，則最小可用空間為 65 GB 加上您組態的 AIDE 資料 Volume 大小。65 GB 的固定下限不包含 `/var/run`，其通常為 `tmpfs`，且不計入此總計：
+
+[cols="1,1"]
+|===
+| 大小 | 單一磁碟上的最小可用空間 
+
+
+| 小型 | 565 GB 
+
+
+| 中 | 2,065 GB 
+
+
+| 大型 | 6,065 GB 
+|===
+如果路徑位於分隔的裝載上，則每個裝載都必須滿足其所承載路徑的最低要求。如果使用  `--k3s-data-dir` 安裝程式選項移動 k3s 資料目錄，則 k3s 的最低要求適用於新位置。
+
+[cols="2,1,1,3"]
+|===
+| 路徑 | 最低限度 | 建議 | 目的 
+
+
+| `/var/lib/rancher/k3s` | 20 GB | 20 GB | Container 映像檔、containerd 快照和嵌入式資料庫 
+
+
+| `/var/lib/kubelet` | 10 GB | 15 GB | Kubelet 狀態、Pod 暫時儲存設備和 `emptyDir` Volume 
+
+
+| `/var/log` | 10 GB | 10 GB | Container 輸出和 k3s 系統日誌 
+
+
+| `/` | 25 GB | 50 GB | 作業系統軟體包、k3s 二進位檔案和安裝程式工具 
+
+
+| `/var/run` | 1 GB | 2 GB | Socket 和程序 ID（通常是 `tmpfs`，這不會計入單一磁碟的總數） 
+
+
+| `/var/lib/netapp/aide` | 小型：500 GB；中型：2,000 GB；大型：6,000 GB | 與最低標準相同 | AIDE 資料 Volume 
+|===
+請勿使用低於其最小值的裝載。不建議使用低於建議大小或已使用超過 85% 的裝載，因為當可用空間不足時，kubelet 可能會驅逐 pod。
+
+例如，如果 k3s 資料、記錄和 AIDE 資料各自擁有專用磁碟，請分別在這些裝載上提供至少 20 GB、10 GB，以及您的組態所需的 AIDE 資料下限。此外，請在 `/` 上為作業系統和二進位檔案提供至少 25 GB 的可用空間，如果 kubelet 檔案系統不是 `/`，則在其上提供至少 10 GB 的空間。
+
+
+
+[[firewall]]
+[[single-node-firewall]]
+== 防火牆
+
+* 安裝程式會從 `\https://get.k3s.io` 下載 k3s，並從 `\https://get.helm.sh` 下載 Helm。如需所有必要的傳出端點，請參閱link:aide-requirements.html#outbound-internet-access["AIDE 要求"] 中的傳出網際網路存取一節。
+* 主機至少需要 1 GbE 網路連線（大型部署建議使用 10 GbE）。
+* 如果您的環境需要傳出 Proxy 才能存取 AI Data Engine 端點，請參閱 link:configure-proxy.html["了解 AI Data Engine 的 Proxy"]。若要使用 Proxy 進行部署，請遵循 link:deploy-aide-single-node-proxy.html["將 AI Data Engine 部署為具有 Proxy 的單節點部署"]。
+* 安裝程式主機必須具有對位於  `582244788873.dkr.ecr.us-west-2.amazonaws.com` 的 NetApp Container 登錄的傳出存取，以提取 AIDE Container 映像與 Helm chart。如果您限制了可以提取映像的來源，也請允許此登錄。如需所需的登錄端點，請參閱 link:aide-requirements.html#outbound-internet-access["AIDE 要求"]。
+
+
+下表中的 k3s 連接埠必須在安裝程式啟動前在主機上處於閒置狀態。如果主機防火牆已啟用，您還必須在執行安裝程式之前允許這些連接埠以及 pod 和服務 CIDR。否則，pod 連網將無法正常運作。這些連接埠是 k3s 內部連接埠，與 link:aide-requirements.html#networking-requirements["AIDE 要求"] 中的連接埠分隔。
+
+[cols="1,1,3"]
+|===
+| 連接埠 | 傳輸協定 | 使用者 
+
+
+| 6443 | TCP | k3s / Kubernetes API 伺服器和控制平面端點，用於 kubectl、營運者和叢集元件 
+
+
+| 10250 | TCP | Kubelet API 用於 pod 日誌、exec/attach 和 metrics-server 
+
+
+| 8472 | UDP | 用於 pod 間連網的 Flannel VXLAN 
+|===
+預設的 Pod CIDR 為 `10.44.0.0/16`，預設的服務 CIDR 為 `10.45.0.0/16`。防火牆規則允許這些 CIDR，以確保叢集內流量（包括 CoreDNS 和其他服務）不會被丟棄。如果您使用 `--k3s-cluster-cidr`和 `--k3s-service-cidr`安裝程式選項置換預設值，請在下列命令中使用您的值。
+
+.RHEL、Rocky Linux、AlmaLinux 和 CentOS（firewalld）
+[source, bash]
+----
+sudo firewall-cmd --permanent --add-port=6443/tcp
+sudo firewall-cmd --permanent --add-port=10250/tcp
+sudo firewall-cmd --permanent --add-port=8472/udp
+sudo firewall-cmd --permanent --zone=trusted --add-source=10.44.0.0/16
+sudo firewall-cmd --permanent --zone=trusted --add-source=10.45.0.0/16
+sudo firewall-cmd --reload
+----
+.Ubuntu （ufw）
+[source, bash]
+----
+sudo ufw allow 6443/tcp
+sudo ufw allow 10250/tcp
+sudo ufw allow 8472/udp
+sudo ufw allow from 10.44.0.0/16
+sudo ufw allow from 10.45.0.0/16
+sudo ufw reload
+----
+與 firewalld 不同，ufw 沒有受信任區域。使用 `ufw allow from <cidr>`來允許 pod 和服務 CIDR；沒有 `--zone`參數。
+
+有關必須開啟的應用程式連接埠，請參閱 link:aide-requirements.html#networking-requirements["AIDE 要求"]。
+
+
+
+[[operating-system-packages]]
+== 作業系統套件
+
+安裝程式會安裝下表中的套件。如果您的環境需要，請確保您的套件管理程式具有適當的 Proxy 組態。
+
+[cols="3,3,3,3"]
+|===
+| 套件 | 需要時 | 它的來源 | 您的責任 
+
+
+| `cifs-utils` | 每個連接的安裝，除非 `cifs.upcall`已安裝。以 Kerberos 為基礎的 CIFS/SMB 掃描所需。 | 虛擬機器自身的儲存庫。 | 讓該套件可從這些儲存庫取得。 
+
+
+| `container-selinux`, `policycoreutils`, `libselinux-utils`, `selinux-policy-targeted` | 當主機上存在 SELinux 檔案時，RHEL、Rocky Linux 或 AlmaLinux 8 或 9，即使 SELinux 已停用。這些發行版預設包含 SELinux。Ubuntu 上不使用這些套件。 | 虛擬機器自身的儲存庫。 | 讓套件可從那些儲存庫中取得。 
+
+
+| `k3s-selinux` | 與上一行相同的 RHEL 系列主機。 | `rpm.rancher.io`，當您使用 Proxy 時，將透過 AI Data Engine Proxy。如果您的儲存庫已提供，安裝程式將使用該複本。 | 允許 `rpm.rancher.io`在 Proxy 上運行。您無需自行提供此軟體包。 
+|===
+
+NOTE: NetApp 尚未在安裝了 SELinux 的主機上驗證 AI Data Engine。安裝程式會在主機上存在 SELinux 檔案時下載此表中列出的 SELinux 套件，即使 SELinux 已停用。
+
+
+
+[[related-information]]
+== 相關資訊
+
+* link:aide-requirements.html["AIDE 要求"]
+* link:deploy-aide-single-node.html["將 AI Data Engine 部署為單節點部署"]
+* link:configure-proxy.html["了解 AI Data Engine 的 Proxy"]
+* link:deploy-aide-single-node-proxy.html["將 AI Data Engine 部署為具有 Proxy 的單節點部署"]
+

@@ -1,0 +1,8 @@
+---
+permalink: deploy/deploy-enterprise.html 
+redirect: deploy/deploy-aide-multi-node.html 
+---
+= 
+:allow-uri-read: 
+
+

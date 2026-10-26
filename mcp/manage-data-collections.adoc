@@ -1,0 +1,155 @@
+---
+sidebar: sidebar 
+permalink: mcp/manage-data-collections.html 
+keywords: mcp, governed ai access, data collections, collection, ai access, scope, create collection, enable collection 
+summary: 建立資料收集並為其啟用 AI 存取，以便連線的 AI 用戶端可以搜尋它們。 
+---
+= 管理受 AI Data Engine 控制的人工智慧存取的資料收集
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+集合是資料來源的邏輯 Container，您可以透過 AI Data Engine（AIDE）的模型上下文協定（MCP）伺服器使其可供 AI 用戶端搜尋。建立集合並啟用 AI 存取，以便連接的 AI 用戶端可以搜尋它們。
+
+
+
+[[before-you-begin]]
+== 開始之前
+
+* 您必須擁有 _AI Data Engine 系統管理員_ 角色。
+* 您已將 Microsoft Entra ID 設定為 AI Data Engine 中的身分供應商，其連線狀態為 *已連線*。請參閱link:connect-entra-id-aide-mcp.html#set-up-an-identity-provider["設定身份供應商"]。
+* 您已建立自訂資料收集，或正在使用僅包含 AI 用戶端需要搜尋的資料的預設集合。請參閱<<create-a-data-collection,建立資料收集>>。
+
+
+
+
+[[about-data-collections]]
+== 關於資料收集
+
+集合是容納一個或多個資料來源的邏輯 Container。AI Data Engine 提供了一個名為 *所有檔案* 的預設集合，其中包含 AI Data Engine 掃描過的所有系統和 Volume。
+
+
+CAUTION: 在授予範圍存取集合的權限之前，請確認擁有該範圍的每個人都允許搜尋集合中每個檔案的中繼資料。如果您授予範圍存取 *All files* 的權限，擁有該範圍的每個人都可以搜尋所有已掃描資料的中繼資料。
+
+若要建立集合，請參閱 <<create-a-data-collection,建立資料收集>>。若要稍後變更集合、身分供應商或 MCP 伺服器設定，請參閱 link:maintain-mcp-setup.html["維護您的 MCP 設定"]。
+
+
+
+[[create-a-data-collection]]
+== 建立資料收集
+
+建立資料收集，定義 AI 用戶端可以透過 MCP 伺服器搜尋的資料資源。
+
+.步驟
+. 在 NetApp Console 中，前往 *AI 資料中心* > *AI Data Engine*。
+. 選擇 *組態*，然後選擇 *MCP 集合*。
+. 選擇 *建立集合*。
+. 在 *名稱* 中，輸入唯一的集合名稱。
+. 選用：在 *執行摘要* 中，輸入執行摘要以協助團隊了解收集的用途。執行摘要最多可包含 512 個字元。
+. 使用 *系統* 和 *協定* 篩選器來縮小資料資源清單的範圍。
+. 選取要包含在集合中的每個資料資源旁的核取方塊。
++
+*掃描狀態* 欄顯示每個資料資源是 *已完成*、*正在重新掃描* 或 *出錯*。S3 和結構化資料資源無法加入集合。
+
++
+*已選行* 總結顯示已選資源的數量、掃描容量和已掃描檔案數。若要清除選擇並重新開始，請選擇 *重設*。
+
+. 選擇 *建立 MCP 集合*。
+
+
+螢幕上會顯示確認訊息，新集合會以 *準備設定* 的狀態新增至 *集合* 清單。建立集合並不會完成其 MCP 連線組態。
+
+*集合* 清單顯示每個集合的名稱、執行摘要、Volume 數量、掃描容量、掃描檔案數、擁有者和狀態。AI Data Engine 提供的集合擁有者為 *System*，而您建立的集合擁有者為 *User*。
+
+建立集合之後，<<configure-a-collection-for-mcp,設定它以用於 MCP>>。
+
+
+
+[[configure-a-collection-for-mcp]]
+== 設定 MCP 的集合
+
+選擇 MCP 集合的身份提供者和使用者範圍，然後取得 AI 用戶端的連線詳細資訊。
+
+
+IMPORTANT: 在進階使用者工作階段中，搜尋不會依檔案層級權限進行篩選。有權存取該集合的使用者可以搜尋其中的每個檔案。僅包含所有指派到該集合作用域的使用者都有權查看的檔案。只有當擁有該作用域的所有使用者都被允許搜尋所有掃描的資料時，才授予作用域對 *所有檔案* 的存取權。
+
+.開始之前
+* 您已建立 MCP 集合，或您正在使用*所有檔案*。請參閱<<create-a-data-collection,建立資料收集>>。
+* 您想要使用的身分供應商已連接到 AI Data Engine。請參閱 link:connect-entra-id-aide-mcp.html#set-up-an-identity-provider["設定身份供應商"]。
+* 已啟用與 MCP 的連線。在 *MCP 集合* > *MCP 設定* 下，擴充 *MCP 伺服器連線*，並確認 *啟用與 MCP 的連線* 已開啟。預設情況下，此連線處於停用狀態。請參閱 link:maintain-mcp-setup.html#enable-or-disable-the-connection-to-mcp["啟用或停用與 MCP 的連線"]。
+* MCP 伺服器的狀態為 *Running*。請參閱link:maintain-mcp-setup.html#review-mcp-server-and-collection-status["審查 MCP 伺服器和收集狀態"]。
+
+
+.步驟
+. 在 NetApp Console 中，前往 *AI 資料中心* > *AI Data Engine* > *組態* > *MCP 集合*。
+. 找到要設定的集合，開啟其 *操作* 選單，然後選擇 *為 MCP 設定*。
+. 在 *選擇身分提供者* 步驟中，選擇一個或多個身分提供者來驗證並授權存取集合。
++
+
+NOTE: 如果您需要的身分供應商未列出，請在繼續操作前將其新增至 *身分供應商* 下。如果需要系統管理員存取，請聯絡您的系統管理員連線身分供應商。
+
+. 對於每個選定的身分供應商，使用「要包含的使用者範圍」來指定範圍：
++
+.. 若要包含所有使用者範圍，請保持選取 *所有使用者範圍*。
+.. 若要包含特定範圍，請開啟下拉式選單，選擇範圍，然後選擇 *新增範圍*。
++
+`power_users` 是下拉式清單中唯一的範圍，選擇它會得到與 *All user scopes* 相同的結果。範圍名稱必須與您在 Microsoft Entra ID 中定義的範圍相符。
+
+
+
+. 選擇 *產生 MCP 程式碼片段*。
+. 在「產生 MCP 程式碼片段」步驟中，複製您的 AI 用戶端所需的連線詳細資訊：
++
+** 若要直接使用端點，請選擇 *MCP 伺服器 URL* 旁的複本圖示。
+** 若要使用用戶端專屬的組態片段，請在 *Code snippets* 下選擇 Claude Desktop 的 *Claude* 索引標籤或 Cursor 的 *Cursor* 索引標籤，然後選擇複本圖示。對於 Claude Code 和 OpenCode，請使用 MCP 伺服器 URL。
++
+在您共享程式碼片段之前，請確認主機是您的 AIDE 叢集主機名稱，而不是叢集或服務 IP 位址，並且 URL 以 `/mcp/tools`結尾，並包含此集合的 `collection_id`。範圍必須是 `\https://<host>/mcp/tools/power_users`，且用戶端 ID 必須是您在 Entra ID 中的 AI Data Engine 應用程式的應用程式（用戶端）ID。
+
++
+
+NOTE: 如果出現「MCP 主機名稱未設定」警告，請選擇「MCP 設定」設定 AIDE 叢集主機名稱。請參閱 link:maintain-mcp-setup.html#review-mcp-server-settings["審查 MCP 伺服器設定"] 和 link:prepare-mcp-host.html["準備 MCP 主機"]。使用 HTTPS 保護 MCP 伺服器需要 SSL/TLS 憑證，入口指令碼會進行設定。
+
+
+
+. 選用：若要變更身分供應商或使用者範圍，請選擇 *返回*，然後再次產生程式碼片段。
+. 選擇*關閉*。
+
+
+.結果
+您擁有 MCP 伺服器 URL 或所選身分提供者和使用者範圍的用戶端特定組態片段。使用這些詳細資訊連接您的 AI 用戶端並驗證對集合的存取。確保您的 AI 用戶端的重新導向 URI 已在 Entra ID 的 AI Data Engine 應用程式中註冊。使用應用程式的應用程式（用戶端）ID 作為用戶端 ID。請參閱 link:configure-entra-id-mcp.html#add-redirect-uris-for-ai-clients["為您的 AI 用戶端新增重新導向 URI"]。
+
+
+NOTE: 產生連線詳細資料並不會連線或驗證您的 AI 用戶端。link:connect-ai-clients-mcp.html["在 AI 用戶端中完成這些工作"]。
+
+在您選擇身分供應商和使用者範圍之前，AI 用戶端無法使用該集合。完成此工作後，該集合的狀態為 *已啟用*。
+
+權杖帶有已授予範圍的使用者可以發現並搜尋該集合。沒有相符範圍的使用者無法發現、搜尋或使用該集合。
+
+
+
+[[disable-ai-access-for-a-collection]]
+== 停用集合的 AI 存取
+
+當 AI 用戶端不再需要搜尋某個集合時，請停用該集合的 AI 存取。為 MCP 設定集合時，AI 存取會自動啟用。
+
+.步驟
+. 在 NetApp Console 中，前往 *AI 資料中心* > *AI Data Engine* > *組態* > *MCP 集合*。
+. 開啟收藏集的 *操作* 選單，然後選擇 *停用*。
+
+
+使用已停用集合的 AI 用戶端將在變更生效後失去對該集合的存取。您的身分供應商和使用者範圍選擇將保留。此外，在與 MCP 的連線被停用期間，AI 用戶端也無法存取任何集合。若要一次性區塊所有集合的請求，請參閱 link:maintain-mcp-setup.html#enable-or-disable-the-connection-to-mcp["啟用或停用與 MCP 的連線"]。
+
+
+
+[[related-information]]
+== 相關資訊
+
+* link:learn-about-mcp.html["了解受監管的 AI 存取"]
+* link:maintain-mcp-setup.html["維護您的 MCP 設定"]
+* link:configure-entra-id-mcp.html["設定 Microsoft Entra ID 以進行受控 AI 存取"]
+* link:connect-entra-id-aide-mcp.html["將 AI Data Engine 連接到 Microsoft Entra ID"]
+* link:connect-ai-clients-mcp.html["將 AI 用戶端連接到 AI Data Engine MCP 伺服器"]
+* link:../release-notes/known-limitations.html["已知限制"]
+

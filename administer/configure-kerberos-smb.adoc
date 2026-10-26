@@ -1,0 +1,78 @@
+---
+sidebar: sidebar 
+permalink: administer/configure-kerberos-smb.html 
+keywords: kerberos, smb, cifs, keytab, krb5.conf, ktutil, kdc, realm, fqdn, dns, authentication, active directory, scan service account 
+summary: 了解 AI Data Engine 如何使用 Kerberos 掃描 SMB/CIFS 共享而無需在資料來源中儲存密碼，並選擇適合您的單節點或多節點部署的程序。 
+---
+= AI Data Engine 中用於 SMB/CIFS 共用區的 Kerberos 驗證
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+使用 Kerberos 驗證掃描 SMB/CIFS 共享，這樣資料來源中就不會儲存任何密碼。AI Data Engine (AIDE) 充當 Kerberos 用戶端。它使用掃描服務帳戶的 keytab 從現有 Active Directory 網域控制器取得 Kerberos 票證。
+
+Kerberos 驗證適用於 SMB/CIFS 資料來源。若要將 NFS 使用者和群組 ID 對應到 Active Directory 名稱，請參閱 link:configure-ad-nfs.html["設定 NFS 的 Active Directory 身分對應"]。
+
+
+
+[[how-kerberos-scanning-works]]
+== Kerberos 掃描的工作原理
+
+設定完成後，AI Data Engine 會自動取得和重新整理 Kerberos 票據，因此您無需為每次掃描管理憑證。
+
+. 您建立三個檔案：Kerberos 組態檔案、掃描服務帳戶的 keytab 檔案，以及命名該帳戶的主體檔案。
+. AI Data Engine 使用 keytab 從您的 Active Directory 網域控制器取得 Kerberos 票證，該控制器充當 Kerberos 金鑰經銷中心（KDC）。AI Data Engine 每三小時更新一次票證。
+. 當您新增 SMB/CIFS 共用區並選擇 Kerberos 作為身分驗證方法時，AI Data Engine 會使用票證掃描該共享。
+
+
+AI Data Engine 會根據名稱尋找您的網域控制器和檔案伺服器。主機或節點必須使用能夠解析 Active Directory 名稱的 DNS 伺服器來解析這兩個名稱。如果您將主機或節點指向 Active Directory DNS 伺服器，則該伺服器也必須能夠解析外部名稱。在多節點部署中，它必須是每個節點上唯一的名稱伺服器。
+
+如果在設定後替換了 Kerberos 組態檔案，AI Data Engine 將繼續使用先前的檔案，直到您重新啟動受影響的服務。有關步驟，請參閱link:configure-kerberos-smb-single-node.html#update-kerberos-configuration["更新 Kerberos 組態檔案"]單節點部署或link:configure-kerberos-smb-multi-node.html#update-kerberos-configuration["更新 Kerberos 組態檔案"]多節點部署。
+
+
+
+[[choose-a-procedure]]
+== 選擇程序
+
+Kerberos 檔案、主機軟體包和驗證步驟取決於您的部署類型。
+
+[cols="1,2,2,2"]
+|===
+| 部署 | Kerberos 檔案存放的位置 | 套件 | 程序 
+
+
+| 單節點 | 在 AI Data Engine 主機上。Kerberos 組態檔案為 `/etc/krb5.conf`。 | 在主機上安裝 Kerberos 用戶端工具。安裝程式會安裝 `cifs-utils`。 | link:configure-kerberos-smb-single-node.html["在單節點 AI Data Engine 部署中為 SMB/CIFS 共用區設定 Kerberos"] 
+
+
+| 多節點 | 在儲存 AI Data Engine 組態的共享的 NFS 匯出上。節點不使用 `/etc/krb5.conf`。 | 在一台管理主機上安裝 Kerberos 用戶端工具。在每個節點上安裝 `cifs-utils`。 | link:configure-kerberos-smb-multi-node.html["在多節點 AI Data Engine 部署上為 SMB/CIFS 共用區設定 Kerberos"] 
+|===
+
+
+[[what-you-need]]
+== 您需要的項目
+
+收集這些詳細資料，以便您可以設定對要掃描的 SMB/CIFS 共用區的 Kerberos 存取。
+
+* Active Directory 中的掃描服務帳戶，具有對您要掃描的 SMB/CIFS 共用區的讀取存取權。該帳戶必須支援 AES256 加密。
+* 充當 KDC 的網域控制器的 IP 位址和 FQDN。
+* 您的 Active Directory 網域和 Kerberos 領域。領域即為大寫的網域。
+* 您要掃描的每個檔案伺服器的 FQDN 和共享名稱。Kerberos 驗證不接受檔案伺服器的 IP 位址。
+* 對於單節點部署，需要對 AI Data Engine 主機擁有 root 存取權。對於多節點部署，需要對每個節點和管理主機擁有 root 存取權，以及 `kubectl` 從管理主機以叢集管理員權限進行存取。
+* 對於多節點部署，每個節點都可以透過 TCP 連接埠 2049 存取 NFS 伺服器。
+
+
+同時驗證您的環境是否符合 link:../deploy/aide-requirements.html#networking-requirements["連網需求"] 和 link:../deploy/aide-requirements.html#kerberos-ad-requirements["Kerberos 和 Active Directory 的要求"]，包括時間同步、DNS 和主機套件。
+
+
+
+[[related-information]]
+== 相關資訊
+
+* link:configure-kerberos-smb-single-node.html["在單節點 AI Data Engine 部署中為 SMB/CIFS 共用區設定 Kerberos"]
+* link:configure-kerberos-smb-multi-node.html["在多節點 AI Data Engine 部署上為 SMB/CIFS 共用區設定 Kerberos"]
+* link:../deploy/aide-requirements.html#kerberos-ad-requirements["Kerberos 和 Active Directory 的要求"]
+* link:../data-sources/connect-data-source.html["將資料來源連接到 AI Data Engine"]
+* link:configure-ad-nfs.html["設定 NFS 的 Active Directory 身分對應"]
+

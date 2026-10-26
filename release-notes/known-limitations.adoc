@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: release-notes/known-limitations.html 
 keywords: known limitations, limitations, restrictions, AI Data Engine 
-summary: 已知限制是指此版本的 AI Data Engine 不支援的功能。 
+summary: 已知限制是指 AI Data Engine 不支援的功能。 
 ---
 = AI Data Engine 的已知限制
 :allow-uri-read: 
@@ -11,14 +11,30 @@ summary: 已知限制是指此版本的 AI Data Engine 不支援的功能。
 
 
 [role="lead"]
-已知限制是指此版本 AI Data Engine 不支援的功能，或無法正確互通的功能。請在部署或使用產品前審查這些限制。
+已知限制是指 AI Data Engine （AIDE） 不支援的功能，或無法正確互通的功能。請在部署或使用產品前審查這些限制。
 
 
 
 [[deployment]]
 == 部署
 
-精簡版和企業版部署是相互獨立的:: AIDE Lite 和 AIDE Enterprise 是分隔的部署模式。目前沒有支援的移轉路徑可將現有部署從一種模式移至另一種模式。
+單節點部署和多節點部署是相互獨立的:: AIDE 單節點部署和 AIDE 多節點部署是分隔的部署類型。沒有受支援的移轉路徑可以將現有部署從一種類型移轉到另一種類型。
+Proxy 支援有限:: 您可以使用轉送代理部署 AI Data Engine，但不支援以下 Proxy 功能：
++
+--
+* TLS 檢查 Proxy，使用自訂憑證授權單位解密和重新簽署 HTTPS 流量。
+* 對 Proxy 的 NTLM、Kerberos 或用戶端憑證驗證。不使用驗證或使用基本身分驗證。
+* SOCKS Proxy。
+* Proxy 自動設定（PAC 檔案或 WPAD）。直接向安裝程式提供 Proxy 主機和連接埠。
+* 不同的目的地使用不同的 Proxy。一個 Proxy 承載所有 AI Data Engine 的網際網路流量。
+* 使用 IPv6 位址作為 Proxy 位址。請改用主機名稱；主機名稱可以解析為 IPv6。
+* Proxy 伺服器採用實體隔離安裝。安裝程式會拒絕實體隔離安裝中的 Proxy 選項。
++
+有關支援的 Proxy 組態，請參閱link:../deploy/configure-proxy.html["了解 AI Data Engine 的 Proxy"]。
+
+
+
+--
 
 
 
@@ -26,7 +42,7 @@ summary: 已知限制是指此版本的 AI Data Engine 不支援的功能。
 [[policies-and-actions]]
 == 原則和行動
 
-原則觸發的行動受到限制:: 建立原則時，可用的自動化行動僅限於永久刪除和電子郵件通知。此版本不提供原則的自動歸檔和標記行動。您可以建立不包含任何行動的原則，以監控資料狀況隨時間的變化。
+原則觸發的行動受到限制:: 建立原則時，可用的自動化行動僅限於永久刪除和電子郵件通知。無法使用原則中的自動歸檔和標記行動。您可以建立不包含任何行動的原則，以監控一段時間內的資料狀況。
 
 
 
@@ -34,7 +50,16 @@ summary: 已知限制是指此版本的 AI Data Engine 不支援的功能。
 [[tags]]
 == 標籤
 
-標籤無法刪除或重新命名:: 此版本無法使用標籤管理。建立標籤後，它會保留在系統中。您可以將標籤套用至項目或從項目中移除標籤，但無法刪除標籤定義本身，也無法修正包含拼字錯誤的標籤名稱。
+標籤無法刪除或重新命名:: 建立標籤後，它會保留在系統中。您可以將標籤套用至項目並從項目中移除，但無法刪除標籤定義本身、重新命名或修正包含錯字的標籤名稱。標籤名稱區分大小寫，因此 `Finance` 和 `finance` 是不同的標籤。
+
+
+
+
+[[governed-ai-access-mcp]]
+== 受治理的 AI 存取（MCP）
+
+MCP 搜尋篩選器功能有限:: AI 用戶端只能按檔案名稱前綴、檔案類型和擁有者搜尋檔案。如果按檔案大小、日期或資料夾搜尋，AI 用戶端需要翻閱結果，因此答案可能不完整。
+MCP 標籤操作受到限制:: AI 用戶端無法列出帶有標籤的檔案，並且一次只能在一個檔案上新增或移除標籤。
 
 
 
@@ -45,4 +70,5 @@ summary: 已知限制是指此版本的 AI Data Engine 不支援的功能。
 * link:whats-new.html["新增功能"]
 * link:../deploy/deployment-overview.html["部署總覽"]
 * link:../investigate/take-actions.html["對您的資料採取行動"]
+* link:../mcp/learn-about-mcp.html["了解受監管的 AI 存取"]
 

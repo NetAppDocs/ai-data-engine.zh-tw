@@ -27,7 +27,7 @@ summary: 使用「調查」檢視可以探索已連線系統中的檔案儲存�
 | 標籤頁 | 當您想要時使用 | 更多資訊 
 
 
-| *非結構化* | 尋找 NFS 和 SMB/CIFS 磁碟區中冷、過時或複製的檔案資料 | link:investigate-unstructured.html["調查非結構化資料"] 
+| *非結構化* | 尋找跨 NFS 和 SMB Volume 的冷、陳舊或複製的檔案型資料 | link:investigate-unstructured.html["調查非結構化資料"] 
 
 
 | *結構化* | 識別佔用儲存設備的過大或未使用的資料庫資料表 | link:investigate-structured.html["調查結構化資料"] 
@@ -45,6 +45,5 @@ summary: 使用「調查」檢視可以探索已連線系統中的檔案儲存�
 * link:investigate-unstructured.html["調查非結構化資料"]
 * link:investigate-structured.html["調查結構化資料"]
 * link:investigate-directories.html["調查目錄"]
-* link:use-filters.html["使用過濾器"]
 * link:take-actions.html["對您的資料採取行動"]
 

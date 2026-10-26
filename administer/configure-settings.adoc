@@ -1,67 +1,98 @@
 ---
 sidebar: sidebar 
 permalink: administer/configure-settings.html 
-keywords: cold threshold, stale threshold, configuration, settings, data classification, cold data, stale data 
-summary: 設定 AI Data Engine 用於將環境中的資料分類為冷資料或過期資料的時間臨界值。 
+keywords: general settings, cold data, stale data, data classification, thresholds, permission scanning, Active Directory, LDAP, NFS identity mapping, access risk, configuration 
+summary: 定義 AI Data Engine 將哪些檔案歸類為冷資料或過時資料，啟用權限掃描，並連接 Active Directory 以識別儲存設備最佳化機會和存取風險。 
 ---
-= 在 AI Data Engine 中設定冷資料和過時資料臨界值
+= 在 AI Data Engine 中設定資料分類臨界值和存取掃描
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-AI Data Engine 會根據您定義的時間臨界值將檔案分類為冷資料或過期資料。這些臨界值會影響儀表板摘要中顯示的資料、在「調查」中套用冷資料或過期資料篩選器時顯示的檔案，以及原則的目標檔案。設定與您組織的資料分類和保留實務相符的臨界值，並協助您識別認為重要而需要監控的資料。
+冷資料和過期資料臨界值可協助您找到可使用 AI Data Engine （AIDE） 進行最佳化的儲存設備。權限掃描和 Active Directory 整合可協助您發現並了解存取風險。請根據您組織的資料分類、保留和存取策略進行設定。
+
+
+
+[[before-you-begin]]
+== 開始之前
+
+您必須擁有 _AI Data Engine 系統管理員_ 角色。
 
 
 
 [[what-is-cold-and-stale-data]]
 == 什麼是冷資料和過時資料？
 
-冷資料:: 在設定的冷資料臨界值內未被存取的檔案。冷資料是您的組織可以用來識別可根據您的保留和業務原則進行最佳化之儲存設備的關鍵指標。
-過時的資料:: 在設定的過期資料臨界值內未被存取或修改的檔案。過期資料包括偶爾被存取但近期未修改的檔案，您的組織可以根據您的原則對其進行監控或管理。
+冷資料:: 未在冷資料臨界值內存取的檔案。冷資料是貴組織可用來識別可根據您的保留和業務策略進行最佳化的儲存設備的關鍵計量。
+過時的資料:: 未在過期資料臨界值內修改的檔案。過期資料有助於您的組織識別近期未變更的檔案，您可以根據您的原則對其進行監控或管理。
 
+
+這些臨界值會影響儀表板摘要、在「調查」中套用冷資料或過時資料篩選器時顯示的檔案，以及原則的目標檔案。選擇臨界值時，應反映資料在組織評估之前，可以維持未使用或未變更的時間長度。較短的臨界值會將更多資料歸類為冷資料或過時資料，而較長的臨界值則會將結果縮小至閒置時間最長的資料。
 
 
 NOTE: 預設臨界值是作為起點提供的產品預設值。它們並不代表法律、法規遵循或業界標準的保留期間。請設定反映貴組織特定原則與需求的臨界值。
 
-任一臨界值的變更都會在下一個掃描週期完成後生效。
+冷度和陳舊度臨界值的變更將在下一個掃描週期完成後生效。
 
 
 
-[[configure-the-cold-data-threshold]]
+[[set-the-cold-data-threshold]]
 == 設定冷資料臨界值
 
-.開始之前
-* 您必須擁有 _AI Data Engine 系統管理員_ 角色。
-
+決定檔案在未被存取多久之後，您的組織才會評估將其歸檔、刪除或監控。您也可以依檔案大小限制分類，並排除特定的檔案類型或路徑。
 
 .步驟
-. 在 AI Data Engine 使用者介面中，選擇 *組態*。
-. 選擇 *設定*。
-. 針對 *冷資料定義* 選擇 *編輯*。
-. 將檔案屬性設定為 *上次存取時間* 或 *上次修改時間*。
-. 設定時間臨界值。預設值為一年。
+. 從 AI Data Engine 介面中，選取 *組態* > *一般設定*。
+. 展開 *冷資料定義*，如果冷資料分類已停用，則啟用該分類。
+. 在 *年齡依據* 下，選擇決定年齡的時間戳記：*上次存取* 以識別最近未使用的檔案，或 *上次修改* 以識別最近未變更的檔案。
+. 設定*冷齡臨界值*。預設值為一年。
+. 設定*最小檔案大小（MiB）*和*最大檔案大小限制（MiB）*，以便專注於對您重要的檔案。
+. 選用：若要將特定檔案排除在此分類之外，請輸入 *排除檔案類型* 和 *排除路徑*。輸入檔案和完整路徑，並以逗號分隔多個項目。
 . 選擇 *Save*。
 
 
 
 
-[[configure-the-stale-data-threshold]]
-== 設定過時資料臨界值
+[[set-the-stale-data-threshold]]
+== 設定過期資料臨界值
 
-.開始之前
-* 您必須擁有 _AI Data Engine 系統管理員_ 角色。
-
+決定檔案在組織根據其資料生命週期策略進行審查之前，可以維持多久不變更。您也可以依檔案大小限制分類，並排除特定的檔案類型或路徑。
 
 .步驟
-. 在 AI Data Engine 使用者介面中，選擇 *組態*。
-. 選擇 *設定*。
-. 針對 *過時資料定義* 選擇 *編輯*。
-. 將檔案屬性設定為 *上次存取時間* 或 *上次修改時間*。
-. 設定時間臨界值。預設值為三年。
+. 從 AI Data Engine 介面中，選取 *組態* > *一般設定*。
+. 展開 *過期資料定義*，如果已停用，則啟用過期資料分類。
+. 在 *年齡依據* 下，選擇決定年齡的時間戳記：*最後修改* 或 *最後存取*。
+. 設定*過期時間臨界值*。預設值為三年。
+. 設定*最小檔案大小（MiB）*和*最大檔案大小限制（MiB）*，以便專注於對您重要的檔案。
+. 選用：若要將特定檔案排除在此分類之外，請輸入 *排除檔案類型* 和 *排除路徑*。輸入檔案和完整路徑，並以逗號分隔多個項目。
 . 選擇 *Save*。
 
+
+
+
+[[find-access-risks-with-permission-scanning]]
+== 利用權限掃描尋找存取風險
+
+當您需要尋找開放給超出政策允許範圍之人員的檔案和資料夾時，請開啟權限掃描。若要審查結果，請參閱 link:../investigate/investigate-directories.html["調查目錄"]。
+
+.步驟
+. 從 AI Data Engine 介面中，選取 *組態* > *一般設定*。
+. 展開 *權限掃描*，然後開啟切換開關。
++
+若要停止掃描權限，請關閉開關。
+
+
+
+
+
+[[show-user-and-group-names-with-active-directory]]
+== 使用 Active Directory 顯示使用者和群組名稱
+
+當您需要在審查資料時查看使用者名稱和權限（而非數字 ID）時，請將 AI Data Engine 連接到 Active Directory。如果您的環境使用 NFS，您也可以將數字使用者 ID（UID）和群組 ID（GID）對應到目錄中的使用者和群組。
+
+如需先決條件與步驟，請參閱 link:configure-ad-nfs.html["設定 NFS 的 Active Directory 身分對應"]。
 
 
 
@@ -69,6 +100,10 @@ NOTE: 預設臨界值是作為起點提供的產品預設值。它們並不代�
 == 相關資訊
 
 * link:../investigate/understand-dashboard.html["了解 AI Data Engine 儀表板"]
+* link:../investigate/investigate-directories.html["調查目錄"]
+* link:../investigate/investigate-unstructured.html["調查非結構化資料"]
 * link:../get-started/storage-optimization-workflows.html["探索儲存設備最佳化工作流程"]
+* link:../deploy/aide-requirements.html["AIDE 要求"]
 * link:manage-users-roles.html["管理使用者和角色"]
+* link:configure-ad-nfs.html["設定 NFS 的 Active Directory 身分對應"]
 

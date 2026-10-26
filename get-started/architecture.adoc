@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: get-started/architecture.html 
-keywords: architecture, components, metadata engine, policy, deployment, data flow 
-summary: 了解 AI Data Engine 的元件以及它們如何協同運作，為儲存設備系統中的中繼資料建立目錄。 
+keywords: architecture, components, metadata engine, console agent, mcp, governed ai access, deployment, data flow 
+summary: 了解 AI Data Engine 的組成部分以及它們如何協同運作，為您的儲存設備系統中的中繼資料建立目錄，並為 AI 用戶端提供受控存取。 
 ---
 = AI Data Engine 架構
 :allow-uri-read: 
@@ -11,44 +11,57 @@ summary: 了解 AI Data Engine 的元件以及它們如何協同運作，為儲�
 
 
 [role="lead"]
-AI Data Engine （AIDE）由 Metadata Engine 和原則架構組成。這些功能協同運作，從您的儲存設備系統中擷取中繼資料，將其目錄至可搜尋的索引中，並讓您定義已儲存的查詢，以識別及處理符合特定條件的檔案。
+AI Data Engine （AIDE） 運行在您提供的基礎架構上。Metadata Engine 掃描您的儲存設備並建立可搜尋的目錄。NetApp Console 透過 Console 代理程式管理您的部署。模型上下文協定 （MCP） 伺服器選項可讓 AI 用戶端在您設定的範圍內搜尋目錄。
 
 
 
 [[components]]
 == 元件
 
-您主要透過四個功能區域與 AI Data Engine 互動：儀表板、調查、原則和組態。這些功能區域由下列底層元件提供支援。
+NetApp Console 中的 AI Data Engine 儀表板、調查和原則均基於中繼資料目錄運作。下列元件建置目錄、將其連接至 NetApp Console，並為 AI 用戶端提供受控存取。
 
 
 
 [[metadata-engine]]
 === Metadata Engine
 
-Metadata Engine 是 AI Data Engine 的核心功能。它掃描連接的儲存設備系統，擷取檔案系統中繼資料，並將這些中繼資料儲存在可搜尋的目錄中。Metadata Engine 在每次掃描週期都會更新目錄，偵測儲存設備系統中的新增、變更和刪除操作。
+Metadata Engine 是 AI Data Engine 的核心功能。它會掃描您連接的資料來源，擷取中繼資料，並將其儲存在可搜尋的目錄中。它不會讀取或分類檔案內容。Metadata Engine 會在每次掃描週期更新目錄，偵測儲存設備系統中新增、變更和刪除的資料。
 
 
 
 [[netapp-console-agent]]
-=== NetApp Console 代理程式
+=== NetApp Console 代理
 
-AI Data Engine 需要在您的環境中部署 NetApp Console 代理程式。Console 代理程式是通用的 NetApp 平台元件，可維持內部部署環境與 NetApp Console 之間的連線。它負責處理您的站台與 AIDE 服務之間的驗證和通訊。
-
-
-NOTE: Console 代理程式並非 AI Data Engine 特有。如果您已為其他 NetApp 服務部署了 Console 代理程式，則可以使用同一個代理程式。如需 Console 代理程式部署說明，請參閱 link:https://docs.netapp.com/us-en/console-setup-admin/concept-agents.html["NetApp Console 代理程式文件"]。
+AI Data Engine 需要在您的環境中部署 NetApp Console 代理程式。Console 代理程式是通用的 NetApp 平台元件，可維持您的環境與 NetApp Console 之間的連線。它負責處理 NetApp Console 與您的 AI Data Engine 部署之間的驗證和通訊。掃描與目錄服務是在您的 AI Data Engine 部署中執行，而非在 Console 代理程式上執行。
 
 
-
-[[deployment-models]]
-== 部署模型
-
-AI Data Engine 支援兩種部署模式：
-
-AIDE Lite:: 適合較小環境的單一虛擬機器部署。根據要編入目錄的檔案數量，提供小型、中型和大型組態。
-AIDE Enterprise:: 基於 Kubernetes 的多節點叢集部署，適用於需要高可用度的大型環境。
+NOTE: 控制台代理程式並非 AI Data Engine 特有。如果您已為其他 NetApp 服務部署了控制台代理程式，則可以使用同一個代理程式。如需控制台代理程式部署說明，請參閱 link:https://docs.netapp.com/us-en/console-setup-admin/concept-agents.html["NetApp Console 代理程式文件"]。
 
 
-AIDE Enterprise 可從支援最多約 10 億個檔案及每天 2.5 億個檔案的三節點組態，擴充至支援最多約 60 億個檔案及每天 20 億個檔案的九節點組態。請參閱 link:../deploy/aide-requirements.html["AIDE 要求"] 以取得節點規模詳細資料。額外的節點可將容量擴充至超過 60 億個檔案。請參閱 link:../deploy/aide-requirements.html#flexible-sizing-enterprise["靈活的規模指南"] 以取得橫向擴充詳細資料。
+
+[[governed-access-gateway]]
+=== 受控存取閘道
+
+受控存取閘道是 AI Data Engine 的 MCP 伺服器。它允許 AI 用戶端搜尋中繼資料目錄。該閘道在您的 AI Data Engine 部署中執行，AI 用戶端透過 HTTPS 從您的企業網路或 VPN 連接到它。Console 代理程式不轉送 MCP 流量。
+
+Microsoft Entra ID 用於驗證使用者身份，閘道會將每個 AI 用戶端的搜尋權限限制在使用者有權搜尋的集合範圍內。閘道僅支援中繼資料搜尋和標記，且只有進階使用者才能標記檔案。它不會擷取檔案內容。
+
+link:../mcp/learn-about-mcp.html["了解更多關於受監管的 AI 存取"]。
+
+
+
+[[deployment-types]]
+== 部署類型
+
+AI Data Engine 支援兩種部署類型。兩種部署類型均在 Kubernetes 上執行 AI Data Engine 服務。
+
+AIDE 單一節點部署:: 在您提供的單一 Linux 虛擬機器上執行。安裝程式會自動佈建 k3s 及其支援元件。單節點部署不提供高可用度或橫向擴充。
+AIDE 多節點部署:: 運行於您提供的 Kubernetes 叢集上，適用於需要高可用度的大型環境。
+
+
+有關支援的平台、規模和基礎架構要求，請參閱link:../deploy/aide-requirements.html["AIDE 要求"]。
+
+每種部署類型對於僅透過傳出 Proxy 存取網際網路的環境都有分隔的程序。請參閱 link:../deploy/configure-proxy.html["了解 AI Data Engine 的 Proxy"]。
 
 link:../deploy/deployment-overview.html["了解更多部署選項"]。
 
@@ -57,17 +70,33 @@ link:../deploy/deployment-overview.html["了解更多部署選項"]。
 [[data-flow]]
 == 資料流
 
-. AI Data Engine 部署在您的內部部署環境中。
-. 您可以在 *組態 > 系統* 中新增您希望 AIDE 建立目錄的儲存設備系統。支援的系統包括 NetApp ONTAP、StorageGRID、資料庫系統，以及任何公開 NFS、SMB/CIFS 或 S3 協定的 NAS 或物件儲存系統。
-. Metadata Engine 使用 NFS 和 SMB/CIFS 協定掛載共享，並掃描檔案系統以擷取檔案中繼資料。
-. 中繼資料已編入目錄索引。
-. 儀表板顯示來自目錄的儲存設備見解。
-. 調查功能可讓您使用中繼資料篩選器直接查詢目錄。
-. 您可以將搜尋條件儲存為原則，並重新執行這些原則來識別和處理符合的檔案。
+AI Data Engine 使用兩條分隔的路徑：一條用於建立目錄並將其提供給 NetApp Console，另一條用於為 AI 用戶端提供服務。
 
 
 
-NOTE: Metadata Engine 完成所有已設定 Volume 的掃描後，會立即開始新一輪掃描，重新掃描檔案系統以偵測新增、變更和刪除。
+[[metadata-scanning-and-netapp-console-access]]
+=== 中繼資料掃描和 NetApp Console 存取
+
+. 您可以將 AI Data Engine 部署在您管理的基礎架構上，並將其連接到 NetApp Console 代理程式。
+. 您可以在 *資料來源* 中連接您希望 AI Data Engine 進行目錄的資料來源。如需詳細資訊，請參閱 link:../data-sources/connect-data-source.html["連接資料來源"]。
+. Metadata Engine 掃描資料來源以擷取中繼資料，並在目錄中為其建立索引。
+. 在 NetApp Console 中，儀表板會顯示來自目錄的儲存設備見解，而調查功能可讓您使用中繼資料篩選器直接查詢目錄。
+. 您可以將搜尋條件儲存為原則，並重新執行它們以識別相符的檔案，您也可以對調查中的檔案執行動作。
+
+
+
+NOTE: 此目錄反映了掃描過程中收集的中繼資料。來源檔案的變更會在受影響的檔案和目錄重新掃描並對結果進行索引後顯示在目錄中。
+
+
+
+[[governed-ai-access]]
+=== 受監管的 AI 存取
+
+. 您設定 Microsoft Entra ID，啟用 AI 存取的集合，並選擇哪些使用者可以搜尋每個集合。
+. 使用者將 AI 用戶端連接到受控存取閘道的 HTTPS 端點，並使用 Microsoft Entra ID 登入。
+. 閘道驗證使用者的存取，並將授權請求傳遞給 Metadata Engine。
+. AI 用戶端會搜尋使用者可存取並執行動作的集合中的中繼資料。
+
 
 
 
@@ -76,4 +105,5 @@ NOTE: Metadata Engine 完成所有已設定 Volume 的掃描後，會立即開�
 
 * link:learn-about.html["了解 AI Data Engine"]
 * link:../deploy/deployment-overview.html["了解 AIDE 部署"]
+* link:../mcp/learn-about-mcp.html["了解受監管的 AI 存取"]
 

@@ -1,0 +1,81 @@
+---
+sidebar: sidebar 
+permalink: mcp/mcp-tools-reference.html 
+keywords: mcp, governed ai access, tools, get_collection, search, list_tags, create_tag, tag_document, power users, tags 
+summary: 審查 AI 用戶端可以透過 AI Data Engine MCP 伺服器使用的工具、所需的存取，以及搜尋和標記的行為方式。 
+---
+= MCP 工具用於 AI Data Engine 管理的 AI 存取
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+已連線的 AI 用戶端可以透過 AI Data Engine (AIDE) 的模型上下文協定 (MCP) 伺服器使用一系列工具來搜尋和標記集合中的檔案。利用這些資訊來了解每個工具的功能以及工具所需的存取。
+
+
+
+[[access-requirements]]
+== 存取要求
+
+AI 用戶端在進階使用者工作階段中使用這些工具。只有當以下兩個條件都成立時，使用者才能獲得進階使用者工作階段：
+
+* 該使用者在 Microsoft Entra ID 中擁有 `AIDEPowerUsers`應用程式角色。
+* AI 用戶端請求  `power_users` 範圍。
+
+
+請參閱 link:configure-entra-id-mcp.html#create-and-assign-the-power-user-app-role["建立並指派 power-user 應用程式角色"]。
+
+連線僅限於 MCP 伺服器 URL 中的集合。若要使用不同的集合，請使用該集合的連線詳細資料。
+
+
+
+[[tools]]
+== 工具
+
+[cols="1,3"]
+|===
+| 工具 | 說明 
+
+
+| `get_collection` | 傳回您的連線所限定的集合。 
+
+
+| `search` | 此搜尋功能支援按名稱前綴、檔案類型或擁有者搜尋集合中的檔案中繼資料，並支援分頁。在進階使用者工作階段中，搜尋不會依檔案層級權限進行篩選，而是傳回集合中所有符合的檔案。結果包括每個檔案的名稱、路徑、類型、大小、最後修改時間和擁有者。 
+
+
+| `list_tags` | 列出為您的租戶定義的標籤，以及具有每個標籤的檔案數量。 
+
+
+| `create_tag` | 為您的租戶建立一個標籤，並傳回其 ID 和名稱。 
+
+
+| `tag_document` | 向檔案新增標籤或從檔案中刪除標籤。如果標籤不存在，工具會先建立它。AI 用戶端一次只能處理一個檔案。 
+|===
+
+
+[[how-tags-work]]
+== 標籤的運作方式
+
+* 標籤適用於整個 AI Data Engine，而不僅限於單一集合。您透過 AI 用戶端建立或套用的標籤也可在「調查」檢視中使用。
+* 標籤名稱拼字錯誤會建立一個新標籤。標籤名稱區分大小寫，因此  `Finance` 和  `finance` 是不同的標籤。
+* 標籤建立後無法刪除或重新命名。有關標籤名稱的限制，請參閱 link:../release-notes/known-limitations.html["已知限制"]。
+* AI 用戶端無法列出帶有標籤的檔案。
+
+
+
+
+[[what-ai-clients-cant-do]]
+== AI 用戶端無法做什麼
+
+AI 用戶端無法擷取檔案內容、新增檔案、刪除檔案、修改檔案、更改資料來源或建立集合。
+
+
+
+[[related-information]]
+== 相關資訊
+
+* link:connect-ai-clients-mcp.html["將 AI 用戶端連接到 AI Data Engine MCP 伺服器"]
+* link:learn-about-mcp.html["了解受監管的 AI 存取"]
+* link:../release-notes/known-limitations.html["已知限制"]
+

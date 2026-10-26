@@ -1,0 +1,139 @@
+---
+sidebar: sidebar 
+permalink: deploy/configure-proxy.html 
+keywords: proxy, outbound proxy, forward proxy, HTTPS proxy, proxy certificate, proxy authentication, install, proxy host, proxy port, allowlist, CONNECT, installer download, container runtime 
+summary: 了解 AI Data Engine 如何與轉送代理配合使用，以及它支援哪些 Proxy 類型和參數。 
+---
+= 了解 AI Data Engine 的 Proxy
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您的 AI Data Engine （AIDE） 主機或叢集無法直接存取網際網路，請設定轉送代理，以便安裝程式和 AI Data Engine 可以下載元件、提取 Container 映像，並向 NetApp Console 註冊。單節點和多節點部署的 Proxy 選項相同。準備和執行安裝的步驟有所不同，因此每種部署類型都有自己的工作流程。
+
+Proxy 設定僅適用於 k3s 執行階段和 AI Data Engine，不適用於主機系統。
+
+
+
+[[deploy-ai-data-engine-with-a-proxy]]
+== 使用 Proxy 部署 AI Data Engine
+
+每種部署類型都有自己的主題，其中包含從準備環境到執行安裝程式的完整程序。
+
+* link:deploy-aide-single-node-proxy.html["將 AI Data Engine 部署為具有 Proxy 的單節點部署"]：安裝程式會為 k3s 執行階段和 AI Data Engine 設定 Proxy，包括其信任存放區。
+* link:deploy-aide-multi-node-proxy.html["將 AI Data Engine 部署為具有 Proxy 的多節點部署"]：在執行安裝程式之前，您需要在每個節點上設定 Container 執行時間 Proxy 和 CA 憑證信任。
+
+
+
+
+[[what-goes-through-the-proxy]]
+== 哪些內容會透過 Proxy 傳輸
+
+只有發往網際網路的流量才會使用 Proxy。所有 AI Data Engine 網際網路目的地都使用連接埠 443 上的 HTTPS，因此您的 Proxy 必須允許 `CONNECT` 針對 link:aide-requirements.html#outbound-internet-access["傳出網際網路存取"] 中的每個端點存取連接埠 443。
+
+您網路上的流量會直接連線，並且必須在不經過 Proxy 的情況下保持可連線：
+
+* 控制台代理程式 (`--cm-host`）
+* NFS、CIFS/SMB、ONTAP 和 StorageGRID 資料來源
+* Active Directory 和 LDAP
+* Kubernetes API 伺服器和叢集的內部網路
+
+
+
+
+[[supported-proxy-configurations]]
+== 支援的 Proxy 組態
+
+[cols="2,3,2"]
+|===
+| 組態 | 說明 | 驗證 
+
+
+| 無 Proxy | 直接連線至網際網路；未使用 Proxy。 | 無 
+
+
+| HTTP 轉送代理 | AI Data Engine 透過 HTTP 連接到 Proxy，並使用 `CONNECT`通道傳輸 HTTPS 目的地。 | 無，或 HTTP 基本身分驗證（使用者名稱和密碼） 
+
+
+| HTTPS 轉送代理 | AI Data Engine 透過 TLS 連接到 Proxy。如果 Proxy 憑證是由私有憑證授權單位（CA）簽署，您需要提供該 CA 憑證。 | 無，或 HTTP 基本身分驗證（使用者名稱和密碼） 
+|===
+您可以透過主機名稱或 IPv4 位址來存取 Proxy。
+
+
+IMPORTANT: AI Data Engine 支援標準轉送代理，這些 Proxy 透過 HTTP `CONNECT` 建立通道連線，包括 HTTPS 目的地。如果您的 Proxy 會檢查 TLS 流量，請將 link:aide-requirements.html#outbound-internet-access["傳出網際網路存取"] 中的端點（包括安裝程式下載主機）排除在檢查範圍之外。不支援檢查 TLS 的 Proxy 和其他一些 Proxy 功能。請參閱 link:../release-notes/known-limitations.html["已知限制"]。
+
+安裝程式為每個網際網路目的地和每個 AI Data Engine 元件使用一個 Proxy。Proxy 設定會在安裝期間設定。
+
+
+
+[[proxy-configuration-parameters]]
+[[proxy-parameters]]
+== Proxy 組態參數
+
+[cols="2,1,3"]
+|===
+| 參數 | 預設 | 說明 
+
+
+| `--proxy-host <host[:port]>` | 無 | 轉送代理的主機名稱或 IPv4 位址，不含 `http://`或 `https://`。啟用 Proxy 組態。接受即時連接埠(`host:port`）。 `--proxy-host`中的連接埠優先於 `--proxy-port`。 
+
+
+| `--proxy-port <port>` | `80` 用於 HTTP， `443` 用於 HTTPS | Proxy 傾聽的連接埠。如果連接埠已包含在 `--proxy-host`中，則忽略。 
+
+
+| `--proxy-scheme <http|https>` | `https` | 用於連接 Proxy 伺服器本身的協定。這不是 Proxy 所到達之目的地的配置。大多數轉送代理傾聽純 HTTP，因此請為這些傳遞 `--proxy-scheme http`。 
+
+
+| `--proxy-ca-cert <path>` | 無 | 指向 PEM 檔案的路徑，或是指向包含 `.crt` 和 `.pem` 檔案之扁平目錄的路徑，其中包含簽署 Proxy 憑證的 CA 憑證。安裝程式會讀取目錄而不遞迴進入子目錄，並將檔案合併成一個套裝組合。憑證由私有 CA 簽署的 HTTPS Proxy 需要此項目。不適用於 HTTP Proxy。 
+
+
+| `--proxy-user <user>` | 無 | 用於基本身分驗證的使用者名稱。使用 HTTP Proxy 時，安裝程式會警告憑證以未加密的方式傳輸到 Proxy。需要密碼，透過 `--proxy-password-file`提供或在提示字元處輸入。 
+
+
+| `--proxy-password-file <path>` | 無 | 指向僅包含 Proxy 密碼的本機檔案的路徑，權限設定為  `0600` 或  `0400`。如果省略此路徑，安裝程式將提示輸入密碼，但輸入會隱藏。 
+
+
+| `--proxy-type <r>` | `r` | Proxy 類型。 `r` 是常規轉送代理，且為預設值。請勿變更。不支援 TLS 檢查 Proxy。 
+
+
+| `--no-proxy` | — | 明確停用 Proxy 組態並跳過 Proxy 提示。僅當主機可直接存取網際網路時才使用此選項。 
+|===
+
+NOTE: 安裝程式不接受  `--proxy-password` 或  `PROXY_PASSWORD` 環境變數。請改用  `--proxy-password-file` 或互動式提示。
+
+
+
+[[the-installer-download]]
+== 安裝程式下載
+
+從 NetApp Console 複製的安裝命令會從內容交付網路（CDN）下載安裝程式，然後一步執行。下載過程不使用 Proxy。如果目標主機僅透過 Proxy 存取網際網路，您必須自行下載安裝程式，並從解壓縮的安裝程式執行安裝命令。部署主題說明了這些步驟。
+
+
+
+[[proxy-verification]]
+== Proxy 驗證
+
+在安裝程式下載任何內容之前，它會從安裝程式主機執行檢查。此檢查會確認 Proxy 回應、Proxy 是否接受您的認證，以及 Proxy 憑證是否對您選擇的協定有效。如果檢查失敗，安裝程式將停止並指出原因，例如連接埠錯誤、協定錯誤或密碼被拒絕（HTTP 407）。
+
+對於多節點部署，此檢查僅涵蓋 Proxy。並不會測試叢集節點是否可以存取 Proxy。
+
+
+
+[[change-proxy-settings-after-installation]]
+== 安裝後更改 Proxy 設定
+
+Proxy 設定會在安裝期間進行設定。安裝程式不會在已安裝的叢集上再次執行。若要在安裝後變更 Proxy 主機、連接埠、認證或 CA 憑證，請聯絡 NetApp 支援。
+
+
+
+[[related-information]]
+== 相關資訊
+
+* link:aide-requirements.html["AIDE 要求"]
+* link:single-node-prerequisites.html["AIDE 單節點部署先決條件"]
+* link:multi-node-prerequisites.html["AIDE 多節點部署的先決條件"]
+* link:deploy-aide-single-node-proxy.html["將 AI Data Engine 部署為具有 Proxy 的單節點部署"]
+* link:deploy-aide-multi-node-proxy.html["將 AI Data Engine 部署為具有 Proxy 的多節點部署"]
+

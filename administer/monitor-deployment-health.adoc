@@ -1,0 +1,74 @@
+---
+sidebar: sidebar 
+permalink: administer/monitor-deployment-health.html 
+keywords: health monitor, deployment health, system stability, pods, unhealthy pod, OOMKilled, CrashLoopBackOff, evicted, memory, disk, CPU, utilization, eviction threshold, scans paused, node health, troubleshooting 
+summary: 監控您的 AI Data Engine 部署，以識別可能中斷掃描的不健全工作負載和資源限制，並收集資訊以進行疑難排解。 
+---
+= 監控 AI Data Engine 的部署健全狀況並調查問題
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+AI Data Engine （AIDE） 健全狀況監視器可協助您識別可能中斷掃描的不健全工作負載和資源限制。使用健全狀況詳細資料來評估問題的影響，並收集疑難排解資訊。
+
+
+
+[[monitor-deployment-health-and-investigate-issues]]
+== 監控部署健全狀況並調查問題
+
+.步驟
+. 在 NetApp Console 中，前往 *AI 資料中心* > *AI Data Engine*。
+. 選擇 *組態*，然後選擇 *健全狀況監視器*。
+. 在 *基礎架構狀態* 下檢查 *系統穩定性*，查看是否有任何 pod 不健全。
++
+不健全的 Pod 無法如預期執行其工作負載。不健全的狀態包括 Pending、Failed、Evicted、Unknown、OOMKilled 和 CrashLoopBackOff。
+
+. 找出可能影響部署的資源限制：
++
+--
+** 對於單節點部署，請審查 *節點健全狀況*。如果節點顯示健全狀況問題，請檢查 CPU、記憶體容量和磁碟使用率卡，以查看是否有資源壓力的跡象。
+** 對於多節點部署，請審查 *節點健全狀況*，以識別處於關鍵、警告或離線狀態的節點。比較可用資源使用率計量，以發現資源壓力跡象。對於離線節點，請調查節點可用度。
+
+
+--
+. 對於多節點部署，請在使用率卡上選取 *檢視詳細資訊* 以調查資源：
++
+--
+** *CPU 使用率*：將目前使用情況與警告和關鍵臨界值進行比較。
+** *記憶體使用率*：檢視目前使用情況、記憶體不足（OOM）風險和驅逐臨界值。
+** *磁碟使用情況*：審查可用空間、風險和停止臨界值。
+
+
+--
++
+請特別注意記憶體容量和磁碟警告，因為這些情況可能會中斷掃描。請按照詳細資訊中顯示的任何建議操作。
+
+. 若要識別受影響的工作負載，請使用 *Pod 健全狀況* 下的 *Pod* 和 *狀態* 篩選器來縮小清單範圍。
++
+審查每個受影響的 Pod 的工作負載、狀態和資源使用情況。利用這些資訊來區分資源壓力和 Pod 故障、反覆重新啟動或等待運作的情況。
+
+. 審查 *問題工作負載*，找出已停止或頻繁重新啟動的工作負載。記錄報告的時間，以協助將這些事件與資源使用量建立關聯。
+. 審查資源使用率趨勢，查看資源壓力是暫時的還是持續的：
++
+--
+** 對於單節點部署，審查相關時間範圍內的*資源使用率經銷*。
+** 對於多節點部署，審查相關時間範圍內的 *前 20 個節點（使用率）*。比較各節點的使用率，並檢查受影響節點的 CPU、記憶體容量和磁碟使用情況，以識別短暫的峰值或持續的高使用率。
+
+
+--
+. 如果您需要協助解決問題，請在 *Pod 健全狀況* 中選取 image:icon_download_file.png["下載"] 以下載 Pod 資訊。從 *系統資訊* 收集相關詳細資料，包括主機名稱、作業系統、核心、Console 版本、Kubernetes 版本和 Console 帳戶 ID，以便與您的系統管理員或支援團隊分享。
+
+
+.結果
+採取修正行動後，返回 *健全狀況監視器* 並審查 *系統穩定性*、*Pod 健全狀況*、*節點健全狀況* 和資源使用率，以確認所報告的狀況已解除。如果掃描中斷，請前往 *資料來源* 以確認掃描已恢復。請參閱 link:../data-sources/manage-data-sources.html#view-scan-status-and-details["檢視掃描狀態和詳細資訊"]。
+
+
+
+[[related-information]]
+== 相關資訊
+
+* link:../data-sources/manage-data-sources.html["管理資料來源"]
+* link:../deploy/aide-requirements.html["AI Data Engine 需求"]
+

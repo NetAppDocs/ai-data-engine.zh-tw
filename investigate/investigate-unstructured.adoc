@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: investigate/investigate-unstructured.html 
-keywords: investigate, unstructured, cold data, stale data, last accessed, file size, file owner, reclaimable storage, NFS, SMB, CIFS 
-summary: 使用中繼資料篩選器在 NFS 和 SMB/CIFS 磁碟區中尋找檔案，並將其分類為冷檔案、過時檔案或大型檔案，然後審查結果、採取適當的行動，或將您的篩選條件儲存為可重複使用的原則。 
+keywords: investigate, unstructured, cold data, stale data, last accessed, file size, file owner, reclaimable storage, NFS, SMB, CIFS, duplicates, duplicate files, file hash 
+summary: 使用中繼資料篩選器尋找 NFS 和 SMB Volume 中的檔案，並將其分類為冷檔案、過時檔案、大型檔案或重複檔案，然後審查結果，採取適當的行動，或將篩選條件儲存為可重複使用的原則。 
 ---
 = 在 AI Data Engine 中調查非結構化資料
 :allow-uri-read: 
@@ -13,8 +13,12 @@ summary: 使用中繼資料篩選器在 NFS 和 SMB/CIFS 磁碟區中尋找檔�
 [role="lead"]
 當基於檔案的儲存設備意外增長時，可以按上次存取時間、檔案大小和擁有者進行篩選，找出哪些檔案正在佔用容量。例如，儲存管理員可以識別出超過一年未存取的數 TB VM 快照，並評估是否將其歸檔、刪除或保留。
 
-.開始之前
-* 至少需要一個資料來源處於連線和掃描狀態。請參閱link:../data-sources/connect-data-source.html["連接資料來源"]。
+
+
+[[before-you-begin]]
+== 開始之前
+
+* 您已連接至少一個資料來源，並且正在掃描。請參閱link:../data-sources/connect-data-source.html["連接資料來源"]。
 
 
 
@@ -22,7 +26,7 @@ summary: 使用中繼資料篩選器在 NFS 和 SMB/CIFS 磁碟區中尋找檔�
 [[find-cold-or-stale-files-by-last-access-time]]
 == 依最後存取時間尋找冷檔案或過時檔案
 
-使用以日期為基礎的篩選器來識別在組織的冷資料或過時資料臨界值內未存取的檔案。臨界值可在 *Configuration* > *Settings* 中設定。請參閱 link:../administer/configure-settings.html["設定冷資料與過時資料臨界值"]。
+使用以日期為基礎的篩選器，尋找在組織的冷資料或過時資料臨界值內未存取的檔案。您可以在資料分類設定中定義這些臨界值，包括每個臨界值使用的時間戳記。請參閱 link:../administer/configure-settings.html["設定資料分類臨界值和存取掃描"]。
 
 .步驟
 . 在 AI Data Engine 使用者介面中，選擇 *調查*。
@@ -36,8 +40,6 @@ summary: 使用中繼資料篩選器在 NFS 和 SMB/CIFS 磁碟區中尋找檔�
 已套用的篩選條件會以標籤的形式顯示在篩選欄下方。當您新增每個篩選條件時，結果表格和項目計數會隨之更新。
 
 
-
-如需可用篩選條件的完整清單，請參閱link:use-filters.html["使用過濾器"]。
 
 
 
@@ -59,9 +61,30 @@ summary: 使用中繼資料篩選器在 NFS 和 SMB/CIFS 磁碟區中尋找檔�
 [[review-file-details]]
 == 審查檔案詳細資料
 
-選擇任何檔案列以開啟詳細資訊面板，並在執行行動之前確認檔案符合您的預期範圍。
+在執行行動之前，請確認檔案符合您的預期範圍。選擇任何檔案列即可開啟詳細資料面板。
 
-詳細資訊面板顯示檔案的系統、儲存設備儲存庫、檔案擁有者以及任何已套用的標籤或原則。在歸檔或刪除之前，請先驗證系統和擁有者。
+詳細資訊面板顯示檔案的系統、儲存設備儲存庫、路徑、大小、時間戳記、存取、檔案擁有者，以及任何已套用的標籤或原則。*Duplicates* 欄位顯示檔案的複製複本數量。在歸檔或刪除之前，請先驗證系統和擁有者。
+
+
+
+[[find-duplicate-files]]
+== 尋找複製檔案
+
+在決定清理何處之前，先查看複製檔案的分佈有多廣。*複製* 篩選器會列出目錄中其他地方有一個或多個相同複本的每個檔案。
+
+.步驟
+. 在 AI Data Engine 使用者介面中，選擇 *調查*。
++
+預設會選取「非結構化」索引標籤。
+
+. 選擇 *新增篩選器*，然後選擇 *複製*。
++
+結果表格列出具有複製複本的檔案。
+
+. 若要查看特定檔案的每個複本及其位置，請選擇檔案名稱，然後選擇 *複製* 旁邊的 *查看詳細資料*。
+
+
+若要審查複本並進行清理，請參閱link:take-actions.html["調查並清理複製檔案"]。
 
 
 
@@ -81,9 +104,9 @@ summary: 使用中繼資料篩選器在 NFS 和 SMB/CIFS 磁碟區中尋找檔�
 [[related-information]]
 == 相關資訊
 
-* link:use-filters.html["使用過濾器"]
 * link:take-actions.html["對您的資料採取行動"]
 * link:../policies/create-policy.html["建立原則"]
+* link:../administer/configure-settings.html["設定資料分類臨界值和存取掃描"]
 * link:../get-started/storage-optimization-workflows.html["探索儲存設備最佳化工作流程"]
 * link:understand-dashboard.html["從儀表板評估儲存使用率"]
 

@@ -20,6 +20,7 @@ sidebar:
     entries:
     - section: investigate
     - section: policies
+    - section: mcp
     - section: administer
   - title: 法律聲明
     url: "/legal-notices.html"

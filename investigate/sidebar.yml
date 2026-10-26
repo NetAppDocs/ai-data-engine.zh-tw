@@ -12,7 +12,5 @@ entries:
   url: "/investigate/investigate-structured.html"
 - title: 調查目錄
   url: "/investigate/investigate-directories.html"
-- title: 使用過濾器
-  url: "/investigate/use-filters.html"
 - title: 對資料採取行動
   url: "/investigate/take-actions.html"

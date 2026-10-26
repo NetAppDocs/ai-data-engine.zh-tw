@@ -13,8 +13,12 @@ summary: 審核儲存設備系統中的目錄級權限，尋找可廣泛存取�
 [role="lead"]
 當您需要確定哪些目錄的存取權限超出預期時，可以按權限篩選，尋找對整個組織開啟的資料夾。例如，安全性系統管理員在儀表板看到標記的暴露目錄後，可以找到所有具有組織範圍存取的目錄，審查哪些使用者擁有讀取和寫入權限，並建立原則，以便在每次掃描後監控新的暴露情況。
 
-.開始之前
-* 至少需要一個資料來源處於連線和掃描狀態。請參閱link:../data-sources/connect-data-source.html["連接資料來源"]。
+
+
+[[before-you-begin]]
+== 開始之前
+
+* 您已連接至少一個資料來源，並且正在掃描。請參閱link:../data-sources/connect-data-source.html["連接資料來源"]。
 
 
 
@@ -22,7 +26,7 @@ summary: 審核儲存設備系統中的目錄級權限，尋找可廣泛存取�
 [[find-broadly-accessible-directories]]
 == 尋找可廣泛存取的目錄
 
-使用權限過濾器來識別超出預期對象範圍的開啟目錄。
+透過篩選權限，尋找開啟範圍超出預期對象的目錄。
 
 .步驟
 . 在 AI Data Engine 使用者介面中，選擇 *調查*。
@@ -37,14 +41,12 @@ summary: 審核儲存設備系統中的目錄級權限，尋找可廣泛存取�
 
 
 
-如需可用篩選條件的完整清單，請參閱link:use-filters.html["使用過濾器"]。
-
 
 
 [[review-directory-permissions]]
 == 審查目錄權限
 
-選擇目錄列以開啟詳細資訊面板，並審查誰有存取權。
+確認哪些人有權限存取目錄，以及該存取是否為有意為之。選取目錄列以開啟詳細資料面板。
 
 詳細資訊面板顯示目錄類型、系統、目錄擁有者以及權限總結（例如，「對組織開放」）。選擇 *檢視權限* 以查看有權存取該目錄的每個使用者或群組的讀取和寫入存取明細。
 
@@ -58,9 +60,11 @@ summary: 審核儲存設備系統中的目錄級權限，尋找可廣泛存取�
 在篩選出可廣泛存取的目錄後，將標準儲存為原則，以便在每次掃描週期後監控新的暴露情況。
 
 .步驟
-. 套用權限篩選器後，在篩選工具列中選擇 *建立原則*。
+. 套用權限篩選器後，在篩選工具列中選取 *建立原則*。
 . 填寫原則表格。請參閱link:../policies/create-policy.html["建立原則"]。
 
+
+若要控制 AI Data Engine 是否掃描權限，請參閱 link:../administer/configure-settings.html["設定資料分類臨界值和存取掃描"]。
 
 若要從「目錄」標籤下載篩選後的結果，請選擇image:icon_download_file.png["下載"]。
 
@@ -69,8 +73,8 @@ summary: 審核儲存設備系統中的目錄級權限，尋找可廣泛存取�
 [[related-information]]
 == 相關資訊
 
-* link:use-filters.html["使用過濾器"]
 * link:../policies/create-policy.html["建立原則"]
+* link:../administer/configure-settings.html["設定資料分類臨界值和存取掃描"]
 * link:../administer/manage-users-roles.html["管理使用者和角色"]
 * link:understand-dashboard.html["從儀表板評估儲存使用率"]
 

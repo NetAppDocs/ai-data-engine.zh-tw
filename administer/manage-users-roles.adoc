@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: administer/manage-users-roles.html 
-keywords: roles, users, permissions, AI data engine administrator, AI data engine viewer 
+keywords: roles, users, permissions, ai data engine administrator, ai data engine viewer 
 summary: 透過為每個使用者指派系統管理員或查看者角色來控制存取。了解這兩種角色及其權限。 
 ---
 = 管理 AI Data Engine 中的使用者和角色
@@ -11,7 +11,7 @@ summary: 透過為每個使用者指派系統管理員或查看者角色來控�
 
 
 [role="lead"]
-透過指派系統管理員或檢視者角色，控制每個使用者在 AI Data Engine 中的檢視和操作權限。在您的團隊開始使用 AI Data Engine 之前，請為每個使用者指派與其所需存取層級相符的角色。
+透過指派系統管理員或檢視者角色，控制每個使用者在 AI Data Engine （AIDE） 中可檢視與執行的內容。在您的團隊開始使用 AI Data Engine 之前，請為每位使用者指派符合其所需存取層級的角色。
 
 您可以透過 NetApp Console 組織設定指派角色。AI Data Engine 支援兩種角色。
 
@@ -74,8 +74,18 @@ AI Data Engine 檢視者角色提供對 AI Data Engine 的有限存取。檢視�
 | 行動：歸檔、複本、刪除 | 是的 | - 
 
 
+| 操作：清理重複項 | 是的 | - 
+
+
 | 管理企業標籤 | 是的 | 是的 
 |===
+
+
+[[roles-and-governed-ai-access]]
+== 角色和受監管的 AI 存取
+
+NetApp Console 角色控制誰可以在 AI Data Engine 中設定受控的 AI 存取。它們不控制 AI 用戶端使用者可以搜尋哪些集合。您授予每個集合的 Microsoft Entra ID 範圍可控制該存取。如需詳細資訊，請參閱 link:../mcp/configure-entra-id-mcp.html["設定 Microsoft Entra ID 以進行受控 AI 存取"]。
+
 
 
 [[assign-a-role-to-a-user]]
@@ -105,4 +115,5 @@ AI Data Engine 檢視者角色提供對 AI Data Engine 的有限存取。檢視�
 
 * link:../investigate/take-actions.html["對您的資料採取行動"]
 * link:../policies/create-policy.html["建立原則"]
+* link:../mcp/manage-data-collections.html["管理資料收集"]
 

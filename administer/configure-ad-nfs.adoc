@@ -1,0 +1,149 @@
+---
+sidebar: sidebar 
+permalink: administer/configure-ad-nfs.html 
+keywords: active directory, nfs, uidNumber, gidNumber, global catalog, identity mapping, file owner, ldap, general settings 
+summary: 設定 NFS 使用者 ID 和群組 ID 的 Active Directory 對應。AI Data Engine 使用已解析的使用者身分來顯示 NFS 資料的檔案擁有者名稱。 
+---
+= 在 AI Data Engine 中為 NFS 設定 Active Directory 身分映射
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+透過名稱而非數字 ID 來識別 NFS 檔案的擁有者。AI Data Engine （AIDE） 可以將 NFS 檔案中的數字使用者 ID （UID） 和群組 ID （GID） 對應到 Active Directory 身分，並使用解析後的使用者身分來顯示檔案擁有者名稱。
+
+此對應不會向 NFS 儲存設備驗證 AI Data Engine。它會將 AI Data Engine 在掃描過程中找到的 ID 轉換為 Active Directory 名稱。
+
+
+
+[[before-you-begin]]
+== 開始之前
+
+.權限和存取
+* 您擁有 _AI Data Engine 系統管理員_ 權限。
+
+
+.AI Data Engine 組態
+* 您有 link:../deploy/aide-requirements.html#networking-requirements["開啟所需連接埠"] 從 AI Data Engine 到您的 Active Directory 網域控制器。
+* 您有link:configure-settings.html#find-access-risks-with-permission-scanning["已啟用權限掃描"]。
+
+
+.Active Directory
+* 您擁有一個可供 AI Data Engine 用於查詢使用者和群組屬性的 Active Directory 帳戶。您需要在 AI Data Engine 中輸入該帳戶的使用者名稱和密碼。
+* 您擁有 Active Directory 網域名稱，以及 DNS 伺服器的 IP 位址或 LDAP 伺服器的 IP 位址和連接埠。
+* 您知道您的目錄是否需要安全的 LDAP 連線。
+* 如果 AI Data Engine 查詢全域目錄，且屬性尚未複寫至其中，則您或您的 Active Directory 系統管理員擁有 _Schema Admins_ 角色來進行架構變更。
+
+
+
+
+[[prepare-active-directory]]
+== 準備 Active Directory
+
+將 Active Directory 中的 UID 和 GID 屬性與 NFS 儲存設備上使用的數字 ID 進行匹配，以便 AI Data Engine 能夠解析檔案擁有者。
+
+AI Data Engine 讀取下列 Active Directory 屬性：
+
+[cols="1,2,1"]
+|===
+| 屬性 | 目的 | 必填 
+
+
+| `uidNumber` | 使用者的數字唯一識別碼（UID）。它必須與使用者在您的 NFS 儲存設備上的 UID 相符。 | 是的 
+
+
+| `gidNumber` | 群組的數字 GID。它必須與該群組在您的 NFS 儲存設備上的 GID 相符。 | 是的 
+
+
+| `mail` | 檔案所有者的電子郵件地址。如果未設定此屬性，則所有者的電子郵件地址將顯示為 *不可用*。 | 否 
+|===
+為您希望 AI Data Engine 解析的使用者填入 `uidNumber`，並為群組填入 `gidNumber`。
+
+
+NOTE: 在群組物件上設定  `gidNumber`。使用者物件上的  `gidNumber` 可識別該使用者的主要群組。這不是 AI Data Engine 用於此查詢的群組屬性。
+
+.步驟
+. 請確認您要解析的每個使用者都有一個 `uidNumber`值，且每個群組都有一個 `gidNumber`值。每個 UID 在使用者中必須是唯一的，且每個 GID 在群組中必須是唯一的。使用者和群組可以具有相同的數值。
+. 如果 AI Data Engine 查詢全域編錄，且屬性尚未複寫至其中，請將  `uidNumber` 和  `gidNumber` 屬性複寫至其中。此複寫是整個樹系的一次性變更。您必須是 _Schema Admins_ 群組的成員。
++
+.. 在網域控制器上，開啟 Active Directory 架構管理單元。
+.. 開啟 `uidNumber` 屬性的內容。
+.. 選取 *將此屬性複寫至全域目錄*。
+.. 對 `gidNumber`屬性重複上述步驟。
+
+
+
+
+
+CAUTION: 如果 AI Data Engine 查詢全域目錄，則未複寫到全域目錄的屬性不會透過身分查找傳回。對應的 ID 將保持未解析狀態。
+
+
+
+[[enable-active-directory-for-nfs]]
+== 為 NFS 啟用 Active Directory
+
+將 AI Data Engine 連接到包含相符 UID 和 GID 屬性的 Active Directory 網域，然後啟用身分對應，以便掃描的 NFS 檔案可以顯示已解析的擁有者名稱。
+
+.步驟
+. 在 AI Data Engine 使用者介面中，選擇 *組態*。
+. 選取 *一般設定*。
+. 在頁面上，找到 *Active Directory* 並選擇 *已啟用*。
+. 輸入您的 Active Directory 網域的連線詳細資訊。選擇 *DNS 伺服器 IP 位址* 選項或 *LDAP 伺服器 IP 位址* 選項。
++
+
+NOTE: 您在此輸入的憑證用於目錄整合。它們與您為 SMB 歸檔目的地提供的憑證分隔。請參閱 link:../investigate/take-actions.html["對您的資料採取行動"]。
+
++
+[cols="1,3"]
+|===
+| 欄位 | 說明 
+
+
+| *使用者名稱* | AI Data Engine 用於查詢使用者和群組屬性的 Active Directory 帳戶。請以  `domain\user` 或  `user@domain` 的格式輸入名稱。 
+
+
+| *密碼* | 帳戶密碼。 
+
+
+| *DNS 伺服器 IP 位址* | 用於解析您的 Active Directory 網域的 DNS 伺服器的 IP 位址。例如， `10.0.1.50`。請選擇此選項，而不是 *LDAP 伺服器 IP 位址*。 
+
+
+| *網域名稱* | 您的 Active Directory 網域的完全符合資格的名稱。例如， `corp.example.com`。DNS 和 LDAP 選項均需要此欄位。 
+
+
+| *LDAP 伺服器 IP 位址* | LDAP 伺服器（即網域控制器）的 IP 位址。例如， `10.0.1.50`。請選擇此選項，而不是 *DNS 伺服器 IP 位址*。 
+
+
+| *LDAP 伺服器連接埠* | LDAP 伺服器的連接埠。預設值為 `389`。 
+
+
+| *LDAP 安全的連線* | 選擇此選項可透過安全的連線連線至 LDAP 伺服器。DNS 和 LDAP 選項均提供此功能。 
+|===
+. （選用）開啟 *啟用 NFS 身分對應*。
++
+啟用 NFS 身分映射可讓 AIDE 將數字 NFS 檔案擁有者 ID 解析為 Active Directory 擁有者名稱。僅當 Active Directory 包含您的 NFS 環境所使用的 Unix UID/GID 屬性時，才啟用此選項。
+
++
+.. 輸入 *UID 編號屬性* 和 *GID 編號屬性*，例如 `uidNumber` 和 `gidNumber`。啟用 NFS 身分對應時，這兩個欄位都是必填的。擁有者資訊會在背景中解析。
+
+
+. 儲存變更。
+
+
+.結果
+AI Data Engine 使用 Active Directory 來解析它掃描的 NFS 檔案的擁有者。
+
+AI Data Engine 非同步解析身分。啟用對應或在 Active Directory 中更新屬性後，擁有者名稱可能不會立即顯示。
+
+若要檢查結果，請在 link:../investigate/investigate-unstructured.html["調查"] 檢視中開啟檔案詳細資料，並驗證檔案擁有者是否顯示 Active Directory 使用者名稱。
+
+
+
+[[related-information]]
+== 相關資訊
+
+* link:../deploy/aide-requirements.html["AI Data Engine 需求"]
+* link:configure-kerberos-smb.html["AI Data Engine 中用於 SMB/CIFS 共用區的 Kerberos 驗證"]
+* link:configure-settings.html["設定資料分類臨界值"]
+

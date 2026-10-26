@@ -1,0 +1,8 @@
+---
+permalink: mcp/configure-mcp-access.html 
+redirect: mcp/quick-start-mcp.html 
+---
+= 
+:allow-uri-read: 
+
+

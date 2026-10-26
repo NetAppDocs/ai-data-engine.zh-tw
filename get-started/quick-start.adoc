@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: get-started/quick-start.html 
-keywords: quick start, deploy, connect, investigate, policies 
-summary: 透過部署服務、連接儲存設備系統並開始首次調查，即可啟動並執行 AI Data Engine。 
+keywords: quick start, deploy, connect, investigate, policies, governed ai access, mcp 
+summary: 透過部署服務、連接資料來源並開始首次調查，即可啟動並執行 AI Data Engine。您也可以選擇為 AI 用戶端設定受控 AI 存取。 
 ---
 = AI Data Engine 快速入門
 :allow-uri-read: 
@@ -11,24 +11,28 @@ summary: 透過部署服務、連接儲存設備系統並開始首次調查，�
 
 
 [role="lead"]
-透過部署服務、連接儲存設備系統並開始首次調查，即可啟動並執行 AI Data Engine。
+透過部署服務、連接資料來源並開始首次調查，即可啟動並執行 AI Data Engine（AIDE）。您也可以透過受控的 AI 存取，讓 AI 用戶端搜尋您的中繼資料。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一"] 審查要求
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一"] link:../deploy/aide-requirements.html["審查需求並選擇部署類型"]
 [role="quick-margin-para"]
-請檢閱 link:../deploy/aide-requirements.html["AIDE 要求"] 和 link:../deploy/deployment-overview.html["了解部署模式"]，以決定要安裝 AIDE Lite 或 AIDE Enterprise。AI Data Engine 目前在 NetApp Console 中提供私人預覽版。請聯絡您的 NetApp 代表申請存取，以便部署 AI Data Engine。
+審查需求，並 link:../deploy/deployment-overview.html["了解部署類型"] 決定是安裝 AIDE 單節點部署還是多節點部署。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["二"] 部署 AI Data Engine
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["二"] link:../deploy/deployment-overview.html["部署 AI Data Engine"]
 [role="quick-margin-para"]
-從 NetApp Console 部署 link:../deploy/deploy-aide-lite.html["AIDE Lite"] 或 link:../deploy/deploy-enterprise.html["AIDE Enterprise"]。設定頁面會引導您選擇安裝位置和組態大小，並執行安裝命令。
+從 NetApp Console 部署 link:../deploy/deploy-aide-single-node.html["AIDE 單一節點部署"] 或 link:../deploy/deploy-aide-multi-node.html["AIDE 多節點部署"]。設定頁面會引導您選擇安裝位置和組態大小，並執行安裝命令。如果您的主機或叢集只能透過 Proxy 連線至網際網路，請改為 link:../deploy/configure-proxy.html["使用 Proxy 部署"]。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"] 連接資料來源
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"] link:../data-sources/connect-data-source.html["連接資料來源"]
 [role="quick-margin-para"]
-link:../data-sources/connect-data-source.html["連接資料來源"] 開始掃描。AI Data Engine 會將您指定的儲存設備系統中的檔案系統中繼資料編入目錄。
+連接資料來源即可開始掃描。AI Data Engine 會將您連接的資料來源的中繼資料編入目錄。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四"] 探索您的資料
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四"] link:../investigate/understand-dashboard.html["探索您的資料"]
 [role="quick-margin-para"]
-開啟link:../investigate/understand-dashboard.html["儀表板"]即可查看儲存設備最佳化見解，或前往link:../investigate/investigate-data.html["調查"]即可直接搜尋並篩選中繼資料。
+開啟儀表板查看儲存設備最佳化見解，或前往 link:../investigate/investigate-data.html["調查"] 直接搜尋和篩選中繼資料。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五"] 建立原則
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五"] link:../policies/create-policy.html["建立原則"]
 [role="quick-margin-para"]
-link:../policies/create-policy.html["將您的調查篩選條件儲存為原則"] 監控隨時間符合相同條件的檔案。您可以設定原則以傳送通知、永久刪除符合的檔案，或追蹤結果。
+將您的調查篩選條件儲存為原則，以便長期監控符合相同條件的檔案。您可以設定原則，使其發送通知、永久刪除符合的檔案或追蹤結果。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["六"] link:../mcp/quick-start-mcp.html["選用：設定受控 AI 存取"]
+[role="quick-margin-para"]
+讓 AI 用戶端搜尋您選擇的集合中的中繼資料。進階使用者可以搜尋中繼資料並對資料採取行動。
