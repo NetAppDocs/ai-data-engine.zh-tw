@@ -2452,4 +2452,11 @@
   <block id="d76d64858ff00ec6f65866ed6c6641f4" category="sidebar">將 AIDE 連接到 Microsoft Entra ID</block>
   <block id="156586dd7dceda9f103091b3c0beb1e6" category="sidebar">AIDE MCP 工具</block>
   <block id="7da93123cf77bf1f1d116b04b8d380c2" category="paragraph"><block ref="7da93123cf77bf1f1d116b04b8d380c2" category="inline-link-macro-rx"></block></block>
+  <block id="702209553c340514b23674486ae4fd31" category="doc">AI Data Engine 1.3</block>
+  <block id="10c8a7570aaedaffab9ef063fe9b43c3" category="paragraph">AI Data Engine 1.3 是 AI Data Engine （AIDE） 的首個正式發布版本 （GA），這是一項透過 NetApp Console 代管的中繼資料智慧服務。AIDE 掃描您連接的系統，建立中繼資料目錄，並提供最佳化儲存設備和大規模治理資料所需的可見度和工具。若要深入瞭解，請參閱<block ref="c8f75516a94493ffe7fe6bb96c5067bf" category="inline-link-rx"></block>。</block>
+  <block id="b678323232cf97a3768c22969e93b6bc" category="inline-link">AI Data Engine 的新功能</block>
+  <block id="e0a0ca8d3c0ba674ddda1dadea6576a3" category="paragraph">您可以識別連線系統中的冷資料、過時資料與複製資料，尋找具有開啟權限的目錄，並調查過大或未使用的資料庫表格。您可以直接對結果採取行動，或將篩選條件儲存為原則，以持續監控資料狀況。若要深入瞭解，請參閱<block ref="c9aabe1555970ff471e651fab11a16f7" category="inline-link-rx"></block>。</block>
+  <block id="5bb02905e466f0b51d8900b860f2d83c" category="section-title">治理 AI 對您中繼資料的存取</block>
+  <block id="9499e52a968a6337905b279c7aa8beb4" category="inline-link">了解 AI Data Engine 中的 MCP</block>
+  <block id="4edb79b33148e0f3f7c2ed02c6ba39c5" category="paragraph">您可以透過模型上下文協定（MCP）將 AI 用戶端連接到 AI Data Engine，並使用 Microsoft Entra ID 範圍來控制哪些使用者可以搜尋每個集合。若要深入瞭解，請參閱<block ref="705649344f29bd334d650738c1e5f0f1" category="inline-link-rx"></block>。</block>
 </blocks>
