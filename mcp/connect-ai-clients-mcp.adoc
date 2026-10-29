@@ -357,7 +357,5 @@ TIP: 搜尋篩選條件包括檔案名稱前綴、檔案類型和擁有者。如
 * link:prepare-mcp-host.html["準備 MCP 主機"]
 * link:manage-data-collections.html["管理資料收集"]
 * link:maintain-mcp-setup.html["維護您的 MCP 設定"]
-* link:configure-entra-id-mcp.html["設定 Microsoft Entra ID 以進行受控 AI 存取"]
-* link:connect-entra-id-aide-mcp.html["將 AI Data Engine 連接到 Microsoft Entra ID"]
 * link:../release-notes/known-limitations.html["已知限制"]
 

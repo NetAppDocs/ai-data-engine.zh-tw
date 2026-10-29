@@ -80,5 +80,5 @@ AI Data Engine 會掃描您連線的支援資料來源。如需詳細資訊，�
 * link:architecture.html["AI Data Engine 架構"]
 * link:quick-start.html["快速入門"]
 * link:../mcp/learn-about-mcp.html["了解受監管的 AI 存取"]
-* link:storage-optimization-workflows.html["探索儲存設備最佳化工作流程"]
+* link:../investigate/storage-optimization-workflows.html["探索儲存設備最佳化工作流程"]
 

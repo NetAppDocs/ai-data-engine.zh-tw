@@ -94,7 +94,8 @@ NetApp Console 角色控制誰可以在 AI Data Engine 中設定受控的 AI 存
 角色指派是在 NetApp Console 中進行，而不是在 AI Data Engine 本身中進行。
 
 .步驟
-. 從 NetApp Console，前往 *成員*。
+. 從 NetApp Console，選擇 *管理 > 身分和存取*。
+. 前往 *成員*。
 . 執行下列其中一項作業：
 +
 ** 若要新增使用者，請選擇 *新增使用者*，然後輸入使用者的電子郵件地址。
@@ -103,7 +104,7 @@ NetApp Console 角色控制誰可以在 AI Data Engine 中設定受控的 AI 存
 
 . 選擇組織、資料夾或專案，然後選擇 *Data Service* 類別。
 . 指派 *AI Data Engine 系統管理員* 或 *AI Data Engine 檢視者* 角色。
-. 儲存變更。
+. 新增新角色。
 
 
 使用者收到電子郵件邀請後，接受邀請即可存取 AI Data Engine。

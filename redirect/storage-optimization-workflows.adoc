@@ -1,0 +1,8 @@
+---
+permalink: get-started/storage-optimization-workflows.html 
+redirect: ai-data-engine/investigate/storage-optimization-workflows.html 
+---
+= 
+:allow-uri-read: 
+
+

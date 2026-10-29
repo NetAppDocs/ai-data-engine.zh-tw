@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: investigate/understand-dashboard.html 
-keywords: dashboard, overview, reclaimable storage, cold data, stale data, storage health, capacity risk, data owners, investigate, access exposure, open permissions, structured data, duplicates, file types 
+keywords: dashboard, overview, reclaimable storage, cold data, stale data, storage health, capacity risk, data owners, investigate, permissions, open permissions, structured data, duplicates, file types 
 summary: 評估整個環境中的儲存設備健全狀況，確定潛在可回收儲存設備的集中位置，審查具有開啟權限和結構化資料的目錄，並決定先調查哪些系統或資料擁有者。 
 ---
 = 使用 AI Data Engine 儀表板評估儲存設備健全狀況
@@ -13,7 +13,9 @@ summary: 評估整個環境中的儲存設備健全狀況，確定潛在可回�
 [role="lead"]
 在決定調查方向之前，您需要了解儲存設備的現狀。有多少儲存設備符合組織設定的冷資料和過期資料分類臨界值？哪些系統或擁有者持有這些類別中最多的資料？例如，儲存管理員在收到容量警報後，可能會發現掃描到的儲存設備中很大一部分是冷資料，然後可以深入分析影響最大的系統，立即展開調查。
 
-從 NetApp Console ，選擇 *AI 資料中心* > *AI Data Engine*。預設會開啟儀表板。儀表板將其深入解析分為三個索引標籤：*儲存設備最佳化*、*存取暴露* 和 *結構化資料*。
+從 NetApp Console 中，選擇 *AI 資料中心* > *AI Data Engine*。預設會開啟儀表板。儀表板將其深入分析整理成三個索引標籤：*儲存設備最佳化*、*權限*和*結構化資料*。
+
+image::aide_mo_ga_overview_page.png[AI Data Engine 儀表板總覽]
 
 
 
@@ -45,7 +47,7 @@ summary: 評估整個環境中的儲存設備健全狀況，確定潛在可回�
 * _作用中與可回收的儲存設備_：顯示所有掃描資源中作用中資料與冷資料和過期資料的比例。冷資料、過期資料或複製的資料比例過高，可能表示存在顯著的儲存設備最佳化商機。
 * _依可回收儲存設備排名的前幾大資料資源_：顯示可回收容量最大的資料資源。
 * _按可回收儲存設備排名的前幾名消費者_：顯示資料擁有者、他們的可回收儲存設備以及他們的檔案數量。
-* _複製大小分佈_：顯示複製資料在各個大小範圍內的分佈。
+* _複製資料大小分佈_：顯示複製資料在不同大小範圍內的分佈。
 * _資產年齡_：依年齡顯示項目。使用下拉式選單選擇圖表的時間戳記條件。
 * _常用檔案類型_：顯示最常見的檔案類型。
 
@@ -58,10 +60,10 @@ summary: 評估整個環境中的儲存設備健全狀況，確定潛在可回�
 
 
 
-[[review-access-exposure]]
-== 審查存取暴露
+[[review-permissions]]
+== 審查權限
 
-尋找需要優先進行權限審查的目錄。*存取暴露* 標籤顯示 _具有開啟權限的目錄_ 圖表，其中列出了目錄路徑及其檔案數量。若要查看這些目錄的詳細資訊，請參閱 link:investigate-directories.html["調查目錄"]。若要控制 AI Data Engine 是否掃描權限，請參閱 link:../administer/configure-settings.html["設定資料分類臨界值和存取掃描"]。
+尋找需要優先進行權限審查的目錄。*權限* 標籤顯示 _具有開啟權限的目錄_ 圖表，其中列出目錄路徑及其檔案數量。若要詳細查看這些目錄，請參閱 link:investigate-directories.html["調查目錄"]。若要控制 AI Data Engine 是否掃描權限，請參閱 link:../administer/configure-settings.html["設定資料分類臨界值和存取掃描"]。
 
 
 
@@ -77,9 +79,9 @@ summary: 評估整個環境中的儲存設備健全狀況，確定潛在可回�
 
 當您確定了值得調查的資源或擁有者後，請使用 *儲存設備最佳化* 標籤上的表格直接進入詳細資訊。
 
-_依可回收儲存設備排序的頂級資料資源_ 表格列出您已掃描的儲存資源，並依據被複製或符合您組織冷資料與過時資料臨界值的資料比例進行排名。選擇任何列以開啟篩選至該資源的調查檢視。從那裡，使用 link:investigate-unstructured.html["非結構化"] 索引標籤來識別冷檔案或過時檔案，或使用 link:investigate-directories.html["目錄"] 索引標籤來稽核權限暴露。
+_按可回收儲存設備排序的頂級資料資源_ 表格列出了已掃描的儲存資源，並按複製的資料或符合組織冷資料和過期資料閾值的資料比例進行排名。使用 link:investigate-unstructured.html["非結構化"] 索引標籤來識別冷檔案或過期檔案，或使用 link:investigate-directories.html["目錄"] 索引標籤來稽核權限暴露情況。
 
-_依可回收儲存設備區分的最高用量者_ 表格顯示哪些資料擁有者持有潛在可回收的資料。選取任何一列以開啟篩選至該擁有者檔案的 link:investigate-unstructured.html["調查"] 檢視。從該處，您可以審查結果、對其採取行動，或將其儲存為原則。
+_按可回收儲存設備劃分的頂級使用者_ 表顯示哪些資料擁有者持有潛在的可回收資料。選擇 *調查* 以開啟篩選為該擁有者檔案的 link:investigate-unstructured.html["調查"] 檢視。您可以在此審查結果、採取相應措施或將其儲存為原則。
 
 審查儀表板不會歸檔或刪除資料，也不會變更目錄權限。
 

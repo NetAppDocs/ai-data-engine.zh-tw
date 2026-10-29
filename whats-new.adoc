@@ -7,7 +7,7 @@ summary: 了解 AI Data Engine 的新功能。
 = AI Data Engine 的新功能
 :allow-uri-read: 
 :icons: font
-:imagesdir: media/
+:imagesdir: ./media/
 
 
 [role="lead"]

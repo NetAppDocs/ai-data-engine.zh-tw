@@ -107,6 +107,6 @@ summary: 使用中繼資料篩選器尋找 NFS 和 SMB Volume 中的檔案，並
 * link:take-actions.html["對您的資料採取行動"]
 * link:../policies/create-policy.html["建立原則"]
 * link:../administer/configure-settings.html["設定資料分類臨界值和存取掃描"]
-* link:../get-started/storage-optimization-workflows.html["探索儲存設備最佳化工作流程"]
+* link:storage-optimization-workflows.html["探索儲存設備最佳化工作流程"]
 * link:understand-dashboard.html["從儀表板評估儲存使用率"]
 

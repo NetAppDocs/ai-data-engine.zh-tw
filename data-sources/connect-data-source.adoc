@@ -11,14 +11,14 @@ summary: 將資料來源連接到 AI Data Engine，並設定要掃描的資料�
 
 
 [role="lead"]
-連接您希望 AI Data Engine（AIDE）分析的資料來源，並選擇要掃描的資料資源。AI Data Engine 會掃描已連接的資料來源以收集中繼資料，而連接程序取決於來源類型。
+連接您希望 AI Data Engine（AIDE）分析的資料來源，並選擇要掃描的資料資源。AI Data Engine 會掃描已連接的資料來源以收集中繼資料，而連接程序取決於來源類型。您可以在 NetApp Console 中完成這些工作。
 
 
 
 [[before-you-begin]]
 == 開始之前
 
-* 您必須擁有 _AI Data Engine 系統管理員_ 權限才能連接和設定資料來源。
+* 您必須擁有 NetApp Console 中的 _AI Data Engine 管理員_ 角色，才能連接和設定資料來源。
 * 對於透過 NetApp Console 探索連接的系統，請先使用 Console 代理程式在 NetApp Console 中探索儲存設備系統，然後再將其新增至 AI Data Engine。這適用於所有支援的儲存設備類型，包括內部部署 ONTAP 叢集、Cloud Volumes ONTAP、Amazon FSx for NetApp ONTAP、Google Cloud NetApp Volumes 和 Azure NetApp Files。對於內部部署 ONTAP 叢集，請參閱 NetApp Console 文件中的 link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html["探索內部部署 ONTAP 叢集"]。直接探索無法啟用 AI Data Engine 等資料服務。
 * 請確認 AI Data Engine 存取資料來源所需的網路連線已開啟。請參閱 link:../deploy/aide-requirements.html["AI Data Engine 需求"]。
 * 若要使用 Kerberos 驗證掃描 SMB/CIFS 共用區，請先完成 link:../administer/configure-kerberos-smb.html["AI Data Engine 中用於 SMB/CIFS 共用區的 Kerberos 驗證"] 中適用於您部署類型的程序。

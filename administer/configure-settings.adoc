@@ -13,6 +13,8 @@ summary: 定義 AI Data Engine 將哪些檔案歸類為冷資料或過時資料�
 [role="lead"]
 冷資料和過期資料臨界值可協助您找到可使用 AI Data Engine （AIDE） 進行最佳化的儲存設備。權限掃描和 Active Directory 整合可協助您發現並了解存取風險。請根據您組織的資料分類、保留和存取策略進行設定。
 
+image::aide_mo_ga_configuration_page.png[AI Data Engine 一般設定]
+
 
 
 [[before-you-begin]]
@@ -102,8 +104,7 @@ NOTE: 預設臨界值是作為起點提供的產品預設值。它們並不代�
 * link:../investigate/understand-dashboard.html["了解 AI Data Engine 儀表板"]
 * link:../investigate/investigate-directories.html["調查目錄"]
 * link:../investigate/investigate-unstructured.html["調查非結構化資料"]
-* link:../get-started/storage-optimization-workflows.html["探索儲存設備最佳化工作流程"]
-* link:../deploy/aide-requirements.html["AIDE 要求"]
+* link:../investigate/storage-optimization-workflows.html["探索儲存設備最佳化工作流程"]
 * link:manage-users-roles.html["管理使用者和角色"]
 * link:configure-ad-nfs.html["設定 NFS 的 Active Directory 身分對應"]
 

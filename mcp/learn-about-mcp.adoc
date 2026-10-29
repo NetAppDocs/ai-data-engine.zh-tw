@@ -18,7 +18,7 @@ summary: 受控 AI 存取允許 AI 用戶端透過模型上下文協定（MCP）
 [[what-governed-ai-access-does]]
 == 受管控的 AI 存取有何作用
 
-模型上下文協定（MCP）是一種開放式標準，可讓 AI 用戶端連線至外部資料來源與工具。AI Data Engine 提供名為 Governed Access Gateway 的 MCP 伺服器，以便 AI 用戶端可以查詢 AI Data Engine 中繼資料目錄，而無需直接存取您的儲存設備系統。
+模型上下文協定（MCP）是一種開放式標準，允許 AI 用戶端連接到外部資料來源和工具。AI Data Engine 提供了一個名為 Governed Access Gateway 的 MCP 伺服器，以便 AI 用戶端可以查詢 AI Data Engine 中繼資料目錄，而無需直接存取您的儲存設備系統。
 
 透過 MCP，聯網的 AI 用戶端可以：
 
@@ -125,12 +125,9 @@ NetApp 尚未測試其他 MCP 用戶端。如果您能設定它們連線，它�
 == 相關資訊
 
 * link:manage-data-collections.html["管理資料收集"]
-* link:maintain-mcp-setup.html["維護您的 MCP 設定"]
 * link:quick-start-mcp.html["使用 AI Data Engine 快速啟動受控 AI 存取"]
 * link:prepare-mcp-host.html["準備 MCP 主機"]
 * link:configure-entra-id-mcp.html["設定 Microsoft Entra ID 以進行受控 AI 存取"]
-* link:connect-entra-id-aide-mcp.html["將 AI Data Engine 連接到 Microsoft Entra ID"]
 * link:connect-ai-clients-mcp.html["將 AI 用戶端連接到 AI Data Engine MCP 伺服器"]
 * link:mcp-tools-reference.html["MCP 工具用於 AI Data Engine 管理的 AI 存取"]
-* link:../release-notes/known-limitations.html["已知限制"]
 

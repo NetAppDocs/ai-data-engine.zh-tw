@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar 
-permalink: get-started/storage-optimization-workflows.html 
+permalink: investigate/storage-optimization-workflows.html 
 keywords: storage optimization, cold data, stale data, retention, workflow, dashboard, investigate, policy 
 summary: 使用端對端流程，將儀表板發現進行調查、行動及後續原則監控。 
 ---
@@ -22,9 +22,9 @@ summary: 使用端對端流程，將儀表板發現進行調查、行動及後�
 您在儀表板上注意到，某個儲存設備資源有大量資料被標記為冷資料。這些冷檔案在設定的冷資料臨界值（預設為一年）內未被存取過。您可以在 link:../administer/configure-settings.html["資料分類設定"] 中變更此臨界值。
 
 .步驟
-. 從 link:../investigate/understand-dashboard.html["儀表板"] 中，找出冷資料濃度最高的資源，然後選擇 *Investigate*。
-. 在 link:../investigate/investigate-unstructured.html["調查"] 中，將 *上次存取* 篩選器設定為符合您設定的冷資料臨界值（預設：*1 年以上*），並確認資源。
-. 審查結果以決定link:../investigate/take-actions.html["是否新增標籤、歸檔或刪除"]相符的檔案。
+. 從 link:understand-dashboard.html["儀表板"] 中，找出冷資料濃度最高的資源，然後選擇 *Investigate*。
+. 在 link:investigate-unstructured.html["調查"] 中，將 *上次存取* 篩選器設定為符合您設定的冷資料臨界值（預設：*1 年以上*），並確認資源。
+. 審查結果以決定link:take-actions.html["是否新增標籤、歸檔或刪除"]相符的檔案。
 . 如果這些資源值得後續監控，link:../policies/create-policy.html["將篩選器集儲存為原則"]以便在新檔案變成「冷檔案」時收到通知。
 
 
@@ -40,9 +40,9 @@ AI Data Engine 會將未修改時間超過組織過期臨界值（預設：三�
 NOTE: 您可以在 link:../administer/configure-settings.html["資料分類設定"] 中變更此臨界值。
 
 .步驟
-. 從 link:../investigate/understand-dashboard.html["儀表板"] 中，找出包含大量過時資料的資源。
-. 在 link:../investigate/investigate-unstructured.html["調查"] 中，將 *上次修改時間* 過濾器設定為您的陳舊臨界值（預設為 *3 年以上*）。
-. 審查結果以決定link:../investigate/take-actions.html["是否新增標籤、歸檔或刪除"]相符的檔案。
+. 從 link:understand-dashboard.html["儀表板"] 中，找出包含大量過時資料的資源。
+. 在 link:investigate-unstructured.html["調查"] 中，將 *上次修改時間* 過濾器設定為您的陳舊臨界值（預設為 *3 年以上*）。
+. 審查結果以決定link:take-actions.html["是否新增標籤、歸檔或刪除"]相符的檔案。
 . link:../policies/create-policy.html["將篩選器集儲存為原則"]在後續掃描中追蹤這些資源。
 
 
@@ -58,7 +58,7 @@ NOTE: 您可以在 link:../administer/configure-settings.html["資料分類設�
 NOTE: 此臨界值可在 *組態* > *一般設定* 中進行設定。
 
 .步驟
-. 在 link:../investigate/investigate-unstructured.html["調查"] 中，套用設定為您保留臨界值的 *上次建立* 篩選器（預設為 *7 年以上*）。
+. 在 link:investigate-unstructured.html["調查"] 中，套用設定為您保留臨界值的 *上次建立* 篩選器（預設為 *7 年以上*）。
 . 在採取行動前，請與相關利益方審查結果。標記為保留的檔案通常會受到監控，而不是自動刪除。
 . link:../policies/create-policy.html["建立原則"] 搭配僅監控或電子郵件通知行動，以便在新檔案達到保留臨界值時收到警示。
 
@@ -72,11 +72,11 @@ NOTE: 此臨界值可在 *組態* > *一般設定* 中進行設定。
 相同檔案的多個相同複本存在於磁碟區或共用區中，這是在具有備份作業、資料移轉或共享的專案資料夾的環境中常見的問題。
 
 .步驟
-. 在 link:../investigate/investigate-unstructured.html["調查"] 中，選擇 *非結構化* 並開啟您懷疑有複本的檔案詳細資料，例如來自最近資料移轉的檔案。
+. 在 link:investigate-unstructured.html["調查"] 中，選擇 *非結構化* 並開啟您懷疑有複本的檔案詳細資料，例如來自最近資料移轉的檔案。
 . 在 *重複項* 旁邊，選擇 *檢視詳細資料* 以顯示檔案的每個複本及其位置。
 . 審查相符的檔案及其位置，以確認哪些複本是備援的。
 . 選擇備援檔案，然後選擇 *清理複製*。
-. 在 *行動* 下，選擇 *刪除*。保留具有 *最後修改時間* 選項的複本，在原始位置留下路徑，然後選擇 *提交*。然後在對話方塊中確認刪除。如需詳細資料，請參閱 link:../investigate/take-actions.html["調查並清理複製檔案"]。
+. 在 *行動* 下，選擇 *刪除*。保留具有 *最後修改時間* 選項的複本，在原始位置留下路徑，然後選擇 *提交*。然後在對話方塊中確認刪除。如需詳細資料，請參閱 link:take-actions.html["調查並清理複製檔案"]。
 . link:../policies/create-policy.html["建立原則"]追蹤複製隨時間累積的情況，並在計數增加時接收通知。
 
 
@@ -89,9 +89,9 @@ NOTE: 此臨界值可在 *組態* > *一般設定* 中進行設定。
 符合組織冷與舊臨界值的資料分散在多個擁有者手中。確定哪些資料擁有者持有這些類別中最多的檔案，有助於您確定清理工作的優先順序。
 
 .步驟
-. 從 link:../investigate/understand-dashboard.html["儀表板"] 中，找出 _依可回收儲存設備區分的最高用量者_ 表格。
-. 選擇擁有者列以開啟link:../investigate/investigate-unstructured.html["調查"]篩選至該擁有者的檔案。
-. 審查結果並決定link:../investigate/take-actions.html["是否新增標籤、歸檔或刪除"]檔案。
+. 從 link:understand-dashboard.html["儀表板"] 中，找出 _依可回收儲存設備區分的最高用量者_ 表格。
+. 選擇擁有者列以開啟link:investigate-unstructured.html["調查"]篩選至該擁有者的檔案。
+. 審查結果並決定link:take-actions.html["是否新增標籤、歸檔或刪除"]檔案。
 . link:../policies/create-policy.html["將篩選器集儲存為原則"] 監控該擁有者的潛在可回收資料隨時間的變化。
 
 
@@ -100,9 +100,9 @@ NOTE: 此臨界值可在 *組態* > *一般設定* 中進行設定。
 [[related-information]]
 == 相關資訊
 
-* link:../investigate/understand-dashboard.html["從儀表板評估儲存使用率"]
-* link:../investigate/investigate-data.html["調查您的資料"]
-* link:../investigate/investigate-unstructured.html["調查非結構化資料"]
-* link:../investigate/take-actions.html["對您的資料採取行動"]
+* link:understand-dashboard.html["從儀表板評估儲存使用率"]
+* link:investigate-data.html["調查您的資料"]
+* link:investigate-unstructured.html["調查非結構化資料"]
+* link:take-actions.html["對您的資料採取行動"]
 * link:../policies/create-policy.html["建立原則"]
 
