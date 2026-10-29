@@ -67,7 +67,7 @@ MCP 標籤操作受到限制:: AI 用戶端無法列出帶有標籤的檔案，�
 [[related-information]]
 == 相關資訊
 
-* link:whats-new.html["新增功能"]
+* link:../whats-new.html["新增功能"]
 * link:../deploy/deployment-overview.html["部署總覽"]
 * link:../investigate/take-actions.html["對您的資料採取行動"]
 * link:../mcp/learn-about-mcp.html["了解受監管的 AI 存取"]

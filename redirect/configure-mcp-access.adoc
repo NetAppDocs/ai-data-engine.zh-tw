@@ -1,6 +1,6 @@
 ---
 permalink: mcp/configure-mcp-access.html 
-redirect: mcp/quick-start-mcp.html 
+redirect: ai-data-engine/mcp/quick-start-mcp.html 
 ---
 = 
 :allow-uri-read: 

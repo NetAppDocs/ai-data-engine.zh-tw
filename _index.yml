@@ -19,7 +19,7 @@ indexpage:
     - title: 探索儲存設備最佳化工作流程
       url: "/get-started/storage-optimization-workflows.html"
     - title: 新增功能
-      url: "/release-notes/whats-new.html"
+      url: "/whats-new.html"
     - title: 已知限制
       url: "/release-notes/known-limitations.html"
   - title: 部署
